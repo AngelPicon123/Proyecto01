@@ -18,9 +18,17 @@ class UserController{
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
 
+        $users=$this->model->getUsers();
+        echo json_encode($users);
+    }
+
+    public function createUser(){
+        header("Access-Control-Allow-Origin: *");
+        header("Content-Type: application/json; charset=UTF-8");
+
         $data = json_decode(file_get_contents("php://input"));
 
-        if(!empty($data->users) && !empty($data->email)){
+        if(!empty($data->name) && !empty($data->email)){
 
             echo json_encode(["message"=> "User created successfully"]);
         }else{
