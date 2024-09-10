@@ -22,8 +22,8 @@ switch ($requestUri) {
         }
         break;
 
-        case 'Proyecto01/Api/public/index.php/users/updateUser'.$id:
-        if ($requestMethod === 'PATCH'){
+        case 'Proyecto01/Api/public/index.php/users/updateUser/'.$id:
+        if ($requestMethod === 'PUT'){
             $controller = new UserController();
             $controller->updateUser($id);
             }
