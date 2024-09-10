@@ -5,39 +5,49 @@ require_once '../src/controller/UserController.php';
 $requestUri = $_SERVER['REQUEST_URI'];
 $requestMethod = $_SERVER['REQUEST_METHOD'];
 
-//definicion de rutas
+// Remove the base URI part
+$baseUri = '/Proyecto01/Api/public/index.php';
+$uri = str_replace($baseUri, '', $requestUri);
 
-switch ($requestUri) {
-    case 'Proyecto01/Api/public/index.php/users':
-        if ($requestMethod === 'GET'){
-            $controller = new UserController();
+// Remove leading slash
+$uri = ltrim($uri, '/');
+
+// Define routes
+echo "REQUEST URI: " . $requestUri . "<br>";
+echo "PROCESSED URI: " . $uri . "<br>";
+echo "METHOD: " . $requestMethod . "<br>";
+
+$controller = new UserController();
+
+switch (true) {
+    case preg_match('/^users$/', $uri):
+        if ($requestMethod === 'GET') {
             $controller->getAllUsers();
         }
-    break;
-    
-    case 'Proyecto01/Api/public/index.php/users/create':
-        if ($requestMethod === 'POST'){
-            $controller = new UserController();
+        break;
+
+    case preg_match('/^users\/create$/', $uri):
+        if ($requestMethod === 'POST') {
             $controller->createUser();
         }
         break;
 
-        case 'Proyecto01/Api/public/index.php/users/updateUser/'.$id:
-        if ($requestMethod === 'PUT'){
-            $controller = new UserController();
+    case preg_match('/^users\/updateUser\/(\d+)$/', $uri, $matches):
+        if ($requestMethod === 'PUT') {
+            $id = $matches[1];
             $controller->updateUser($id);
-            }
-            break;
+        }
+        break;
 
-            case 'Proyecto01/Api/public/index.php/users/delete/'.$id:
-                if ($requestMethod === 'DELETE'){
-                    $controller = new UserController();
-                    $controller->deleteUser($id);
-                }
-                break;
+    case preg_match('/^users\/delete\/(\d+)$/', $uri, $matches):
+        if ($requestMethod === 'DELETE') {
+            $id = $matches[1];
+            $controller->deleteUser($id);
+        }
+        break;
 
-                default:  //header("HTTP/1.0 404 Not Found");
-                            echo "Ruta no encontrada";
-                break;
-    
+    default:
+        header("HTTP/1.0 404 NOT FOUND");
+        echo "Ruta no encontrada";
+        break;
 }

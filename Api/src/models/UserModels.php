@@ -1,49 +1,59 @@
 <?php
-//modelo de los usuarios registrados en la base de datos 
+// Modelo de los usuarios registrados en la base de datos
 class UserModel {
     private $conn;
-    private $table_name  ="users";
+    private $table_name = "users";
 
     public function __construct($database) {
         $this->conn = $database;
     }
-    //buscar todos los usuarios
-    public function getUsers(){
-        $query = "SELECT id, nombre, apellido, correo FROM". $this->table_name;
+
+//crear usuario
+    public function createUser($nombre, $apellido, $correo) {
+        $sql = "INSERT INTO " . $this->table_name . " (nombre, apellido, correo) VALUES (:nombre, :apellido, :correo)";
+        $stmt = $this->conn->prepare($sql);
+
+        // Vincular parámetros
+        $stmt->bindParam(':nombre', $nombre);
+        $stmt->bindParam(':apellido', $apellido);
+        $stmt->bindParam(':correo', $correo);
+
+        // Ejecutar la consulta
+        return $stmt->execute();
+    }
+    // Buscar todos los usuarios
+    public function getUsers() {
+        $query = "SELECT id, nombre, apellido, correo FROM " . $this->table_name;
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
-
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    // Buscar usuario por ID
+    public function getUserById($id) {
+        $sql = "SELECT * FROM " . $this->table_name . " WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 
-        //buscar usuarios por ID
-        public function getUserById($id) {
-            $sql = "SELECT * FROM users WHERE id = :id";
-            $stmt = $this->conn->prepare($sql);
-            $stmt->bindParam(':id', $id);
-            $stmt->execute();
-        
-            return $stmt->fetch(PDO::FETCH_ASSOC);
-        }
-    
-            //actualizar usuarios
-        public function updateUser($id, $name, $email) {
-            $sql = "UPDATE users SET name = :name, email = :email WHERE id = :id";
-            $stmt = $this->conn->prepare($sql);
-            $stmt->bindParam(':name', $name);
-            $stmt->bindParam(':email', $email);
-            $stmt->bindParam(':id', $id);
-        
-            return $stmt->execute();
-        }
-        //ELIMINAR USUARIO
-        public function deleteUserById($id) {
-            $sql = "DELETE FROM users WHERE id = :id";
-            $stmt = $this->conn->prepare($sql);
-            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-            $stmt->execute();
-            return $stmt->rowCount() > 0;
-        }
+    // Actualizar usuario
+    public function updateUser($id, $name, $email) {
+        $sql = "UPDATE " . $this->table_name . " SET nombre = :name, correo = :email WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
 
+    // Eliminar usuario
+    public function deleteUserById($id) {
+        $sql = "DELETE FROM " . $this->table_name . " WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->rowCount() > 0;
+    }
 }
