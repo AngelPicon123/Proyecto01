@@ -15,6 +15,7 @@ class UserModel {
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+<<<<<<< Updated upstream
     //buscar usuarios por ID
     public function getUserById($id) {
         $sql = "SELECT * FROM users WHERE id = :id";
@@ -43,5 +44,7 @@ class UserModel {
         $stmt->execute();
         return $stmt->rowCount() > 0;
     }
+=======
+>>>>>>> Stashed changes
 
 }
