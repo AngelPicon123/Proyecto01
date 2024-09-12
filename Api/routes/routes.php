@@ -13,31 +13,43 @@ $uri = str_replace($baseUri, '', $requestUri);
 $uri = ltrim($uri, '/');
 
 // Define routes
+/*
+echo "REQUEST URI: " . $requestUri . "<br>";
+echo "PROCESSED URI: " . $uri . "<br>";
+echo "METHOD: " . $requestMethod . "<br>";
 
-
+*/
 
 $controller = new UserController();
 
 switch (true) {
+    //leer todo
     case preg_match('/^users$/', $uri):
         if ($requestMethod === 'GET') {
             $controller->getAllUsers();
         }
+    break;
+    //buscar pot id
+    case preg_match('/^users\/searchUserById\/(\d+)$/', $uri, $matches):
+        if ($requestMethod === 'GET') {
+            $id = $matches[1];  // El ID del usuario desde la URL
+            $controller->searchUserById($id);
+        }
         break;
-
+//crear nuevo
     case preg_match('/^users\/create$/', $uri):
         if ($requestMethod === 'POST') {
             $controller->createUser();
         }
         break;
-
-    case preg_match('/^users/updateUser/(\d+)$/', $uri, $matches):
+//actualizar
+    case preg_match('/^users\/updateUser\/(\d+)$/', $uri, $matches):
         if ($requestMethod === 'PUT') {
             $id = $matches[1];
             $controller->updateUser($id);
         }
         break;
-
+//borrar
     case preg_match('/^users\/delete\/(\d+)$/', $uri, $matches):
         if ($requestMethod === 'DELETE') {
             $id = $matches[1];
