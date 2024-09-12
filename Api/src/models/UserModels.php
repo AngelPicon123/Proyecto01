@@ -30,7 +30,8 @@ class UserModel {
     }
 
     // Buscar usuario por ID
-    public function getUserById($id) {
+    public function getUserById($id)
+    {
         $sql = "SELECT * FROM " . $this->table_name . " WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
@@ -39,12 +40,14 @@ class UserModel {
     }
 
     // Actualizar usuario
-    public function updateUser($id, $name, $apellido,$email) {
-        $sql = "UPDATE " . $this->table_name . " SET nombre = :name, apellido = :apellido, correo = :email WHERE id = :id";
+    public function updateUser($id, $nombre, $apellido, $correo)
+    {
+        $sql = "UPDATE " . $this->table_name . " SET nombre = :nombre ,apellido = :apellido, correo = :correo 
+                                                 WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':nombre', $nombre);
         $stmt->bindParam(':apellido', $apellido);
-        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':correo', $correo);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         return $stmt->execute();
     }

@@ -31,7 +31,7 @@ switch (true) {
         }
         break;
 
-    case preg_match('/^users\/updateUser\/(\d+)$/', $uri, $matches):
+    case preg_match('/^users/updateUser/(\d+)$/', $uri, $matches):
         if ($requestMethod === 'PUT') {
             $id = $matches[1];
             $controller->updateUser($id);
@@ -44,6 +44,17 @@ switch (true) {
             $controller->deleteUser($id);
         }
         break;
+
+    case preg_match('/^users/searchUserById/(\d+)$/', $uri, $matches):
+        if ($requestMethod === 'GET') {
+            $id = $matches[1];  // El ID del usuario desde la URL
+            $controller->searchUserById($id);
+        }
+        break;
+
+
+
+
 
     default:
         header("HTTP/1.0 404 NOT FOUND");
