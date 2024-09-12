@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const apellidos = document.getElementById('apellido').value;
         const correo = document.getElementById('correo').value;
 
-        // Validación básica de correo electrónico
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailPattern.test(correo)) {
             alert('El correo electrónico no es válido.');
@@ -16,8 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const pacienteData = {
-            nombres: nombres,
-            apellidos: apellidos,
+            nombre: nombres,
+            apellido: apellidos,
             correo: correo
         };
 
@@ -26,14 +25,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 'Content-Type': 'application/json'
             }
         })
-            .then(response => {
-                console.log(response.data);
-                alert('Paciente creado exitosamente');
-                form.reset();
-            })
-            .catch(error => {
-                console.error('Hubo un error al crear el paciente:', error);
-                alert('Error al crear el paciente. Inténtalo nuevamente.');
-            });
+        .then(response => {
+            console.log(response.data);
+            alert('Paciente creado exitosamente');
+            form.reset();
+        })
+        .catch(error => {
+            console.error('Error al crear el paciente:', error);
+        });
     });
 });

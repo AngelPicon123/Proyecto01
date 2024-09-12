@@ -12,10 +12,6 @@ $uri = str_replace($baseUri, '', $requestUri);
 // Remove leading slash
 $uri = ltrim($uri, '/');
 
-// Define routes
-echo "REQUEST URI: " . $requestUri . "<br>";
-echo "PROCESSED URI: " . $uri . "<br>";
-echo "METHOD: " . $requestMethod . "<br>";
 
 $controller = new UserController();
 
