@@ -12,6 +12,10 @@ $uri = str_replace($baseUri, '', $requestUri);
 // Remove leading slash
 $uri = ltrim($uri, '/');
 
+// Define routes
+
+
+
 $controller = new UserController();
 
 switch (true) {
