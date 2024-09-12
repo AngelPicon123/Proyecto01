@@ -23,9 +23,8 @@ export function PacientsShow() {
           <tbody id="userTableBody">
           </tbody>
         </table>
-
-              
-      <div class="main-content" id="editUserModal" style="display: none;" > 
+      </div>
+       <div class="main-content" id="editUserModal" style="display: none;" > 
       
             <h1>CREAR NUEVO PACIENTE</h1>
             <form method="POST">
@@ -50,23 +49,12 @@ export function PacientsShow() {
                 <button type="submit" class="btn-submit">Crear Paciente</button>
             </form>
               </div>
-
-     
-
     `;
 
+  // Añadir el event listener aquí, después de que el contenido esté en el DOM
   $pacients.querySelector("#search").addEventListener("input", () => {
     searchUser();
-
-
-
   });
-
-  
-
-
 
   return $pacients;
 }
-
-
