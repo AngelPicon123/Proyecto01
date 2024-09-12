@@ -52,17 +52,25 @@ window.deleteUser = function (userId) {
 ///////////////////////////////////////////////////////////////
 
 function editUser(id) {
-  // Tu código existente para mostrar el modal
   const modal = document.getElementById("editUserModal");
+  const backdrop = document.getElementById("modalBackdrop");
 
-  if (modal) {
-    modal.style.display = "block"; // Mostrar el modal
-    modal.style.position = "fixed"; // Fijar la posición en la pantalla
-    modal.style.top = "50%";
-    modal.style.left = "50%";
-    modal.style.transform = "translate(-50%, -50%)";
+  if (modal && backdrop) {
+    // Mostrar el modal y el backdrop
+    modal.style.display = "block";
+    backdrop.style.display = "block";
+
+    // Cerrar el modal al hacer clic en el backdrop
+    backdrop.addEventListener("click", () => {
+      modal.style.display = "none";
+      backdrop.style.display = "none";
+    });
+
+    // Cerrar el modal al hacer clic en el botón de cerrar
   } else {
-    console.error("El modal no se encontró en el DOM.");
+    console.error(
+      "El modal, el backdrop o el botón de cerrar no se encontraron en el DOM."
+    );
   }
 }
 

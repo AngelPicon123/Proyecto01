@@ -7,7 +7,7 @@ export function PacientsShow() {
         <input type="text" id="search" class="search-input" placeholder="Buscar por Nombre o Apellido / DNI" />
       </div>
       <div class="Buttons-general">
-        <button >Crear Nuevo Terapeuta +</button>
+        <button >Crear Nuevo Cliente +</button>
       </div>
       <div class="tableContainer">
         <table>
@@ -26,27 +26,28 @@ export function PacientsShow() {
       </div>
        <div class="main-content" id="editUserModal" style="display: none;" > 
       
-            <h1>CREAR NUEVO PACIENTE</h1>
+            <h1>CREAR NUEVO CLIENTE</h1>
             <form method="POST">
-                <div class="form-row">
+                <div class="form-row-update">
                     <div class="form-group">
                         <label for="nombre">Nombres</label>
                         <input type="text" id="nombre" name="nombre">
                     </div>
+                </div>
+                 <div class="form-row-update">
                     <div class="form-group">
                         <label for="apellido">Apellidos</label>
                         <input type="text" id="apellido" name="apellido">
                     </div>
                 </div>
-
-                <div class="form-row">
+                <div class="form-row-update">
                     <div class="form-group">
                         <label for="correo">Correo</label>
                         <input type="email" id="correo" name="correo">
                     </div>
                 </div>
 
-                <button type="submit" class="btn-submit">Crear Paciente</button>
+                <button type="submit" class="btn-submit">Editar Cliente</button>
             </form>
               </div>
     `;

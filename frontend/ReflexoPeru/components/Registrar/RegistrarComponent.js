@@ -3,19 +3,21 @@ export function RegisterUser() {
   $register.classList.add("sidebar");
   $register.innerHTML = `
         <div class="main-content"> 
-            <h1>CREAR NUEVO PACIENTE</h1>
+            <h1>CREAR NUEVO CLIENTE</h1>
             <form method="POST">
                 <div class="form-row">
                     <div class="form-group">
                         <label for="nombre">Nombres</label>
                         <input type="text" id="nombre" name="nombre">
                     </div>
-                    <div class="form-group">
+                   
+                </div>
+                <div class="form-row">
+                     <div class="form-group">
                         <label for="apellido">Apellidos</label>
                         <input type="text" id="apellido" name="apellido">
                     </div>
                 </div>
-
                 <div class="form-row">
                     <div class="form-group">
                         <label for="correo">Correo</label>

@@ -23,12 +23,12 @@ export function Menu() {
               <ul class="list__show">
                 <li class="list__inside">
                   <a href="#/register" class="nav__link nav__link--inside"
-                    >Crear Paciente</a
+                    >Crear Cliente</a
                   >
                 </li>
                 <li class="list__inside">
                   <a href="#/" class="nav__link nav__link--inside"
-                    >Ver todos los pacientes</a
+                    >Ver todos los Clientes</a
                   >
                 </li>
               </ul>
