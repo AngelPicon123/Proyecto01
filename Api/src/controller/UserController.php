@@ -21,15 +21,13 @@ class UserController {
         echo json_encode($users);
     }
 
-    public function searchUserById() {
+    public function searchUserById($id) {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
-
-        $data = json_decode(file_get_contents("php://input"));
-
-        if (!empty($data->id)) {
-            $user = $this->model->getUserById($data->id);
-
+    
+        if (!empty($id)) {
+            $user = $this->model->getUserById($id);
+    
             if ($user) {
                 echo json_encode($user);
             } else {
@@ -41,21 +39,7 @@ class UserController {
             echo json_encode(["message" => "Invalid input"]);
         }
     }
-/*
-    public function createUser() {
-        header("Access-Control-Allow-Origin: *");
-        header("Content-Type: application/json; charset=UTF-8");
 
-        $data = json_decode(file_get_contents("php://input"));
-
-        if (!empty($data->name) && !empty($data->email)) {
-            // Implement the logic to insert a new user into the database
-            echo json_encode(["message" => "User created successfully"]);
-        } else {
-            http_response_code(400);
-            echo json_encode(["message" => "Invalid input"]);
-        }
-    }*/
     public function createUser() {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
@@ -84,8 +68,8 @@ class UserController {
 
         $data = json_decode(file_get_contents("php://input"));
 
-        if (!empty($data->name) && !empty($data->email)) {
-            $updated = $this->model->updateUser($id, $data->name, $data->email);
+        if (!empty($data->nombre) && !empty($data->apellido) && !empty($data->correo)) {
+            $updated = $this->model->updateUser($id, $data->nombre, $data->apellido, $data->correo);
 
             if ($updated) {
                 echo json_encode(["message" => "User updated successfully"]);
