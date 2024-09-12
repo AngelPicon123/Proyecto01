@@ -16,14 +16,23 @@ function getusers() {
             <td>${user.correo}</td>
             <td>
               <div class="Buttons-actions">
-                <button><h4>Editar</h4></button>
+                <button id="edit"  "><h4>Editar</h4></button>
                 <button onclick="deleteUser(${user.id})"><h4>Eliminar</h4></button>
               </div>
             </td>
+
+
+      
           `;
           tableBody.appendChild(row);
         });
+
+        
+
+        
       })
+
+      
       .catch((error) => {
         console.error("Error fetching users:", error);
       });
@@ -32,6 +41,9 @@ function getusers() {
   }
 }
 
+///////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////
 window.deleteUser = function (userId) {
   axios
     .delete(
@@ -39,11 +51,20 @@ window.deleteUser = function (userId) {
     )
     .then((response) => {
       console.log("User deleted successfully:", response.data);
+
       getusers();
     })
     .catch((error) => {
       console.error("Error deleting user:", error);
     });
+
 };
 
+
+
 export { getusers };
+///////////////////////////////////////////////////////////////
+
+
+
+///////////////////////////////////////////////////////////////

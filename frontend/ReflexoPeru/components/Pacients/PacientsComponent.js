@@ -23,13 +23,51 @@ export function PacientsShow() {
           <tbody id="userTableBody">
           </tbody>
         </table>
-      </div>
+
+              
+      <div class="main-content" id="editUserModal" style="display: none;" > 
+      
+            <h1>CREAR NUEVO PACIENTE</h1>
+            <form method="POST">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nombre">Nombres</label>
+                        <input type="text" id="nombre" name="nombre">
+                    </div>
+                    <div class="form-group">
+                        <label for="apellido">Apellidos</label>
+                        <input type="text" id="apellido" name="apellido">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="correo">Correo</label>
+                        <input type="email" id="correo" name="correo">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit">Crear Paciente</button>
+            </form>
+              </div>
+
+     
+
     `;
 
   // Añadir el event listener aquí, después de que el contenido esté en el DOM
   $pacients.querySelector("#search").addEventListener("input", () => {
     searchUser();
+
+
+
   });
+
+  
+
+
 
   return $pacients;
 }
+
+
