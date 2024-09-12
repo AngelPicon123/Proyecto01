@@ -4,13 +4,17 @@ import { getusers } from "./Pacients/Pacients-get.js";
 
 export function Router() {
   let { hash } = location;
+
   const d = document,
-    $root = d.getElementById("root");
+    $content = d.getElementById("content");
+
+  // Asegurarse de que el contenido dinámico está vacío antes de agregar algo
+  $content.innerHTML = "";
 
   if (!hash || hash === "#/") {
-    $root.appendChild(PacientsShow());
+    $content.appendChild(PacientsShow());
     getusers();
   } else if (hash === "#/register") {
-    $root.appendChild(RegisterUser());
+    $content.appendChild(RegisterUser());
   }
 }

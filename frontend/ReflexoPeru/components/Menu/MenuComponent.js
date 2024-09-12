@@ -14,7 +14,7 @@ export function Menu() {
                   src="/frontend/ReflexoPeru/assets/img/citas.png"
                   class="img_citas"
                 />
-                <a href="#" class="nav__link">CITAS</a>
+                <a class="nav__link">CITAS</a>
                 <img
                   src="/frontend/ReflexoPeru/assets/img/arrow-down.png"
                   class="list__arrow img_citas"
@@ -40,7 +40,7 @@ export function Menu() {
                   src="/frontend/ReflexoPeru/assets/img/gestionar-icon.png"
                   class="img_citas"
                 />
-                <a href="#" class="nav__link">GESTIONAR</a>
+                <a class="nav__link">GESTIONAR</a>
                 <img
                   src="/frontend/ReflexoPeru/assets/img/arrow-down.png"
                   class="list__arrow img_citas"
@@ -66,7 +66,7 @@ export function Menu() {
                   src="/frontend/ReflexoPeru/assets/img/notificaciones.png"
                   class="img_citas img_citas"
                 />
-                <a href="#" class="nav__link">NOTIFICACIONES</a>
+                <a class="nav__link">NOTIFICACIONES</a>
               </div>
             </li>
 
@@ -77,7 +77,7 @@ export function Menu() {
                   src="/frontend/ReflexoPeru/assets/img/configuraciones.png"
                   class="img_citas"
                 />
-                <a href="#" class="nav__link">CONFIGURACIONES</a>
+                <a class="nav__link">CONFIGURACIONES</a>
                 <img
                   src="/frontend/ReflexoPeru/assets/img/arrow-down.png"
                   class="list__arrow img_citas"

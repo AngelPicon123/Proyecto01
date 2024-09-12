@@ -26,7 +26,6 @@ export function PacientsShow() {
       </div>
     `;
 
-  // Añadir el event listener aquí, después de que el contenido esté en el DOM
   $pacients.querySelector("#search").addEventListener("input", () => {
     searchUser();
   });
