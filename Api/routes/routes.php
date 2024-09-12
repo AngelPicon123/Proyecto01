@@ -13,10 +13,6 @@ $uri = str_replace($baseUri, '', $requestUri);
 $uri = ltrim($uri, '/');
 
 // Define routes
-echo "REQUEST URI: " . $requestUri . "<br>";
-echo "PROCESSED URI: " . $uri . "<br>";
-echo "METHOD: " . $requestMethod . "<br>";
-
 $controller = new UserController();
 
 switch (true) {

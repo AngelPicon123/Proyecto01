@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width= , initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="/frontend/ReflexoPeru/assets/css/normalize.css">
+    <link rel="stylesheet" href="Login.css" />
+    <link rel="icon" href="/frontend/ReflexoPeru/assets/img/Logo Reflexo.png" />
+    
+  </head>
+  <body>
+    <div class="container">
+      <div class="login">
+        <div class="logo">
+            <img src="/frontend/ReflexoPeru/assets/img/Logo Reflexo.png" alt="" />
+        </div>
+        <form action="">
+          <div class="inputBox">
+            <span>Correo</span>
+            <input type="text" required="required" placeholder="example@example.com" />
+          </div>
+          <div class="inputBox">
+              <span>Contraseña</span>
+              <div class="inputBox-password">
+                <input type="password" required="required" id="passwordInput" class="passw"/>
+                <img src="/frontend/ReflexoPeru/assets/img/hide.png" alt="" class="icon" id="eye-hide"> 
+                <img src="/frontend/ReflexoPeru/assets/img/show.png" alt="" class="icon" id="eye-show">
+              </div>
+          </div>
+          <div class="inputBox">
+            <input type="submit" value="Login" class="btn" />
+          </div>
+        </form>
+      </div>
+      <script type="module" src="/frontend/ReflexoPeru/pages/Login/Login.js"></script>
+  </body>
+</html>
