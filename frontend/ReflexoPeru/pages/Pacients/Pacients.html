@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/frontend/ReflexoPeru/assets/css/normalize.css">
+    <link rel="stylesheet" href="Pacients.css">
+    <title>Pacientes</title>
+</head>
+
+<body>
+    <div class="containerAll">
+        <h1>Gestión de Terapeutas</h1>
+        <div class="Search">
+            <input type="text" id="search" class="search-input" placeholder="Buscar por Nombre o Apellido / DNI" />
+        </div>
+        <div class="Buttons-general">
+            <button>Crear Nuevo Terapeuta +</button>
+            <button id="search">Filtrar</button>
+        </div>
+        <div class="tableContainer">
+            <table>
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Nombres</th>
+                        <th>Apellidos</th>
+                        <th>Correo</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="userTableBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="Pacients-get.js"></script>
+    <script src="Pacients-delete.js"></script>
+    <script src="Pacients-edit.js"></script>
+    <script src="Pacients-buscar.js"></script>
+</body>
+
+</html>
