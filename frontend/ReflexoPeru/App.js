@@ -1,3 +1,8 @@
+import { Menu } from "./components/Menu/MenuComponent.js";
+
 export function App() {
-  document.getElementById("root").innerHTML = "<h1>Hello World</h1>";
+  const d = document,
+    $root = d.getElementById("root");
+
+  $root.appendChild(Menu());
 }
