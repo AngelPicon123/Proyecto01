@@ -39,10 +39,11 @@ class UserModel {
     }
 
     // Actualizar usuario
-    public function updateUser($id, $name, $email) {
-        $sql = "UPDATE " . $this->table_name . " SET nombre = :name, correo = :email WHERE id = :id";
+    public function updateUser($id, $name, $apellido,$email) {
+        $sql = "UPDATE " . $this->table_name . " SET nombre = :name, apellido = :apellido, correo = :email WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':apellido', $apellido);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         return $stmt->execute();
