@@ -7,7 +7,6 @@
 body {
   background-color: rgb(255, 255, 255);
   height: 100vh;
-  padding: 10px;
 }
 
 .containerAll {
@@ -15,8 +14,8 @@ body {
   flex-direction: column;
   padding: 20px;
   height: 100%;
+  width: 100%;
   background-color: #d3d3d3;
-  border-radius: 12px;
 }
 
 .search-input {
@@ -114,7 +113,7 @@ td {
 }
 
 .Buttons-actions button:nth-child(2) {
-  background-color: #ddd017;
+  background-color: #b12020;
 }
 
 .Buttons-actions button:hover {

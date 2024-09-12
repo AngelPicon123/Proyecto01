@@ -2,4 +2,5 @@ import { App } from "./App.js";
 
 const d = document;
 
-d.addEventListener("DOMContentLoaded",App);
+document.addEventListener("DOMContentLoaded", App);
+document.addEventListener("hashchange", App);

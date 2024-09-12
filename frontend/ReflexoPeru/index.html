@@ -6,18 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>REFLEXO PERU</title>
     <link rel="icon" href="/frontend/ReflexoPeru/assets/img/Logo Reflexo.png" />
-    <link rel="stylesheet" href="/assets/css/normalize.css" />
     <link
       rel="stylesheet"
       href="/frontend/ReflexoPeru/components/Menu/Menu.css"
     />
+    <link
+      rel="stylesheet"
+      href="/frontend/ReflexoPeru/components/Pacients/Pacients.css"
+    />
+    <link rel="stylesheet" href="./components/Registrar/RegistrarS.css" />
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <main id="root"></main>
+    <div id="root" class="root"></div>
     <script type="module" src="/frontend/ReflexoPeru/index.js"></script>
     <script
       type="module"
       src="/frontend/ReflexoPeru/components/Menu/Menu.js"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="module" src="./components/Pacients/Pacients-get.js"></script>
+    <script type="module" src="./components/Registrar/RegistrarJ.js"></script>
+    <script type="module" src="./components/Pacients/Pacients-edit.js"></script>
+    <!-- <script src="./components/Pacients/Pacients-buscar.js"></script> -->
   </body>
 </html>

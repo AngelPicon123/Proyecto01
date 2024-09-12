@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Nuevo Paciente</title>
-    <link rel="stylesheet" href="RegistrarS.css">
-</head>
-<body>
-    
-    <div class="container">
-        <div class="sidebar"></div>
+export function RegisterUser() {
+  const $register = document.createElement("div");
+  $register.classList.add("sidebar");
+  $register.innerHTML = `
         <div class="main-content"> 
             <h1>CREAR NUEVO PACIENTE</h1>
             <form method="POST">
@@ -33,10 +25,7 @@
 
                 <button type="submit" class="btn-submit">Crear Paciente</button>
             </form>
-        </div>
-    </div>
+    `;
 
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="RegistrarJ.js"></script>
-</body>
-</html>
+  return $register;
+}
