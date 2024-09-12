@@ -21,14 +21,13 @@ class UserController {
         echo json_encode($users);
     }
 
-    public function searchUserById($id)
-    {
+    public function searchUserById($id) {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
-
+    
         if (!empty($id)) {
             $user = $this->model->getUserById($id);
-
+    
             if ($user) {
                 echo json_encode($user);
             } else {
@@ -62,9 +61,8 @@ class UserController {
             echo json_encode(["message" => "Invalid input"]);
         }
     }
-    
-    public function updateUser($id)
-    {
+
+    public function updateUser($id) {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
 
@@ -85,7 +83,6 @@ class UserController {
         }
     }
 
-
     public function deleteUser($id) {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
@@ -97,12 +94,5 @@ class UserController {
             http_response_code(404);
             echo json_encode(["message" => "User could not be deleted."]);
         }
-
-
-
-
-
-
-
     }
 }
