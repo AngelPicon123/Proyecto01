@@ -13,10 +13,9 @@ $uri = str_replace($baseUri, '', $requestUri);
 $uri = ltrim($uri, '/');
 
 // Define routes
-<<<<<<< HEAD
-=======
 
->>>>>>> 6f35dae59ec5d5545b32822ebd8b0a49c43aba1c
+
+
 $controller = new UserController();
 
 switch (true) {

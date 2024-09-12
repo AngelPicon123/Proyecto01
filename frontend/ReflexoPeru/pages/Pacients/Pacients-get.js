@@ -8,8 +8,9 @@ const tableBody = document.getElementById("userTableBody");
     axios
       .get("http://localhost/Proyecto01/Api/public/index.php/users")
       .then((response) => {
+     
         const users = response.data;
-        tableBody.innerHTML = ""; // Limpiar la tabla antes de agregar nuevos usuarios
+
         users.forEach((user) => {
           const row = document.createElement("tr");
           row.innerHTML = `
@@ -22,7 +23,7 @@ const tableBody = document.getElementById("userTableBody");
                                         <button>
                                             <h4>Editar</h4>
                                         </button>
-                                        <button onclick="deleteUser(${user.id})">
+                                        <button id "deleteUser" onclick="deleteUser(${user.id})">
                                             <h4>Imprimir</h4>
                                         </button>
                                     </div>

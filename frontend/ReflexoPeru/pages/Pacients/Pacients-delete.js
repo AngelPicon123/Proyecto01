@@ -6,9 +6,22 @@ window.deleteUser = function (userId) {
     )
     .then((response) => {
       console.log("User deleted successfully:", response.data);
-      getusers(); // Recargar la lista de usuarios después de eliminar uno
+      getusers(); 
     })
     .catch((error) => {
       console.error("Error deleting user:", error);
     });
+
+
+    ////////////////////
+  const notification = document.getElementById("alert-content");
+    notification.style.display = "block";
+
+
+    setTimeout(() => {
+        notification.style.display = "none";
+    }, 3000);
 };
+
+
+
