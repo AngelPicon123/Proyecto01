@@ -12,15 +12,6 @@ window.deleteUser = function (userId) {
       console.error("Error deleting user:", error);
     });
 
-
-    ////////////////////
-  const notification = document.getElementById("alert-content");
-    notification.style.display = "block";
-
-
-    setTimeout(() => {
-        notification.style.display = "none";
-    }, 3000);
 };
 
 
