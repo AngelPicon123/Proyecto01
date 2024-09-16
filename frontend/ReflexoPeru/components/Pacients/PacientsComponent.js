@@ -27,7 +27,7 @@ export function PacientsShow() {
        <div class="main-content" id="editUserModal" style="display: none;" > 
       
             <h1>CREAR NUEVO CLIENTE</h1>
-            <form >
+            <form  method="PUT" id="editUserForm">
                 <div class="form-row-update">
                     <div class="form-group">
                         <label for="nombre">Nombres</label>
@@ -52,7 +52,6 @@ export function PacientsShow() {
               </div>
     `;
 
-  // Añadir el event listener aquí, después de que el contenido esté en el DOM
   $pacients.querySelector("#search").addEventListener("input", () => {
     searchUser();
   });
