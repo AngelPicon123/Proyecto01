@@ -6,12 +6,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const listShow = item.querySelector(".list__show");
         const arrow = item.querySelector(".list__arrow");
   
-        // Prevent the click event from bubbling up to the parent element
         if (event.target.closest(".list__show")) {
           return;
         }
   
-        // Desactivate all active menus
         listItems.forEach((otherItem) => {
           const otherListShow = otherItem.querySelector(".list__show");
           const otherArrow = otherItem.querySelector(".list__arrow");
@@ -22,7 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         });
   
-        // Toggle the clicked menu
         if (listShow.classList.contains("active")) {
           listShow.classList.remove("active");
           arrow.style.transform = "rotate(0deg)";

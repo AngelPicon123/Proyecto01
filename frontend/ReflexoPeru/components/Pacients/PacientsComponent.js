@@ -1,3 +1,5 @@
+import { searchUser } from "./Pacients-get";
+
 export function PacientsShow() {
   const $pacients = document.createElement("div");
   $pacients.classList.add("containerAll");
@@ -52,7 +54,6 @@ export function PacientsShow() {
               </div>
     `;
 
-  // Añadir el event listener aquí, después de que el contenido esté en el DOM
   $pacients.querySelector("#search").addEventListener("input", () => {
     searchUser();
   });

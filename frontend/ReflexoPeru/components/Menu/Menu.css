@@ -1,3 +1,4 @@
+/* menu.css */
 * {
   margin: 0;
   padding: 0;
@@ -10,6 +11,7 @@ body {
   display: flex;
   font-family: Arial, sans-serif;
 }
+
 .logo {
   display: flex;
   justify-content: center;
@@ -21,13 +23,16 @@ body {
     border-radius: 50%;
   }
 }
+
 .container {
   display: flex;
   width: 100%;
 }
+
 #content {
   width: 100%;
 }
+
 .menu {
   display: flex;
   flex-direction: column;

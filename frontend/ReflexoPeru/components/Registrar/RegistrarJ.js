@@ -40,12 +40,9 @@ function RegistrarUser() {
           console.error("Error al crear el paciente:", error);
         });
     });
-  } else {
-    console.error("Formulario no encontrado en el DOM.");
   }
 }
 
-// Inicializa el formulario cuando la vista se carga
 document.addEventListener("DOMContentLoaded", () => {
   RegistrarUser();
 });

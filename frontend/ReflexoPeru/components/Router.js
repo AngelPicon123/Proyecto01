@@ -9,7 +9,6 @@ export function Router() {
   const d = document,
     $content = d.getElementById("content");
 
-  // Asegurarse de que el contenido dinámico está vacío antes de agregar algo
   $content.innerHTML = "";
 
   if (!hash || hash === "#/") {

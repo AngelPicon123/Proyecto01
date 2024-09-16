@@ -56,63 +56,79 @@ function editUser(id) {
   const backdrop = document.getElementById("modalBackdrop");
 
   if (modal && backdrop) {
-    // Mostrar el modal y el backdrop
     modal.style.display = "block";
     backdrop.style.display = "block";
 
-    // Cerrar el modal al hacer clic en el backdrop
     backdrop.addEventListener("click", () => {
       modal.style.display = "none";
       backdrop.style.display = "none";
     });
-
 
     axios
       .get(
         `http://localhost/Proyecto01/Api/public/index.php/users/searchUserById/2`
       )
       .then((response) => {
-          console.log(response.data);
-   const userData = response.data;
+        console.log(response.data);
+        const userData = response.data;
 
-   // Insertar los datos en los inputs del formulario
-   document.getElementById("nombre").value = userData.nombre;
-   document.getElementById("apellido").value = userData.apellido;
-   document.getElementById("correo").value = userData.correo;
-
-
+        document.getElementById("nombre").value = userData.nombre;
+        document.getElementById("apellido").value = userData.apellido;
+        document.getElementById("correo").value = userData.correo;
       })
       .catch((error) => {
         console.error("Error fetching users:", error);
       });
 
-
-
-
-
-
-    // Cerrar el modal al hacer clic en el botón de cerrar
   } else {
     console.error(
       "El modal, el backdrop o el botón de cerrar no se encontraron en el DOM."
     );
   }
-
-
-
-
-
-
 }
 
-/////////////////////////////////////////////////////////////// 
-
-
-
+///////////////////////////////////////////////////////////////
 
 window.editUser = editUser; // Hacer editUser accesible globalmente
 
-
-export { editUser, getusers };
+export { editUser, getusers, searchUser };
 
 ///////////////////////////////////////////////////////////////
+
+function searchUser() {
+  axios
+    .get("http://localhost/Proyecto01/Api/public/index.php/users")
+    .then((response) => {
+      const users = response.data;
+      const letrasABuscar = document.getElementById("search").value;
+
+      const usuariosFiltrados = users.filter(
+        (user) =>
+          user.nombre.toLowerCase().includes(letrasABuscar.toLowerCase()) ||
+          user.apellido.toLowerCase().includes(letrasABuscar.toLowerCase())
+      );
+
+      console.log("Usuarios Filtrados:", usuariosFiltrados);
+      const tableBody = document.getElementById("userTableBody");
+      tableBody.innerHTML = "";
+      usuariosFiltrados.forEach((usuario) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${usuario.id}</td>
+            <td>${usuario.nombre}</td>
+            <td>${usuario.apellido}</td>
+            <td>${usuario.correo}</td>
+            <td>
+              <div class="Buttons-actions">
+                <button><h4>Editar</h4></button>
+                <button onclick="deleteUser(${usuario.id})"><h4>Imprimir</h4></button>
+              </div>
+            </td>
+          `;
+        tableBody.appendChild(row);
+      });
+    })
+    .catch((error) => {
+      console.error("Error al obtener los usuarios:", error);
+    });
+}
