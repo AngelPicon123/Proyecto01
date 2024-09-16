@@ -2,7 +2,7 @@
 // Modelo de los usuarios registrados en la base de datos
 class UserModel {
     private $conn;
-    private $table_name = "users";
+    private $table_name = "pacientes";
 
     public function __construct($database) {
         $this->conn = $database;
