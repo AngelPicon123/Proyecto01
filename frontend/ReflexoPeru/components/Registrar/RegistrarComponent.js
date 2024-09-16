@@ -4,7 +4,7 @@ export function RegisterUser() {
   $register.innerHTML = `
         <div class="main-content"> 
             <h1>CREAR NUEVO CLIENTE</h1>
-            <form method="POST">
+            <form method="POST" id ="form-create">
                 <div class="form-row">
                     <div class="form-group">
                         <label for="nombre">Nombres</label>

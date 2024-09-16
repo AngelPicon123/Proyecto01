@@ -1,5 +1,5 @@
 function RegistrarUser() {
-  const form = document.querySelector("form");
+  const form = document.getElementById("form-create");
 
   if (form) {
     form.addEventListener("submit", (event) => {
