@@ -3,7 +3,7 @@ export function Menu() {
   $menu.classList.add("menu");
   $menu.innerHTML = `
         <div class="logo">
-          <img src="/frontend/ReflexoPeru/assets/img/Logo Reflexo.jpg" alt="" />
+          <img src="./assets/img/Logo Reflexo.jpg" alt="" />
         </div>
         <nav class="nav">
           <ul class="list">
@@ -11,12 +11,12 @@ export function Menu() {
             <li class="list__item list__item--click">
               <div class="list__button list__button--click">
                 <img
-                  src="/frontend/ReflexoPeru/assets/img/citas.png"
+                  src="./assets/img/citas.png"
                   class="img_citas"
                 />
                 <a class="nav__link">CITAS</a>
                 <img
-                  src="/frontend/ReflexoPeru/assets/img/arrow-down.png"
+                  src="./assets/img/arrow-down.png"
                   class="list__arrow img_citas"
                 />
               </div>
@@ -37,12 +37,12 @@ export function Menu() {
             <li class="list__item list__item--click">
               <div class="list__button list__button--click">
                 <img
-                  src="/frontend/ReflexoPeru/assets/img/gestionar-icon.png"
+                  src="./assets/img/gestionar-icon.png"
                   class="img_citas"
                 />
                 <a class="nav__link">GESTIONAR</a>
                 <img
-                  src="/frontend/ReflexoPeru/assets/img/arrow-down.png"
+                  src="./assets/img/arrow-down.png"
                   class="list__arrow img_citas"
                 />
               </div>
@@ -63,7 +63,7 @@ export function Menu() {
             <li class="list__item">
               <div class="list__button">
                 <img
-                  src="/frontend/ReflexoPeru/assets/img/notificaciones.png"
+                  src="./assets/img/notificaciones.png"
                   class="img_citas img_citas"
                 />
                 <a class="nav__link">NOTIFICACIONES</a>
@@ -74,12 +74,12 @@ export function Menu() {
             <li class="list__item list__item--click">
               <div class="list__button list__button--click">
                 <img
-                  src="/frontend/ReflexoPeru/assets/img/configuraciones.png"
+                  src="./assets/img/configuraciones.png"
                   class="img_citas"
                 />
                 <a class="nav__link">CONFIGURACIONES</a>
                 <img
-                  src="/frontend/ReflexoPeru/assets/img/arrow-down.png"
+                  src="./assets/img/arrow-down.png"
                   class="list__arrow img_citas"
                 />
               </div>
