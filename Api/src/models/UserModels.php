@@ -9,14 +9,22 @@ class UserModel {
     }
 
 //crear usuario
-    public function createUser($nombre, $apellido, $correo) {
-        $sql = "INSERT INTO " . $this->table_name . " (nombre, apellido, correo) VALUES (:nombre, :apellido, :correo)";
+    public function createPaciente($nombre, $apellido, $correo, $direccion, $provincia, $region, $dni, $sexo, $nroTelefonico) {
+        $sql = "INSERT INTO " . $this->table_name . " 
+            (nombre, apellido, correo, direccion, provincia, region, dni, sexo, nroTelefonico) 
+            VALUES (:nombre, :apellido, :correo, :direccion, :provincia, :region, :dni, :sexo, :nroTelefonico)";
         $stmt = $this->conn->prepare($sql);
 
         // Vincular parámetros
         $stmt->bindParam(':nombre', $nombre);
         $stmt->bindParam(':apellido', $apellido);
         $stmt->bindParam(':correo', $correo);
+        $stmt->bindParam(':direccion', $direccion);
+        $stmt->bindParam(':provincia', $provincia);
+        $stmt->bindParam(':region', $region);
+        $stmt->bindParam(':dni', $dni);
+        $stmt->bindParam(':sexo', $sexo);
+        $stmt->bindParam(':nroTelefonico', $nroTelefonico);
 
         // Ejecutar la consulta
         return $stmt->execute();

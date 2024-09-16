@@ -40,25 +40,39 @@ class UserController {
         }
     }
 
-    public function createUser() {
+    public function createPaciente() {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
     
         $data = json_decode(file_get_contents("php://input"));
     
-        if (!empty($data->nombre) && !empty($data->apellido) && !empty($data->correo)) {
+        if (!empty($data->nombre) && !empty($data->apellido) && !empty($data->correo) && 
+        !empty($data->direccion) && !empty($data->provincia) && !empty($data->region) && 
+        !empty($data->dni) && !empty($data->sexo) && !empty($data->nroTelefonico)) {
+
             // Insertar el nuevo usuario en la base de datos
-            $result = $this->model->createUser($data->nombre, $data->apellido, $data->correo);
+           $result = $this->model->createPaciente(
+            $data->nombre,
+            $data->apellido,
+            $data->correo,
+            $data->direccion,
+            $data->provincia,
+            $data->region,
+            $data->dni,
+            $data->sexo,
+            $data->nroTelefonico
+        );
     
             if ($result) {
-                echo json_encode(["message" => "User created successfully"]);
+                echo json_encode(["message" => "Paciente creado exitosamente"]);
             } else {
                 http_response_code(500);
-                echo json_encode(["message" => "Failed to create user"]);
+                echo json_encode(["message" => "Fallo al crear paciente"]);
             }
         } else {
+            // Responder con código de error 400 si algún campo está vacío o falta
             http_response_code(400);
-            echo json_encode(["message" => "Invalid input"]);
+            echo json_encode(["message" => "Entrada inválida, faltan datos"]);
         }
     }
 
