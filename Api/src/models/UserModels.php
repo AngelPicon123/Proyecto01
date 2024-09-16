@@ -30,8 +30,8 @@ class UserModel {
         return $stmt->execute();
     }
     // Buscar todos los usuarios
-    public function getUsers() {
-        $query = "SELECT id, nombre, apellido, correo FROM " . $this->table_name;
+    public function getAllPacientes() {
+        $query = "SELECT id, nombre, apellido, correo, direccion, provincia, region, dni, sexo, nroTelefonico FROM " . $this->table_name;
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

@@ -13,12 +13,12 @@ class UserController {
         $this->model = new UserModel($this->db);
     }
 
-    public function getAllUsers() {
+    public function getAllPacientes() {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
 
-        $users = $this->model->getUsers();
-        echo json_encode($users);
+        $pacientes = $this->model->getAllPacientes();
+        echo json_encode($pacientes);
     }
 
     public function searchUserById($id) {
@@ -40,7 +40,7 @@ class UserController {
         }
     }
 
-    public function createPaciente() {
+    public function createUser() {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
     
@@ -76,7 +76,7 @@ class UserController {
         }
     }
 
-    public function updateUser($id) {
+    public function updatePaciente($id) {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
 
