@@ -66,15 +66,52 @@ function editUser(id) {
       backdrop.style.display = "none";
     });
 
+
+    axios
+      .get(
+        `http://localhost/Proyecto01/Api/public/index.php/users/searchUserById/2`
+      )
+      .then((response) => {
+          console.log(response.data);
+   const userData = response.data;
+
+   // Insertar los datos en los inputs del formulario
+   document.getElementById("nombre").value = userData.nombre;
+   document.getElementById("apellido").value = userData.apellido;
+   document.getElementById("correo").value = userData.correo;
+
+
+      })
+      .catch((error) => {
+        console.error("Error fetching users:", error);
+      });
+
+
+
+
+
+
     // Cerrar el modal al hacer clic en el botón de cerrar
   } else {
     console.error(
       "El modal, el backdrop o el botón de cerrar no se encontraron en el DOM."
     );
   }
+
+
+
+
+
+
 }
 
+/////////////////////////////////////////////////////////////// 
+
+
+
+
 window.editUser = editUser; // Hacer editUser accesible globalmente
+
 
 export { editUser, getusers };
 

@@ -25,7 +25,7 @@ export function RegisterUser() {
                     </div>
                 </div>
 
-                <button type="submit" class="btn-submit">Crear Paciente</button>
+                <button type="submit" id="btn-crear" class="btn-submit">Crear Paciente</button>
             </form>
     `;
 
