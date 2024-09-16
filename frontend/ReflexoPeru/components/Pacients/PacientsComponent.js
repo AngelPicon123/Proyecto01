@@ -29,7 +29,7 @@ export function PacientsShow() {
        <div class="main-content" id="editUserModal" style="display: none;" > 
       
             <h1>CREAR NUEVO CLIENTE</h1>
-            <form >
+            <form  method="PUT" id="editUserForm">
                 <div class="form-row-update">
                     <div class="form-group">
                         <label for="nombre">Nombres</label>

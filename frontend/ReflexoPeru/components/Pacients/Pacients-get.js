@@ -51,7 +51,7 @@ window.deleteUser = function (userId) {
 
 ///////////////////////////////////////////////////////////////
 
-function editUser(id) {
+function editUser(userId) {
   const modal = document.getElementById("editUserModal");
   const backdrop = document.getElementById("modalBackdrop");
 
@@ -66,7 +66,7 @@ function editUser(id) {
 
     axios
       .get(
-        `http://localhost/Proyecto01/Api/public/index.php/users/searchUserById/2`
+        `http://localhost/Proyecto01/Api/public/index.php/users/searchUserById/${userId}`
       )
       .then((response) => {
         console.log(response.data);
@@ -75,23 +75,73 @@ function editUser(id) {
         document.getElementById("nombre").value = userData.nombre;
         document.getElementById("apellido").value = userData.apellido;
         document.getElementById("correo").value = userData.correo;
+          puteditUser(userId);
       })
       .catch((error) => {
         console.error("Error fetching users:", error);
       });
 
+
+
+
+
+
+    // Cerrar el modal al hacer clic en el botón de cerrar
   } else {
     console.error(
       "El modal, el backdrop o el botón de cerrar no se encontraron en el DOM."
     );
   }
-}
+};
+///////////////////////////////////////////////////////////////////
 
-///////////////////////////////////////////////////////////////
+
+function puteditUser(userId) {
+
+
+  const form = document.getElementById("editUserForm");
+  if (form) {
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+     
+      const nombres = document.getElementById("nombre").value;
+      const apellidos = document.getElementById("apellido").value;
+      const correo = document.getElementById("correo").value;
+      const pacienteData = {
+        nombre: nombres,  
+        apellido: apellidos,
+        correo: correo,
+      };
+      axios
+        .put(`http://localhost/Proyecto01/Api/public/index.php/users/updateUser/${userId}`, pacienteData,
+           {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        ) 
+        .then((response) => {
+          console.log(response.data);
+          alert("Paciente editado exitosamente");
+
+          getusers();
+
+        })
+        .catch((error) => {
+          console.error("Error al crear el paciente:", error);
+        });
+    });
+  }
+
+}
+/////////////////////////////////////////////////////////////// 
+
+
+
 
 window.editUser = editUser; // Hacer editUser accesible globalmente
 
-export { editUser, getusers, searchUser };
+export { editUser, getusers, puteditUser, searchUser };
 
 ///////////////////////////////////////////////////////////////
 
