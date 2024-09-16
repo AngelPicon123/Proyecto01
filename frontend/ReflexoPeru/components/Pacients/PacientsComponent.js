@@ -9,7 +9,7 @@ export function PacientsShow() {
         <input type="text" id="search" class="search-input" placeholder="Buscar por Nombre o Apellido / DNI" />
       </div>
       <div class="Buttons-general">
-        <button >Crear Nuevo Cliente +</button>
+        <button>Crear Nuevo Cliente +</button>
       </div>
       <div class="tableContainer">
         <table>
