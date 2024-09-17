@@ -72,7 +72,10 @@ export function RegisterUser() {
                 <div class="form-row">
                     <div class="form-group">
                         <label for="sexo">Sexo</label>
-                        <input type="text" id="sexo" name="sexo">
+                        <select name="sexo" id="sexo">
+                            <option value="M">Masculino</option>
+                            <option value="F">Femenino</option>
+                        </select>
                     </div>
                 </div>
 
