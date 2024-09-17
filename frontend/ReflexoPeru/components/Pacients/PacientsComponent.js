@@ -4,12 +4,12 @@ export function PacientsShow() {
   const $pacients = document.createElement("div");
   $pacients.classList.add("containerAll");
   $pacients.innerHTML = `
-      <h1>Gestión de Clientes</h1>
+      <h1>Gestión de Pacientes</h1>
       <div class="Search">
         <input type="text" id="search" class="search-input" placeholder="Buscar por Nombre o Apellido / DNI" />
       </div>
       <div class="Buttons-general">
-        <button>Crear Nuevo Cliente +</button>
+        <a href="#/register">Crear Nuevo Paciente +</a>
       </div>
       <div class="tableContainer">
         <table>
@@ -26,7 +26,6 @@ export function PacientsShow() {
               <th>DNI</th>
               <th>Sexo</th>
               <th>Telefono</th>
-
             </tr>
           </thead>
           <tbody id="userTableBody">
@@ -35,7 +34,7 @@ export function PacientsShow() {
       </div>
        <div class="main-content" id="editUserModal" style="display: none;" > 
       
-            <h1>CREAR NUEVO CLIENTE</h1>
+            <h1>EDITAR PACIENTE</h1>
             <form  method="PUT" id="editUserForm">
                 <div class="form-row-update">
                     <div class="form-group">

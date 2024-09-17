@@ -2,8 +2,13 @@ export function RegisterUser() {
   const $register = document.createElement("div");
   $register.classList.add("sidebar");
   $register.innerHTML = `
+  <div class="back-pacients">
+    <a href="#/">Volver</a>
+  </div>
+       <div class="container-main">
+
         <div class="main-content"> 
-            <h1>CREAR NUEVO CLIENTE</h1>
+            <h1>CREAR NUEVO PACIENTE</h1>
             <form method="POST" id ="form-create">
                 <div class="form-row">
                     <div class="form-group">
@@ -27,6 +32,8 @@ export function RegisterUser() {
 
                 <button type="submit" id="btn-crear" class="btn-submit">Crear Paciente</button>
             </form>
+            </div>
+        </div>
     `;
 
   return $register;

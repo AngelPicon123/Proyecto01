@@ -48,13 +48,13 @@ export function Menu() {
               </div>
               <ul class="list__show">
                 <li class="list__inside">
-                  <a href="#" class="nav__link nav__link--inside"
-                    >Gestion de Citas</a
+                  <a href="#/" class="nav__link nav__link--inside"
+                    >Gestion de Pacientes</a
                   >
                 </li>
                 <li class="list__inside">
                   <a href="#" class="nav__link nav__link--inside"
-                    >Gestion de Citas</a
+                    >Gestion de Terapeutas</a
                   >
                 </li>
               </ul>

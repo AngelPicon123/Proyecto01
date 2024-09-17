@@ -35,16 +35,23 @@ body {
   margin-bottom: 20px;
 }
 
-.Buttons-general button {
+.Buttons-general a {
   padding: 10px;
   border-radius: 6px;
   border: 1px solid #ccc;
   outline: none;
   color: white;
   margin: 0px 0px 10px 0px;
+  background-color: #28a745;
+
+  text-decoration: none;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
-.Buttons-general button img {
+.Buttons-general a img {
   width: 30px;
 }
 
@@ -89,7 +96,7 @@ td {
   color: #669;
   border-top: 1px solid transparent;
   max-width: 100px;
-  max-height: 50px;
+  min-width: 100px;
 }
 
 .Buttons-actions {
@@ -191,4 +198,7 @@ thead th {
   top: 0;
   z-index: 2;
   box-shadow: 0 2px 5px -2px rgba(0, 0, 0, 0.1);
+}
+tbody tr {
+  word-wrap: break-word;
 }
