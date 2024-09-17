@@ -81,12 +81,12 @@ function editUser(userId) {
         document.getElementById("nombre").value = userData.nombre;
         document.getElementById("apellido").value = userData.apellido;
         document.getElementById("correo").value = userData.correo;
-        document.getElementById("direccion").value = userData.correo;
-        document.getElementById("provincia").value = userData.correo;
-        document.getElementById("region").value = userData.correo;
-        document.getElementById("dni").value = userData.correo;
-        document.getElementById("sexo").value = userData.correo;
-        document.getElementById("nroTelefonico").value = userData.correo;
+        document.getElementById("direccion").value = userData.direccion;
+        document.getElementById("provincia").value = userData.provincia;
+        document.getElementById("region").value = userData.region;
+        document.getElementById("dni").value = userData.dni;
+        document.getElementById("sexo").value = userData.sexo;
+        document.getElementById("nroTelefonico").value = userData.nroTelefonico;
         
 
         puteditUser(userId);
@@ -110,21 +110,39 @@ function editUser(userId) {
 ///////////////////////////////////////////////////////////////////
 
 
+
 function puteditUser(userId) {
-
-
   const form = document.getElementById("editUserForm");
+  
   if (form) {
-    form.addEventListener("submit", (event) => {
+    form.addEventListener("submit", handleSubmit);
+
+   
+
+
+    function handleSubmit(event) {
       event.preventDefault();
-     
+
       const nombres = document.getElementById("nombre").value;
       const apellidos = document.getElementById("apellido").value;
       const correo = document.getElementById("correo").value;
+      const direccion = document.getElementById("direccion").value;
+      const provincia = document.getElementById("provincia").value;
+      const region = document.getElementById("region").value;
+      const dni = document.getElementById("dni").value;
+      const sexo = document.getElementById("sexo").value;
+      const nroTelefonico = document.getElementById("nroTelefonico").value;
+
       const pacienteData = {
-        nombre: nombres,  
+        nombre: nombres,
         apellido: apellidos,
         correo: correo,
+        direccion: direccion,
+        provincia: provincia,
+        region: region,
+        dni: dni,
+        sexo: sexo,
+        nroTelefonico: nroTelefonico,
       };
       axios
         .put(
@@ -135,27 +153,32 @@ function puteditUser(userId) {
               "Content-Type": "application/json",
             },
           }
+
+          
         )
+        
         .then((response) => {
           console.log(response.data);
           alert("Paciente editado exitosamente");
-
+           form.removeEventListener("submit", handleSubmit);
           getusers();
+          
         })
         .catch((error) => {
           console.error("Error al crear el paciente:", error);
         });
-    });
-  }
+    }
 
+  }
 }
+
+
 /////////////////////////////////////////////////////////////// 
 
 
 
 
-window.editUser = editUser; // Hacer editUser accesible globalmente
-
+window.editUser = editUser; 
 export { editUser, getusers, puteditUser, searchUser };
 
 ///////////////////////////////////////////////////////////////
