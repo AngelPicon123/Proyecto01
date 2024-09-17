@@ -31,7 +31,6 @@ function RegistrarUser() {
         dni: dni,
         sexo: sexo,
         nroTelefonico: nroTelefonico,
-      
       };
 
       axios
@@ -55,6 +54,5 @@ function RegistrarUser() {
     });
   }
 }
-
 
 export { RegistrarUser };

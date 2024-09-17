@@ -40,12 +40,11 @@ form {
 
 .form-row {
   display: flex;
-  justify-content: center;
-  margin-bottom: 15px;
 }
 
 .form-group {
   flex: 0 0 48%;
+  margin: 10px;
 }
 
 label {
