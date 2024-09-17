@@ -1,16 +1,16 @@
 <?php
 
-require_once __DIR__ . '/../models/PacienteModel.php';
+require_once __DIR__ . '/../models/TerapeutaModel.php';
 require_once __DIR__ . '/../config/DataBse.php';
 
-class PacienteController{
+class TerapeutaController{
     private $db;
     private $model;
 
     public function __construct() {
         $database = new DataBse();
         $this->db = $database->getConnection();
-        $this->model = new PacienteModel($this->db);
+        $this->model = new TerapeutaModel($this->db);
     }
 
     //BUSCAR TODOS LOS PACIENTES
@@ -42,8 +42,8 @@ class PacienteController{
         }
     }
 
-    //CRAR NUEVO PACIENTE
-    public function createPaciente() {
+    //CRAR NUEVO Terapeuta
+    public function createTerapeuta() {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
     
@@ -54,7 +54,7 @@ class PacienteController{
         !empty($data->dni) && !empty($data->sexo) && !empty($data->nroTelefonico)) {
 
             // Insertar el nuevo usuario en la base de datos
-           $result = $this->model->createPaciente(
+           $result = $this->model->createTerapeuta(
             $data->nombre,
             $data->apellido,
             $data->correo,
@@ -67,10 +67,10 @@ class PacienteController{
         );
     
             if ($result) {
-                echo json_encode(["message" => "Paciente creado exitosamente"]);
+                echo json_encode(["message" => "Terapeuta creado exitosamente"]);
             } else {
                 http_response_code(500);
-                echo json_encode(["message" => "Fallo al crear paciente"]);
+                echo json_encode(["message" => "Fallo al crear Terapeuta"]);
             }
         } else {
             // Responder con código de error 400 si algún campo está vacío o falta

@@ -1,15 +1,15 @@
 <?php
 // Modelo de los usuarios registrados en la base de datos
-class PacienteModel {
+class TerapeutaModel {
     private $conn;
-    private $table_name = "pacientes";
+    private $table_name = "terapeutas";
 
     public function __construct($database) {
         $this->conn = $database;
     }
 
-//crear usuario
-    public function createPaciente($nombre, $apellido, $correo, $direccion, $provincia, $region, $dni, $sexo, $nroTelefonico) {
+//crear Terapeuta
+    public function createTerapeuta($nombre, $apellido, $correo, $direccion, $provincia, $region, $dni, $sexo, $nroTelefonico) {
         $sql = "INSERT INTO " . $this->table_name . " 
             (nombre, apellido, correo, direccion, provincia, region, dni, sexo, nroTelefonico) 
             VALUES (:nombre, :apellido, :correo, :direccion, :provincia, :region, :dni, :sexo, :nroTelefonico)";
