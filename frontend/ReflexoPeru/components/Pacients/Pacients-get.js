@@ -167,14 +167,13 @@ function searchUser() {
       usuariosFiltrados.forEach((usuario) => {
         const row = document.createElement("tr");
         row.innerHTML = `
-            <td>${usuario.id}</td>
+            <td>${usuario.dni}</td>
             <td>${usuario.nombre}</td>
             <td>${usuario.apellido}</td>
             <td>${usuario.correo}</td>
             <td>${usuario.direccion}</td>
             <td>${usuario.provincia}</td>
             <td>${usuario.region}</td>
-            <td>${usuario.dni}</td>
             <td>${usuario.sexo}</td>
             <td>${usuario.nroTelefonico}</td>
 
