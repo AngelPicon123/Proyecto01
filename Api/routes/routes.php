@@ -1,6 +1,6 @@
 <?php
 
-require_once '../src/controller/UserController.php';
+require_once '../src/controller/PacienteController.php';
 
 $requestUri = $_SERVER['REQUEST_URI'];
 $requestMethod = $_SERVER['REQUEST_METHOD'];
@@ -23,30 +23,30 @@ switch (true) {
         }
     break;
     //buscar pot id
-    case preg_match('/^users\/searchUserById\/(\d+)$/', $uri, $matches):
+    case preg_match('/^pacientes\/searchPacienteById\/(\d+)$/', $uri, $matches):
         if ($requestMethod === 'GET') {
             $id = $matches[1];  // El ID del usuario desde la URL
-            $controller->searchUserById($id);
+            $controller->searchPacienteById($id);
         }
         break;
 //crear nuevo
-    case preg_match('/^users\/create$/', $uri):
+    case preg_match('/^pacientes\/create$/', $uri):
         if ($requestMethod === 'POST') {
             $controller->createPaciente();
         }
         break;
 //actualizar
-    case preg_match('/^users\/updatePaciente\/(\d+)$/', $uri, $matches):
+    case preg_match('/^pacientes\/updatePaciente\/(\d+)$/', $uri, $matches):
         if ($requestMethod === 'PUT') {
             $id = $matches[1];
-            $controller->updateUser($id);
+            $controller->updatePaciente($id);
         }
         break;
 //borrar
-    case preg_match('/^users\/delete\/(\d+)$/', $uri, $matches):
+    case preg_match('/^pacientes\/delete\/(\d+)$/', $uri, $matches):
         if ($requestMethod === 'DELETE') {
             $id = $matches[1];
-            $controller->deleteUser($id);
+            $controller->deletePaciente($id);
         }
         break;
 

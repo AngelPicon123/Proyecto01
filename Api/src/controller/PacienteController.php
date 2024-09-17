@@ -13,6 +13,7 @@ class PacienteController{
         $this->model = new PacienteModel($this->db);
     }
 
+    //BUSCAR TODOS LOS PACIENTES
     public function getAllPacientes() {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
@@ -21,6 +22,7 @@ class PacienteController{
         echo json_encode($pacientes);
     }
 
+    //BUSCAR PACIENTE POR ID
     public function searchPacienteById($id) {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
@@ -40,6 +42,7 @@ class PacienteController{
         }
     }
 
+    //CRAR NUEVO PACIENTE
     public function createPaciente() {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
@@ -76,6 +79,7 @@ class PacienteController{
         }
     }
 
+    //ACTUALIZAR UN PACIENTE
     public function updatePaciente($id) {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
@@ -97,6 +101,7 @@ class PacienteController{
         }
     }
 
+    //ELIMINAR UN PACIENTE
     public function deletePaciente($id) {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
