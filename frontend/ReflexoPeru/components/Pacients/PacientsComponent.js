@@ -22,10 +22,10 @@ export function PacientsShow() {
               <th>Direccion</th>
               <th>Provicia</th>
               <th>Distrito</th>
-              <th>Region</th>
               <th>DNI</th>
               <th>Sexo</th>
               <th>Telefono</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody id="userTableBody">

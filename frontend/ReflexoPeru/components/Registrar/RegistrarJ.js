@@ -8,6 +8,12 @@ function RegistrarUser() {
       const nombres = document.getElementById("nombre").value;
       const apellidos = document.getElementById("apellido").value;
       const correo = document.getElementById("correo").value;
+      const direccion = document.getElementById("direccion").value;
+      const provincia = document.getElementById("provincia").value;
+      const region = document.getElementById("distrito").value;
+      const dni = document.getElementById("dni").value;
+      const sexo = document.getElementById("sexo").value;
+      const nroTelefonico = document.getElementById("nroTelefonico").value;
 
       const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailPattern.test(correo)) {
@@ -19,11 +25,18 @@ function RegistrarUser() {
         nombre: nombres,
         apellido: apellidos,
         correo: correo,
+        direccion: direccion,
+        provincia: provincia,
+        region: region,
+        dni: dni,
+        sexo: sexo,
+        nroTelefonico: nroTelefonico,
+      
       };
 
       axios
         .post(
-          "http://localhost/Proyecto01/Api/public/index.php/users/create",
+          "http://localhost/Proyecto01/Api/public/index.php/pacientes/create",
           pacienteData,
           {
             headers: {
@@ -43,8 +56,5 @@ function RegistrarUser() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  RegistrarUser();
-});
 
 export { RegistrarUser };
