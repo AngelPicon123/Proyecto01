@@ -43,10 +43,10 @@ switch (true) {
         }
         break;
 //actualizar
-    case preg_match('/^users\/updateUser\/(\d+)$/', $uri, $matches):
+    case preg_match('/^users\/updatePaciente\/(\d+)$/', $uri, $matches):
         if ($requestMethod === 'PUT') {
             $id = $matches[1];
-            $controller->updateUser($id);
+            $controller->updatePaciente($id);
         }
         break;
 //borrar

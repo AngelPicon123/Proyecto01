@@ -46,14 +46,20 @@ class UserModel {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    // Actualizar usuario
-    public function updateUser($id, $nombre, $apellido, $correo) {
-        $sql = "UPDATE " . $this->table_name . " SET nombre = :nombre ,apellido = :apellido, correo = :correo 
+    // Actualizar Paciente
+    public function updatePaciente($id, $nombre, $apellido, $correo, $direccion, $provincia, $region, $dni, $sexo, $nroTelefonico) {
+        $sql = "UPDATE " . $this->table_name . " SET nombre = :nombre ,apellido = :apellido, correo = :correo, direccion = :direccion, provincia = :provincia, region = :region, dni = :dni, sexo = :sexo, nroTelefonico = :nroTelefonico
                                                  WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':nombre', $nombre);
         $stmt->bindParam(':apellido', $apellido);
         $stmt->bindParam(':correo', $correo);
+        $stmt->bindParam(':direccion', $direccion);
+        $stmt->bindParam(':provincia', $provincia);
+        $stmt->bindParam(':region', $region);
+        $stmt->bindParam(':dni', $dni);
+        $stmt->bindParam(':sexo', $sexo);
+        $stmt->bindParam(':nroTelefonico', $nroTelefonico);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         return $stmt->execute();
     }

@@ -82,8 +82,8 @@ class UserController {
 
         $data = json_decode(file_get_contents("php://input"));
 
-        if (!empty($data->nombre) && !empty($data->apellido) && !empty($data->correo)) {
-            $updated = $this->model->updateUser($id, $data->nombre, $data->apellido, $data->correo);
+        if (!empty($data->nombre) && !empty($data->apellido) && !empty($data->correo) && !empty($data->direccion) && !empty($data->provincia) && !empty($data->region) && !empty($data->dni) && !empty($data->sexo) && !empty($data->nroTelefonico)) {
+            $updated = $this->model->updatePaciente($id, $data->nombre, $data->apellido, $data->correo, $data->direccion, $data->provincia, $data->region, $data->dni, $data->sexo, $data->nroTelefonico);
 
             if ($updated) {
                 echo json_encode(["message" => "User updated successfully"]);
