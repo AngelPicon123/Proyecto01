@@ -1,6 +1,6 @@
 <?php
 // Modelo de los usuarios registrados en la base de datos
-class UserModel {
+class PacienteModel {
     private $conn;
     private $table_name = "pacientes";
 
@@ -30,8 +30,8 @@ class UserModel {
         return $stmt->execute();
     }
     // Buscar todos los usuarios
-    public function getAllPacientes() {
-        $query = "SELECT id, nombre, apellido, correo, direccion, provincia, region, dni, sexo, nroTelefonico FROM " . $this->table_name;
+    public function getUsers() {
+        $query = "SELECT id, nombre, apellido, correo FROM " . $this->table_name;
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -46,20 +46,14 @@ class UserModel {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    // Actualizar Paciente
-    public function updatePaciente($id, $nombre, $apellido, $correo, $direccion, $provincia, $region, $dni, $sexo, $nroTelefonico) {
-        $sql = "UPDATE " . $this->table_name . " SET nombre = :nombre ,apellido = :apellido, correo = :correo, direccion = :direccion, provincia = :provincia, region = :region, dni = :dni, sexo = :sexo, nroTelefonico = :nroTelefonico
+    // Actualizar usuario
+    public function updateUser($id, $nombre, $apellido, $correo) {
+        $sql = "UPDATE " . $this->table_name . " SET nombre = :nombre ,apellido = :apellido, correo = :correo 
                                                  WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':nombre', $nombre);
         $stmt->bindParam(':apellido', $apellido);
         $stmt->bindParam(':correo', $correo);
-        $stmt->bindParam(':direccion', $direccion);
-        $stmt->bindParam(':provincia', $provincia);
-        $stmt->bindParam(':region', $region);
-        $stmt->bindParam(':dni', $dni);
-        $stmt->bindParam(':sexo', $sexo);
-        $stmt->bindParam(':nroTelefonico', $nroTelefonico);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         return $stmt->execute();
     }

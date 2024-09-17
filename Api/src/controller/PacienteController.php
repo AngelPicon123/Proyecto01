@@ -3,22 +3,22 @@
 require_once __DIR__ . '/../models/UserModels.php';
 require_once __DIR__ . '/../config/DataBse.php';
 
-class UserController {
+class PacienteController{
     private $db;
     private $model;
 
     public function __construct() {
         $database = new DataBse();
         $this->db = $database->getConnection();
-        $this->model = new UserModel($this->db);
+        $this->model = new PacienteModel($this->db);
     }
 
-    public function getAllPacientes() {
+    public function getAllUsers() {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
 
-        $pacientes = $this->model->getAllPacientes();
-        echo json_encode($pacientes);
+        $users = $this->model->getUsers();
+        echo json_encode($users);
     }
 
     public function searchUserById($id) {
@@ -40,7 +40,7 @@ class UserController {
         }
     }
 
-    public function createUser() {
+    public function createPaciente() {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
     
@@ -76,14 +76,14 @@ class UserController {
         }
     }
 
-    public function updatePaciente($id) {
+    public function updateUser($id) {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
 
         $data = json_decode(file_get_contents("php://input"));
 
-        if (!empty($data->nombre) && !empty($data->apellido) && !empty($data->correo) && !empty($data->direccion) && !empty($data->provincia) && !empty($data->region) && !empty($data->dni) && !empty($data->sexo) && !empty($data->nroTelefonico)) {
-            $updated = $this->model->updatePaciente($id, $data->nombre, $data->apellido, $data->correo, $data->direccion, $data->provincia, $data->region, $data->dni, $data->sexo, $data->nroTelefonico);
+        if (!empty($data->nombre) && !empty($data->apellido) && !empty($data->correo)) {
+            $updated = $this->model->updateUser($id, $data->nombre, $data->apellido, $data->correo);
 
             if ($updated) {
                 echo json_encode(["message" => "User updated successfully"]);
