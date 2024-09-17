@@ -145,18 +145,20 @@ window.editUser = editUser; // Hacer editUser accesible globalmente
 export { editUser, getusers, puteditUser, searchUser };
 
 ///////////////////////////////////////////////////////////////
-
 function searchUser() {
   axios
-    .get("http://localhost/Proyecto01/Api/public/index.php/users")
+    .get("http://localhost/Proyecto01/Api/public/index.php/pacientes")
     .then((response) => {
       const users = response.data;
-      const letrasABuscar = document.getElementById("search").value;
+      const letrasABuscar = document
+        .getElementById("search")
+        .value.toLowerCase();
 
       const usuariosFiltrados = users.filter(
-        (user) =>
-          user.nombre.toLowerCase().includes(letrasABuscar.toLowerCase()) ||
-          user.apellido.toLowerCase().includes(letrasABuscar.toLowerCase())
+        (pacientes) =>
+          pacientes.nombre.toLowerCase().startsWith(letrasABuscar) ||
+          pacientes.apellido.toLowerCase().startsWith(letrasABuscar) ||
+          pacientes.dni.toLowerCase().startsWith(letrasABuscar)
       );
 
       console.log("Usuarios Filtrados:", usuariosFiltrados);
@@ -169,9 +171,16 @@ function searchUser() {
             <td>${usuario.nombre}</td>
             <td>${usuario.apellido}</td>
             <td>${usuario.correo}</td>
+            <td>${usuario.direccion}</td>
+            <td>${usuario.provincia}</td>
+            <td>${usuario.region}</td>
+            <td>${usuario.dni}</td>
+            <td>${usuario.sexo}</td>
+            <td>${usuario.nroTelefonico}</td>
+
             <td>
               <div class="Buttons-actions">
-                <button><h4>Editar</h4></button>
+                <button onclick="editUser(${usuario.id})"><h4>Editar</h4></button>
                 <button onclick="deleteUser(${usuario.id})"><h4>Imprimir</h4></button>
               </div>
             </td>
