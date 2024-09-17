@@ -13,12 +13,12 @@ class PacienteController{
         $this->model = new PacienteModel($this->db);
     }
 
-    public function getAllUsers() {
+    public function getAllPacientes() {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
 
-        $users = $this->model->getUsers();
-        echo json_encode($users);
+        $pacientes = $this->model->getAllpacientes();
+        echo json_encode($pacientes);
     }
 
     public function searchUserById($id) {
