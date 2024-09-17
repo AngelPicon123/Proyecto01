@@ -12,15 +12,8 @@ $uri = str_replace($baseUri, '', $requestUri);
 // Remove leading slash
 $uri = ltrim($uri, '/');
 
-// Define routes
-/*
-echo "REQUEST URI: " . $requestUri . "<br>";
-echo "PROCESSED URI: " . $uri . "<br>";
-echo "METHOD: " . $requestMethod . "<br>";
 
-*/
-
-$controller = new UserController();
+$controller = new PacienteController();
 
 switch (true) {
     //leer todo
@@ -39,14 +32,14 @@ switch (true) {
 //crear nuevo
     case preg_match('/^users\/create$/', $uri):
         if ($requestMethod === 'POST') {
-            $controller->createUser();
+            $controller->createPaciente();
         }
         break;
 //actualizar
     case preg_match('/^users\/updatePaciente\/(\d+)$/', $uri, $matches):
         if ($requestMethod === 'PUT') {
             $id = $matches[1];
-            $controller->updatePaciente($id);
+            $controller->updateUser($id);
         }
         break;
 //borrar
