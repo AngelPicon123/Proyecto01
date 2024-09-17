@@ -3,7 +3,7 @@ function getusers() {
 
   if (tableBody) {
     axios
-      .get("http://localhost/Proyecto01/Api/public/index.php/users")
+      .get("http://localhost/Proyecto01/Api/public/index.php/pacientes")
       .then((response) => {
         const users = response.data;
         tableBody.innerHTML = "";
@@ -14,6 +14,12 @@ function getusers() {
             <td>${user.nombre}</td>
             <td>${user.apellido}</td>
             <td>${user.correo}</td>
+            <td>${user.direccion}</td>
+            <td>${user.provincia}</td>
+            <td>${user.region}</td>
+            <td>${user.dni}</td>
+            <td>${user.sexo}</td>
+            <td>${user.nroTelefonico}</td>
             <td>
               <div class="Buttons-actions">
                 <button onclick="editUser(${user.id})"><h4>Editar</h4></button> 
@@ -37,7 +43,7 @@ function getusers() {
 window.deleteUser = function (userId) {
   axios
     .delete(
-      `http://localhost/Proyecto01/Api/public/index.php/users/delete/${userId}`
+      `http://localhost/Proyecto01/Api/public/index.php/pacientes/delete/${userId}`
     )
     .then((response) => {
       console.log("User deleted successfully:", response.data);
@@ -66,7 +72,7 @@ function editUser(userId) {
 
     axios
       .get(
-        `http://localhost/Proyecto01/Api/public/index.php/users/searchUserById/${userId}`
+        `http://localhost/Proyecto01/Api/public/index.php/pacientes/searchPacienteById/${userId}`
       )
       .then((response) => {
         console.log(response.data);
@@ -75,7 +81,15 @@ function editUser(userId) {
         document.getElementById("nombre").value = userData.nombre;
         document.getElementById("apellido").value = userData.apellido;
         document.getElementById("correo").value = userData.correo;
-          puteditUser(userId);
+        document.getElementById("direccion").value = userData.correo;
+        document.getElementById("provincia").value = userData.correo;
+        document.getElementById("region").value = userData.correo;
+        document.getElementById("dni").value = userData.correo;
+        document.getElementById("sexo").value = userData.correo;
+        document.getElementById("nroTelefonico").value = userData.correo;
+        
+
+        puteditUser(userId);
       })
       .catch((error) => {
         console.error("Error fetching users:", error);
@@ -113,19 +127,20 @@ function puteditUser(userId) {
         correo: correo,
       };
       axios
-        .put(`http://localhost/Proyecto01/Api/public/index.php/users/updateUser/${userId}`, pacienteData,
-           {
+        .put(
+          `http://localhost/Proyecto01/Api/public/index.php/pacientes/updatePaciente/${userId}`,
+          pacienteData,
+          {
             headers: {
               "Content-Type": "application/json",
             },
           }
-        ) 
+        )
         .then((response) => {
           console.log(response.data);
           alert("Paciente editado exitosamente");
 
           getusers();
-
         })
         .catch((error) => {
           console.error("Error al crear el paciente:", error);

@@ -19,7 +19,14 @@ export function PacientsShow() {
               <th>Nombres</th>
               <th>Apellidos</th>
               <th>Correo</th>
-              <th>Acciones</th>
+              <th>Direccion</th>
+              <th>Provicia</th>
+              <th>Distrito</th>
+              <th>Region</th>
+              <th>DNI</th>
+              <th>Sexo</th>
+              <th>Telefono</th>
+
             </tr>
           </thead>
           <tbody id="userTableBody">
