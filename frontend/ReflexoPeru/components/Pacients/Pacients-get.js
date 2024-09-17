@@ -10,14 +10,13 @@ function getusers() {
         users.forEach((user) => {
           const row = document.createElement("tr");
           row.innerHTML = `
-            <td>${user.id}</td>
+            <td>${user.dni}</td>
             <td>${user.nombre}</td>
             <td>${user.apellido}</td>
             <td>${user.correo}</td>
             <td>${user.direccion}</td>
             <td>${user.provincia}</td>
             <td>${user.region}</td>
-            <td>${user.dni}</td>
             <td>${user.sexo}</td>
             <td>${user.nroTelefonico}</td>
             <td>
@@ -87,7 +86,6 @@ function editUser(userId) {
         document.getElementById("dni").value = userData.correo;
         document.getElementById("sexo").value = userData.correo;
         document.getElementById("nroTelefonico").value = userData.correo;
-        
 
         puteditUser(userId);
       })
@@ -95,34 +93,26 @@ function editUser(userId) {
         console.error("Error fetching users:", error);
       });
 
-
-
-
-
-
     // Cerrar el modal al hacer clic en el botón de cerrar
   } else {
     console.error(
       "El modal, el backdrop o el botón de cerrar no se encontraron en el DOM."
     );
   }
-};
+}
 ///////////////////////////////////////////////////////////////////
 
-
 function puteditUser(userId) {
-
-
   const form = document.getElementById("editUserForm");
   if (form) {
     form.addEventListener("submit", (event) => {
       event.preventDefault();
-     
+
       const nombres = document.getElementById("nombre").value;
       const apellidos = document.getElementById("apellido").value;
       const correo = document.getElementById("correo").value;
       const pacienteData = {
-        nombre: nombres,  
+        nombre: nombres,
         apellido: apellidos,
         correo: correo,
       };
@@ -147,12 +137,8 @@ function puteditUser(userId) {
         });
     });
   }
-
 }
-/////////////////////////////////////////////////////////////// 
-
-
-
+///////////////////////////////////////////////////////////////
 
 window.editUser = editUser; // Hacer editUser accesible globalmente
 

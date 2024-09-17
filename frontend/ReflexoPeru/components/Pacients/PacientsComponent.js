@@ -15,14 +15,13 @@ export function PacientsShow() {
         <table>
           <thead>
             <tr>
-              <th>id</th>
+              <th>DNI</th>
               <th>Nombres</th>
               <th>Apellidos</th>
               <th>Correo</th>
               <th>Direccion</th>
               <th>Provicia</th>
               <th>Distrito</th>
-              <th>DNI</th>
               <th>Sexo</th>
               <th>Telefono</th>
               <th>Acciones</th>

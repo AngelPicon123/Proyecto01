@@ -190,7 +190,30 @@ div#editUserModal {
 .tableContainer {
   height: 600px; /* Ajusta la altura según tus necesidades */
   overflow-y: auto; /* Agrega la barra de desplazamiento vertical cuando sea necesario */
-  border: 1px solid #ccc; /* Opcional: agrega un borde alrededor del contenedor */
+  border: 1px solid #ccc;
+  /* Opcional: agrega un borde alrededor del contenedor */
+}
+
+.tableContainer th:nth-child(1),
+.tableContainer td:nth-child(1) {
+  width: 100px;
+}
+
+.tableContainer th:nth-child(8),
+.tableContainer td:nth-child(8) {
+  width: 70px;
+}
+.tableContainer th:nth-child(7),
+.tableContainer td:nth-child(7) {
+  width: 100px;
+}
+.tableContainer th:nth-child(6),
+.tableContainer td:nth-child(6) {
+  width: 100px;
+}
+.tableContainer th:nth-child(9),
+.tableContainer td:nth-child(9) {
+  width: 100px;
 }
 
 thead th {
