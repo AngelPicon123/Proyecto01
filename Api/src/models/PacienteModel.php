@@ -64,7 +64,7 @@ class PacienteModel {
         return $stmt->execute();
     }
 
-    // Eliminar usuario
+    // Eliminar paciente
     public function deletePaciente($id) {
         $sql = "DELETE FROM " . $this->table_name . " WHERE id = :id";
         $stmt = $this->conn->prepare($sql);

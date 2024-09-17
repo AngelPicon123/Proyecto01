@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../models/UserModels.php';
+require_once __DIR__ . '/../models/PacienteModel.php';
 require_once __DIR__ . '/../config/DataBse.php';
 
 class PacienteController{
@@ -34,11 +34,11 @@ class PacienteController{
                 echo json_encode($paciente);
             } else {
                 http_response_code(404);
-                echo json_encode(["message" => "paciente not found"]);
+                echo json_encode(["message" => "paciente no encontrado"]);
             }
         } else {
             http_response_code(400);
-            echo json_encode(["message" => "Invalid input"]);
+            echo json_encode(["message" => "Entrada invalida"]);
         }
     }
 
@@ -111,7 +111,7 @@ class PacienteController{
             echo json_encode(["message" => "Paciente eliminada con éxito."]);
         } else {
             http_response_code(404);
-            echo json_encode(["message" => "El paciente no pudo ser eliminado."]);
+            echo json_encode(["message" => "El paciente no pudo ser eliminado o no se encontro."]);
         }
     }
 }
