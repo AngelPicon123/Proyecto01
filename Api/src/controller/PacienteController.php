@@ -21,18 +21,18 @@ class PacienteController{
         echo json_encode($pacientes);
     }
 
-    public function searchUserById($id) {
+    public function searchPacienteById($id) {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
     
         if (!empty($id)) {
-            $user = $this->model->getUserById($id);
+            $paciente = $this->model->getPacienteById($id);
     
-            if ($user) {
-                echo json_encode($user);
+            if ($paciente) {
+                echo json_encode($paciente);
             } else {
                 http_response_code(404);
-                echo json_encode(["message" => "User not found"]);
+                echo json_encode(["message" => "paciente not found"]);
             }
         } else {
             http_response_code(400);
@@ -76,37 +76,37 @@ class PacienteController{
         }
     }
 
-    public function updateUser($id) {
+    public function updatePaciente($id) {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
 
         $data = json_decode(file_get_contents("php://input"));
 
-        if (!empty($data->nombre) && !empty($data->apellido) && !empty($data->correo)) {
-            $updated = $this->model->updateUser($id, $data->nombre, $data->apellido, $data->correo);
+        if (!empty($data->nombre) && !empty($data->apellido) && !empty($data->correo) && !empty($data->direccion) && !empty($data->provincia) && !empty($data->region) && !empty($data->dni) && !empty($data->sexo) && !empty($data->nroTelefonico)) {
+            $updated = $this->model->updatePaciente($id, $data->nombre, $data->apellido, $data->correo, $data->direccion, $data->provincia, $data->region, $data->dni, $data->sexo, $data->nroTelefonico);
 
             if ($updated) {
-                echo json_encode(["message" => "User updated successfully"]);
+                echo json_encode(["message" => "PACIENTE ACTUALIZADO CORRECTAMENTE"]);
             } else {
                 http_response_code(404);
-                echo json_encode(["message" => "User not found"]);
+                echo json_encode(["message" => "PACIENTE NO SE ACTUALIZO"]);
             }
         } else {
             http_response_code(400);
-            echo json_encode(["message" => "Invalid input"]);
+            echo json_encode(["message" => "ENTRADA INVALIDA"]);
         }
     }
 
-    public function deleteUser($id) {
+    public function deletePaciente($id) {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
         header("Access-Control-Allow-Methods: DELETE");
 
-        if ($this->model->deleteUserById($id)) {
-            echo json_encode(["message" => "User successfully deleted."]);
+        if ($this->model->deletePaciente($id)) {
+            echo json_encode(["message" => "Paciente eliminada con éxito."]);
         } else {
             http_response_code(404);
-            echo json_encode(["message" => "User could not be deleted."]);
+            echo json_encode(["message" => "El paciente no pudo ser eliminado."]);
         }
     }
 }

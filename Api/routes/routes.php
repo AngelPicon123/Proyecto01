@@ -17,9 +17,9 @@ $controller = new PacienteController();
 
 switch (true) {
     //leer todo
-    case preg_match('/^users$/', $uri):
+    case preg_match('/^pacientes$/', $uri):
         if ($requestMethod === 'GET') {
-            $controller->getAllUsers();
+            $controller->getAllPacientes();
         }
     break;
     //buscar pot id
