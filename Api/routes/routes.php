@@ -24,11 +24,11 @@ switch (true) {
             $controller->getAllPacientes();
         }
     break;
-   //buscar terapeuta por ID
-   case preg_match('/^terapeutas/searchTerapeutaById/(\d+)$/', $uri, $matches):
+   //buscar paciente por id
+   case preg_match('/^pacientes\/searchPacienteById\/(\d+)$/', $uri, $matches):
     if ($requestMethod === 'GET') {
         $id = $matches[1];  // El ID del usuario desde la URL
-        $controllerTerapeuta->searchTerapeutaById($id);
+        $controller->searchPacienteById($id);
     }
     break;
 //crear nuevo paciente
@@ -67,14 +67,20 @@ switch (true) {
     break;
 
 //borrar terapeuta
-    case preg_match('/^terapeutas\/delate\/(\d+)$/', $uri, $matches):
+    case preg_match('/^terapeutas\/delete\/(\d+)$/', $uri, $matches):
         if ($requestMethod === 'DELETE') {
             $id = $matches[1];
             $controllerTerapeuta->deleteTerapeuta($id);
         }
         break;
 
-
+ //buscar terapeuta por ID
+ case preg_match('/^terapeutas\/searchTerapeutaById\/(\d+)$/', $uri, $matches):
+    if ($requestMethod === 'GET') {
+        $id = $matches[1];  // El ID del usuario desde la URL
+        $controllerTerapeuta->getTerapeutaById($id);
+    }
+    break;
 
 
 
