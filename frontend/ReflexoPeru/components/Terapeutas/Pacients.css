@@ -1,0 +1,194 @@
+/* pacientsShow.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(255, 255, 255);
+  height: 100vh;
+}
+
+.containerAll {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  height: 100%;
+  width: 100%;
+  background-color: #d3d3d3;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  outline: none;
+  margin: 15px 0px 15px 0px;
+}
+
+.Buttons-general {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.Buttons-general button {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  outline: none;
+  color: white;
+  margin: 0px 0px 10px 0px;
+}
+
+.Buttons-general button img {
+  width: 30px;
+}
+
+.Buttons-general button:nth-child(1) {
+  background-color: #28a745;
+}
+
+.Buttons-general button:nth-child(2) {
+  background-color: #28a745;
+}
+
+.Buttons-general button:hover {
+  cursor: pointer;
+}
+
+table {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  font-size: 12px;
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+th {
+  font-size: 13px;
+  font-weight: normal;
+  padding: 8px;
+  background: #28a745;
+  border-top: 4px solid #218838;
+  border-bottom: 1px solid #fff;
+  color: #fff;
+  border: 1px solid #fff;
+  max-width: 100px;
+}
+
+td {
+  padding: 10px 0px 10px 0px;
+  background: #b8e4c2;
+  border-bottom: 1px solid #fff;
+  border: 1px solid #fff;
+  color: #669;
+  border-top: 1px solid transparent;
+  max-width: 100px;
+  max-height: 50px;
+}
+
+.Buttons-actions {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.Buttons-actions button {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 5px 5px 0px 5px;
+  outline: none;
+  color: white;
+}
+
+.Buttons-actions button img {
+  width: 20px;
+}
+
+.Buttons-actions button:nth-child(1) {
+  background-color: #28a745;
+}
+
+.Buttons-actions button:nth-child(2) {
+  background-color: #b12020;
+}
+
+.Buttons-actions button:hover {
+  cursor: pointer;
+}
+
+.alert-content {
+  display: absolute;
+  bottom: 20px;
+  right: 20px;
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.main-content {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  border-radius: 6px;
+  background-color: #fff;
+  overflow: hidden;
+  & form {
+    gap: 20px;
+    & button {
+      width: 60%;
+      margin: 0px 40px;
+    }
+  }
+}
+
+.root {
+  display: flex;
+  width: 16%;
+}
+
+div#editUserModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1001; /* Por encima del backdrop */
+  display: none; /* Ocultar por defecto */
+  width: 80%;
+  max-width: 600px;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Fondo negro semitransparente */
+  z-index: 1000; /* Debajo del modal */
+  display: none; /* Ocultar por defecto */
+}
+
+.tableContainer {
+  height: 600px; /* Ajusta la altura según tus necesidades */
+  overflow-y: auto; /* Agrega la barra de desplazamiento vertical cuando sea necesario */
+  border: 1px solid #ccc; /* Opcional: agrega un borde alrededor del contenedor */
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  box-shadow: 0 2px 5px -2px rgba(0, 0, 0, 0.1);
+}
