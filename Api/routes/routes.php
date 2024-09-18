@@ -65,6 +65,14 @@ switch (true) {
             $controllerTerapeuta->getAllTerapeutas();
         }
     break;
+    
+//actualizar terapeuta    
+case preg_match('/^Terapeutas\/updateTerapeuta\/(\d+)$/', $uri, $matches):
+    if($requestMethod == 'PUT'){
+        $id = $matches[1];
+        $controllerTerapeuta->updateTerapeuta($id);
+    }
+    break;
 
 //borrar terapeuta
     case preg_match('/^terapeutas\/delete\/(\d+)$/', $uri, $matches):

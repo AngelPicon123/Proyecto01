@@ -46,8 +46,8 @@ class TerapeutaModel {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    // Actualizar Paciente
-    public function updatePaciente($id, $nombre, $apellido, $correo, $direccion, $provincia, $region, $dni, $sexo, $nroTelefonico) {
+    // Actualizar Terapeuta
+    public function updateTerapeuta($id, $nombre, $apellido, $correo, $direccion, $provincia, $region, $dni, $sexo, $nroTelefonico) {
         $sql = "UPDATE " . $this->table_name . " SET nombre = :nombre ,apellido = :apellido, correo = :correo, direccion = :direccion, provincia = :provincia, region = :region, dni = :dni, sexo = :sexo, nroTelefonico = :nroTelefonico
                                                  WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
