@@ -1,4 +1,4 @@
-import { searchUser } from "./Pacients-get";
+import { searchUserPatients } from "./Pacients-get";
 
 
 export function PacientsShow() {
@@ -113,7 +113,7 @@ export function RegisterUser() {
     <div class="container-main">
       <div class="main-content">
         <h1>CREAR NUEVO PACIENTE</h1>
-        <form method="POST" id="form-create">
+        <form method="POST" id="form-create" >
           <div class="form-row">
             <div class="form-group">
               <label for="dni">DNI</label>

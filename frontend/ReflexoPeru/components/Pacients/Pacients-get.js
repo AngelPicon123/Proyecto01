@@ -1,4 +1,6 @@
-function getusers() {
+
+
+function getusersPatients() {
   const tableBody = document.getElementById("userTableBody");
 
   if (tableBody) {
@@ -37,7 +39,7 @@ function getusers() {
   }
 }
 ///////////////////////////////////////////////////////////////
-window.deleteUser = function (userId) {
+window.deleteUserPatients = function (userId) {
   axios
     .delete(
       `http://localhost/Proyecto01/Api/public/index.php/pacientes/delete/${userId}`
@@ -54,7 +56,7 @@ window.deleteUser = function (userId) {
 
 ///////////////////////////////////////////////////////////////
 
-function editUser(userId) {
+function editUserPatients(userId) {
   const modal = document.getElementById("editUserModal");
   const backdrop = document.getElementById("modalBackdrop");
 
@@ -108,7 +110,7 @@ function editUser(userId) {
 }
 ///////////////////////////////////////////////////////////////////
 
-function puteditUser(userId) {
+function puteditUserPatients(userId) {
   const form = document.getElementById("editUserForm");
 
   if (form) {
@@ -162,11 +164,9 @@ function puteditUser(userId) {
   }
 }
 ///////////////////////////////////////////////////////////////
-window.editUser = editUser;
-export { editUser, getusers, puteditUser, searchUser };
 
 ///////////////////////////////////////////////////////////////
-function searchUser() {
+function searchUserPatients() {
   axios
     .get("http://localhost/Proyecto01/Api/public/index.php/pacientes")
     .then((response) => {
@@ -213,7 +213,7 @@ function searchUser() {
     });
 }
 //////////////////////////////////////////////////////////////////
-function RegistrarUser() {
+function RegistrarUserPatients() {
   const form = document.getElementById("form-create");
 
   if (form) {
@@ -270,4 +270,11 @@ function RegistrarUser() {
   }
 }
 
-export { RegistrarUser };
+window.editUserPatients = editUserPatients;
+export {
+  editUserPatients,
+  getusersPatients,
+  puteditUserPatients,
+  searchUserPatients,
+  RegistrarUserPatients,
+};

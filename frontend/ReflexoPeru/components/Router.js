@@ -1,7 +1,7 @@
 import { PacientsShow } from "./Pacients/PacientsComponent.js";
 import { RegisterUser } from "./Pacients/PacientsComponent.js";
-import { getusers } from "./Pacients/Pacients-get.js";
-import { RegistrarUser } from "./Pacients/Pacients-get.js";
+import { getusersPatients } from "./Pacients/Pacients-get.js";
+import { RegistrarUserPatients } from "./Pacients/Pacients-get.js";
 import {
   therapistsShow,
   RegisterTherapist,
@@ -17,11 +17,12 @@ export function Router() {
 
   if (!hash || hash === "#/") {
     $content.appendChild(PacientsShow());
-    getusers();
+    getusersPatients ();
   } else if (hash === "#/register-pacient") {
-    RegistrarUser();
+
     $content.innerHTML = "";
     $content.appendChild(RegisterUser());
+        RegistrarUserPatients();
   } else if (hash === "#/list-therapists") {
     $content.innerHTML = "";
     $content.appendChild(therapistsShow());
