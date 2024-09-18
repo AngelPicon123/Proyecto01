@@ -84,19 +84,9 @@ function editUserPatients(userId) {
         document.getElementById("provincia").value = userData.provincia;
         document.getElementById("direccion").value = userData.direccion;
         document.getElementById("nroTelefonico").value = userData.nroTelefonico;
+        document.getElementById("region").value = userData.region;
         document.getElementById("sexo").value = userData.sexo;
 
-        // Actualizar el select de distrito
-        const provinciaSelect = document.getElementById("provincia");
-        const distritoSelect = document.getElementById("distrito");
-
-        if (provinciaSelect && distritoSelect) {
-          // Cambiar la provincia para actualizar los distritos
-          provinciaSelect.value = userData.provincia;
-          const event = new Event("change");
-          provinciaSelect.dispatchEvent(event);
-          distritoSelect.value = userData.distrito;
-        }
         puteditUser(userId);
       })
       .catch((error) => {

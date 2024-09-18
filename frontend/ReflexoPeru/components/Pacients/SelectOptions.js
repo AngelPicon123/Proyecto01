@@ -1,7 +1,7 @@
-document.addEventListener("DOMContentLoaded", function () {
-  let $provincia = document.getElementById("provincia");
-  let $distrito = document.getElementById("distrito");
-
+export function initializeProvincesAndDistricts(
+  provinciaElement,
+  distritoElement
+) {
   const provincias = [
     "Lima",
     "Arequipa",
@@ -21,15 +21,15 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
 
   function selectOptions(array, element) {
+    if (!element) return; // Agrega una verificación para evitar el error
     let elements = "<option selected disabled> --Seleccionar--</option>";
-
-    for (let i = 0; i < array.length; i++) {
-      elements += `<option value="${array[i]}">${array[i]}</option>`;
-    }
+    array.forEach((option) => {
+      elements += `<option value="${option}">${option}</option>`;
+    });
     element.innerHTML = elements;
   }
 
-  selectOptions(provincias, $provincia);
+  selectOptions(provincias, provinciaElement);
 
   const distritos = {
     Lima: [
@@ -228,12 +228,14 @@ document.addEventListener("DOMContentLoaded", function () {
     ],
   };
 
-  $provincia.addEventListener("change", (e) => {
-    let value = $provincia.value;
-
-    $distrito.innerHTML = `<option selected disabled>--Distrito--</option>`;
-    distritos[value].forEach((distrito) => {
-      $distrito.innerHTML += `<option value="${distrito}">${distrito}</option>`;
-    });
+  provinciaElement.addEventListener("change", (e) => {
+    let value = provinciaElement.value;
+    if (!distritoElement) return; // Agrega una verificación para evitar el error
+    distritoElement.innerHTML = `<option selected disabled>--Seleccionar--</option>`;
+    if (distritos[value]) {
+      distritos[value].forEach((distrito) => {
+        distritoElement.innerHTML += `<option value="${distrito}">${distrito}</option>`;
+      });
+    }
   });
-});
+}
