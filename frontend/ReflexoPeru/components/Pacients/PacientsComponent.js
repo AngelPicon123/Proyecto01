@@ -9,7 +9,7 @@ export function PacientsShow() {
         <input type="text" id="search" class="search-input" placeholder="Buscar por Nombre o Apellido / DNI" />
       </div>
       <div class="Buttons-general">
-        <a href="#/register">Crear Nuevo Paciente +</a>
+        <a href="#/register-pacient">Crear Nuevo Paciente +</a>
       </div>
       <div class="tableContainer">
         <table>
@@ -115,9 +115,9 @@ export function PacientsShow() {
 }
 
 export function RegisterUser() {
-    const $register = document.createElement("div");
-    $register.classList.add("sidebar");
-    $register.innerHTML = `
+  const $register = document.createElement("div");
+  $register.classList.add("sidebar");
+  $register.innerHTML = `
     <div class="back-pacients">
       <a href="#/">Volver</a>
     </div>
@@ -196,7 +196,6 @@ export function RegisterUser() {
       </div>
     </div>
     `;
-  
-    return $register;
-  }
-  
+
+  return $register;
+}
