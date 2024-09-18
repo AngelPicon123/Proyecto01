@@ -19,9 +19,9 @@ export function Router() {
     $content.appendChild(PacientsShow());
     getusers();
   } else if (hash === "#/register-pacient") {
-    RegistrarUser();
     $content.innerHTML = "";
     $content.appendChild(RegisterUser());
+    RegistrarUser();
   } else if (hash === "#/list-therapists") {
     $content.innerHTML = "";
     $content.appendChild(therapistsShow());
