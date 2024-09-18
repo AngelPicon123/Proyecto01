@@ -64,8 +64,8 @@ class TerapeutaModel {
         return $stmt->execute();
     }
 
-    // Eliminar paciente
-    public function deletePaciente($id) {
+    // Eliminar Terapeuta
+    public function deleteTerapeuta($id) {
         $sql = "DELETE FROM " . $this->table_name . " WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);

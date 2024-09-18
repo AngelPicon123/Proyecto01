@@ -101,17 +101,17 @@ class TerapeutaController{
         }
     }
 
-    //ELIMINAR UN PACIENTE
-    public function deletePaciente($id) {
+    //ELIMINAR UN TERAPEUTA
+    public function deleteTerapeuta($id) {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
         header("Access-Control-Allow-Methods: DELETE");
 
-        if ($this->model->deletePaciente($id)) {
-            echo json_encode(["message" => "Paciente eliminada con éxito."]);
+        if ($this->model->deleteTerapeuta($id)) {
+            echo json_encode(["message" => "Terapeuta eliminada con éxito."]);
         } else {
             http_response_code(404);
-            echo json_encode(["message" => "El paciente no pudo ser eliminado o no se encontro."]);
+            echo json_encode(["message" => "El Terapeuta no pudo ser eliminado o no se encontro."]);
         }
     }
 }

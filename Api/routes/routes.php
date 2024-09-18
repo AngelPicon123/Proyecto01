@@ -60,7 +60,13 @@ switch (true) {
         }
         break;
 
-
+//borrar terapeuta
+    case preg_match('/^terapeutas\/delate\/(\d+)$/', $uri, $matches):
+        if ($requestMethod === 'DELETE') {
+            $id = $matches[1];
+            $controllerTerapeuta->deleteTerapeuta($id);
+        }
+        break;
 
 
 
