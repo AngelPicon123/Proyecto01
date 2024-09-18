@@ -75,23 +75,31 @@ function editUser(userId) {
         console.log(response.data);
         const userData = response.data;
 
+        document.getElementById("dni").value = userData.dni;
         document.getElementById("nombre").value = userData.nombre;
         document.getElementById("apellido").value = userData.apellido;
         document.getElementById("correo").value = userData.correo;
-        document.getElementById("direccion").value = userData.direccion;
         document.getElementById("provincia").value = userData.provincia;
-        document.getElementById("region").value = userData.region;
-        document.getElementById("dni").value = userData.dni;
-        document.getElementById("sexo").value = userData.sexo;
+        document.getElementById("direccion").value = userData.direccion;
         document.getElementById("nroTelefonico").value = userData.nroTelefonico;
+        document.getElementById("sexo").value = userData.sexo;
 
+        // Actualizar el select de distrito
+        const provinciaSelect = document.getElementById("provincia");
+        const distritoSelect = document.getElementById("distrito");
+
+        if (provinciaSelect && distritoSelect) {
+          // Cambiar la provincia para actualizar los distritos
+          provinciaSelect.value = userData.provincia;
+          const event = new Event("change");
+          provinciaSelect.dispatchEvent(event);
+          distritoSelect.value = userData.distrito;
+        }
         puteditUser(userId);
       })
       .catch((error) => {
         console.error("Error fetching users:", error);
       });
-
-    // Cerrar el modal al hacer clic en el botón de cerrar
   } else {
     console.error(
       "El modal, el backdrop o el botón de cerrar no se encontraron en el DOM."

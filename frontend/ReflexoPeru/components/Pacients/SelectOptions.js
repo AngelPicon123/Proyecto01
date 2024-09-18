@@ -1,9 +1,8 @@
-let $provincia = document.getElementById("provincia");
-let $distrito = document.getElementById("distrito");
+document.addEventListener("DOMContentLoaded", function () {
+  let $provincia = document.getElementById("provincia");
+  let $distrito = document.getElementById("distrito");
 
-
-
-const provincias = [
+  const provincias = [
     "Lima",
     "Arequipa",
     "Piura",
@@ -18,10 +17,21 @@ const provincias = [
     "Huanuco",
     "Cusco",
     "Puno",
-    "Madre de Dios",]
+    "Madre de Dios",
+  ];
 
+  function selectOptions(array, element) {
+    let elements = "<option selected disabled> --Seleccionar--</option>";
 
-const distritos = {
+    for (let i = 0; i < array.length; i++) {
+      elements += `<option value="${array[i]}">${array[i]}</option>`;
+    }
+    element.innerHTML = elements;
+  }
+
+  selectOptions(provincias, $provincia);
+
+  const distritos = {
     Lima: [
       "Lima Cercado",
       "San Juan de Lurigancho",
@@ -217,4 +227,13 @@ const distritos = {
       "Laberinto",
     ],
   };
-  
+
+  $provincia.addEventListener("change", (e) => {
+    let value = $provincia.value;
+
+    $distrito.innerHTML = `<option selected disabled>--Distrito--</option>`;
+    distritos[value].forEach((distrito) => {
+      $distrito.innerHTML += `<option value="${distrito}">${distrito}</option>`;
+    });
+  });
+});

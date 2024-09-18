@@ -1,5 +1,6 @@
 import { searchUser } from "./Pacients-get";
 
+
 export function PacientsShow() {
   const $pacients = document.createElement("div");
   $pacients.classList.add("containerAll");
@@ -59,27 +60,15 @@ export function PacientsShow() {
                 <div class="form-row-update">
                     <div class="form-group">
                         <label for="provincia">Provincia</label>
-                        <select name="provincia" id="provincia">
-                            <option value="Lima">Lima</option>
-                            <option value="Arequipa">Arequipa</option>
-                            <option value="Piura">Piura</option>
-                            <option value="Tacna">Tacna</option>
-                            <option value="Cajamarca">Cajamarca</option>
-                            <option value="Callao">Callao</option>
-                            <option value="Loreto">Loreto</option>
-                            <option value="Moquegua">Moquegua</option>
-                            <option value="Ayacucho">Ayacucho</option>
-                            <option value="Ancash">Ancash</option>
-                            <option value="Lambayeque">Lambayeque</option>
-                            <option value="Huanuco">Huanuco</option>
-                            <option value="Cusco">Cusco</option>
-                            <option value="Puno">Puno</option>
-                            <option value="Madre de Dios">Madre de Dios</option>
-                        </select>
+                            <select name="provincia" id="provincia">
+                            </select>
                     </div>
-                     <div class="form-group">
-                        <label for="distrito">Distrito</label>
-                        <select name="distrito" id="distrito" required>
+
+                    <div class="form-group">
+                    <label for="distrito">Distrito</label>
+                    <select name="distrito" id="distrito" required>
+                        
+                    </select>
                     </div>
                 </div>
 
@@ -143,21 +132,6 @@ export function RegisterUser() {
             <div class="form-group">
               <label for="provincia">Provincia</label>
               <select name="provincia" id="provincia">
-                <option value="Lima">Lima</option>
-                <option value="Arequipa">Arequipa</option>
-                <option value="Piura">Piura</option>
-                <option value="Tacna">Tacna</option>
-                <option value="Cajamarca">Cajamarca</option>
-                <option value="Callao">Callao</option>
-                <option value="Loreto">Loreto</option>
-                <option value="Moquegua">Moquegua</option>
-                <option value="Ayacucho">Ayacucho</option>
-                <option value="Ancash">Ancash</option>
-                <option value="Lambayeque">Lambayeque</option>
-                <option value="Huanuco">Huanuco</option>
-                <option value="Cusco">Cusco</option>
-                <option value="Puno">Puno</option>
-                <option value="Madre de Dios">Madre de Dios</option>
               </select>
             </div>
           </div>
