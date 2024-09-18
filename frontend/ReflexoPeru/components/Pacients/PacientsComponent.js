@@ -1,5 +1,5 @@
 import { searchUser } from "./Pacients-get";
-
+import { initializeProvincesAndDistricts } from "./SelectOptions";
 
 export function PacientsShow() {
   const $pacients = document.createElement("div");
@@ -170,6 +170,8 @@ export function RegisterUser() {
       </div>
     </div>
     `;
-
+  const provinciaElement = $register.querySelector("#provincia");
+  const distritoElement = $register.querySelector("#distrito");
+  initializeProvincesAndDistricts(provinciaElement, distritoElement);
   return $register;
 }
