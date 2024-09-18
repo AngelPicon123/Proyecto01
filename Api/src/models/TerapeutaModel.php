@@ -37,8 +37,8 @@ class TerapeutaModel {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Buscar PACIENTE por ID
-    public function getPacienteById($id) {
+    //BUSCAR TERAPEUTAS POR ID
+    public function getTerapeutaById($id) {
         $sql = "SELECT * FROM " . $this->table_name . " WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);

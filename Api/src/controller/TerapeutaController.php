@@ -1,40 +1,40 @@
 <?php
 
-require_once __DIR__ . '/../models/TerapeutaModel.php';
+require_once __DIR__ . '/../models/PacienteModel.php';
 require_once __DIR__ . '/../config/DataBse.php';
 
-class TerapeutaController{
+class PacienteController{
     private $db;
     private $model;
 
     public function __construct() {
         $database = new DataBse();
         $this->db = $database->getConnection();
-        $this->model = new TerapeutaModel($this->db);
+        $this->model = new PacienteModel($this->db);
     }
 
-    //BUSCAR TODOS LOS TERAPEUTAS
-    public function getAllTerapeutas() {
+    //BUSCAR TODOS LOS PACIENTES
+    public function getAllPacientes() {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
 
-        $terapeutas = $this->model->getAllTerapeutas();
-        echo json_encode($terapeutas);
+        $pacientes = $this->model->getAllpacientes();
+        echo json_encode($pacientes);
     }
 
-    //BUSCAR PACIENTE POR ID
-    public function searchPacienteById($id) {
+    //BUSCAR TERAPEUTA POR ID
+    public function searchTerapeutaById($id) {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
     
         if (!empty($id)) {
-            $paciente = $this->model->getPacienteById($id);
+            $terapeuta = $this->model->getTerapeutaById($id);
     
-            if ($paciente) {
-                echo json_encode($paciente);
+            if ($terapeuta) {
+                echo json_encode($terapeuta);
             } else {
                 http_response_code(404);
-                echo json_encode(["message" => "paciente no encontrado"]);
+                echo json_encode(["message" => "Terapeuta no encontrado"]);
             }
         } else {
             http_response_code(400);
@@ -42,8 +42,8 @@ class TerapeutaController{
         }
     }
 
-    //CRAR NUEVO Terapeuta
-    public function createTerapeuta() {
+    //CRAR NUEVO PACIENTE
+    public function createPaciente() {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
     
@@ -54,7 +54,7 @@ class TerapeutaController{
         !empty($data->dni) && !empty($data->sexo) && !empty($data->nroTelefonico)) {
 
             // Insertar el nuevo usuario en la base de datos
-           $result = $this->model->createTerapeuta(
+           $result = $this->model->createPaciente(
             $data->nombre,
             $data->apellido,
             $data->correo,
@@ -67,10 +67,10 @@ class TerapeutaController{
         );
     
             if ($result) {
-                echo json_encode(["message" => "Terapeuta creado exitosamente"]);
+                echo json_encode(["message" => "Paciente creado exitosamente"]);
             } else {
                 http_response_code(500);
-                echo json_encode(["message" => "Fallo al crear Terapeuta"]);
+                echo json_encode(["message" => "Fallo al crear paciente"]);
             }
         } else {
             // Responder con código de error 400 si algún campo está vacío o falta
@@ -101,17 +101,17 @@ class TerapeutaController{
         }
     }
 
-    //ELIMINAR UN TERAPEUTA
-    public function deleteTerapeuta($id) {
+    //ELIMINAR UN PACIENTE
+    public function deletePaciente($id) {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
         header("Access-Control-Allow-Methods: DELETE");
 
-        if ($this->model->deleteTerapeuta($id)) {
-            echo json_encode(["message" => "Terapeuta eliminada con éxito."]);
+        if ($this->model->deletePaciente($id)) {
+            echo json_encode(["message" => "Paciente eliminada con éxito."]);
         } else {
             http_response_code(404);
-            echo json_encode(["message" => "El Terapeuta no pudo ser eliminado o no se encontro."]);
+            echo json_encode(["message" => "El paciente no pudo ser eliminado o no se encontro."]);
         }
     }
 }
