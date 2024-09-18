@@ -15,8 +15,8 @@ export function Router() {
     $content.appendChild(PacientsShow());
     getusers();
   } else if (hash === "#/register") {
+    RegistrarUser();
     $content.innerHTML = "";
     $content.appendChild(RegisterUser());
-    RegistrarUser();
   }
 }

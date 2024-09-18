@@ -37,8 +37,6 @@ function getusers() {
   }
 }
 ///////////////////////////////////////////////////////////////
-
-///////////////////////////////////////////////////////////////
 window.deleteUser = function (userId) {
   axios
     .delete(
@@ -86,7 +84,6 @@ function editUser(userId) {
         document.getElementById("dni").value = userData.dni;
         document.getElementById("sexo").value = userData.sexo;
         document.getElementById("nroTelefonico").value = userData.nroTelefonico;
-        
 
         puteditUser(userId);
       })
@@ -103,15 +100,11 @@ function editUser(userId) {
 }
 ///////////////////////////////////////////////////////////////////
 
-
 function puteditUser(userId) {
   const form = document.getElementById("editUserForm");
-  
+
   if (form) {
     form.addEventListener("submit", handleSubmit);
-
-   
-
 
     function handleSubmit(event) {
       event.preventDefault();
@@ -146,32 +139,22 @@ function puteditUser(userId) {
               "Content-Type": "application/json",
             },
           }
-
-          
         )
-        
+
         .then((response) => {
           console.log(response.data);
           alert("Paciente editado exitosamente");
-           form.removeEventListener("submit", handleSubmit);
+          form.removeEventListener("submit", handleSubmit);
           getusers();
-          
         })
         .catch((error) => {
           console.error("Error al crear el paciente:", error);
         });
     }
-
   }
 }
-
-
-/////////////////////////////////////////////////////////////// 
-
-
-
-
-window.editUser = editUser; 
+///////////////////////////////////////////////////////////////
+window.editUser = editUser;
 export { editUser, getusers, puteditUser, searchUser };
 
 ///////////////////////////////////////////////////////////////

@@ -36,32 +36,26 @@ export function PacientsShow() {
             <h1>EDITAR PACIENTE</h1>
             <form  method="PUT" id="editUserForm">
                 <div class="form-row-update">
+                 <div class="form-group">
+                        <label for="dni">DNI</label>
+                        <input type="text" id="dni" name="dni">
+                    </div> 
                     <div class="form-group">
                         <label for="nombre">Nombres</label>
                         <input type="text" id="nombre" name="nombre">
                     </div>
+                   
                 </div>
-                 <div class="form-row-update">
-                    <div class="form-group">
+                <div class="form-row-update">
+                 <div class="form-group">
                         <label for="apellido">Apellidos</label>
                         <input type="text" id="apellido" name="apellido">
                     </div>
-                </div>
-                
-                <div class="form-row-update">
                     <div class="form-group">
                         <label for="correo">Correo</label>
                         <input type="email" id="correo" name="correo">
                     </div>
                 </div>
-
-                <div class="form-row-update">
-                    <div class="form-group">
-                        <label for="direccion">Dirección</label>
-                        <input type="text" id="direccion" name="direccion">
-                    </div>  
-                </div>
-
                 <div class="form-row-update">
                     <div class="form-group">
                         <label for="provincia">Provincia</label>
@@ -83,23 +77,17 @@ export function PacientsShow() {
                             <option value="Madre de Dios">Madre de Dios</option>
                         </select>
                     </div>
-                </div>
-
-                <div class="form-row-update"> 
-                    <div class="form-group">
+                     <div class="form-group">
                         <label for="distrito">Distrito</label>
-                        <input type="text" id="region" name="distrito">
-                    </div>  
+                        <select name="distrito" id="distrito" required>
+                    </div>
                 </div>
 
-                <div class="form-row-update">
+                <div class="form-row-update">   
                     <div class="form-group">
-                        <label for="dni">DNI</label>
-                        <input type="text" id="dni" name="dni">
-                    </div>  
-                </div>
-
-                <div class="form-row-update">
+                        <label for="direccion">Dirección</label>
+                        <input type="text" id="direccion" name="direccion">
+                    </div>
                     <div class="form-group">
                         <label for="sexo">Sexo</label>  
                         <select name="sexo" id="sexo">
@@ -108,15 +96,12 @@ export function PacientsShow() {
                         </select>
                     </div>
                 </div>
-
                 <div class="form-row-update">
                     <div class="form-group">
                         <label for="telefono">Telefono</label>
                         <input type="text" id="nroTelefonico" name="telefono">
                     </div>
                 </div>
-
-  
                 <button type="submit" class="btn-submit">Editar Cliente</button>
             </form>
               </div>

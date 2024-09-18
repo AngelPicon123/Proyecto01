@@ -225,3 +225,6 @@ thead th {
 tbody tr {
   word-wrap: break-word;
 }
+.form-row-update {
+  display: flex;
+}
