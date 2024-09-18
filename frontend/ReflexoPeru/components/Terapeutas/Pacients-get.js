@@ -10,13 +10,14 @@ function getusers() {
         users.forEach((user) => {
           const row = document.createElement("tr");
           row.innerHTML = `
-            <td>${user.dni}</td>
+            <td>${user.id}</td>
             <td>${user.nombre}</td>
             <td>${user.apellido}</td>
             <td>${user.correo}</td>
             <td>${user.direccion}</td>
             <td>${user.provincia}</td>
             <td>${user.region}</td>
+            <td>${user.dni}</td>
             <td>${user.sexo}</td>
             <td>${user.nroTelefonico}</td>
             <td>
@@ -36,6 +37,8 @@ function getusers() {
     console.error("El elemento 'userTableBody' no existe en el DOM.");
   }
 }
+///////////////////////////////////////////////////////////////
+
 ///////////////////////////////////////////////////////////////
 window.deleteUser = function (userId) {
   axios
@@ -84,6 +87,7 @@ function editUser(userId) {
         document.getElementById("dni").value = userData.dni;
         document.getElementById("sexo").value = userData.sexo;
         document.getElementById("nroTelefonico").value = userData.nroTelefonico;
+        
 
         puteditUser(userId);
       })
@@ -91,20 +95,30 @@ function editUser(userId) {
         console.error("Error fetching users:", error);
       });
 
+
+
+
+
+
     // Cerrar el modal al hacer clic en el botón de cerrar
   } else {
     console.error(
       "El modal, el backdrop o el botón de cerrar no se encontraron en el DOM."
     );
   }
-}
+};
 ///////////////////////////////////////////////////////////////////
+
+
 
 function puteditUser(userId) {
   const form = document.getElementById("editUserForm");
-
+  
   if (form) {
     form.addEventListener("submit", handleSubmit);
+
+   
+
 
     function handleSubmit(event) {
       event.preventDefault();
@@ -139,22 +153,32 @@ function puteditUser(userId) {
               "Content-Type": "application/json",
             },
           }
-        )
 
+          
+        )
+        
         .then((response) => {
           console.log(response.data);
           alert("Paciente editado exitosamente");
-          form.removeEventListener("submit", handleSubmit);
+           form.removeEventListener("submit", handleSubmit);
           getusers();
+          
         })
         .catch((error) => {
           console.error("Error al crear el paciente:", error);
         });
     }
+
   }
 }
-///////////////////////////////////////////////////////////////
-window.editUser = editUser;
+
+
+/////////////////////////////////////////////////////////////// 
+
+
+
+
+window.editUser = editUser; 
 export { editUser, getusers, puteditUser, searchUser };
 
 ///////////////////////////////////////////////////////////////
@@ -180,13 +204,14 @@ function searchUser() {
       usuariosFiltrados.forEach((usuario) => {
         const row = document.createElement("tr");
         row.innerHTML = `
-            <td>${usuario.dni}</td>
+            <td>${usuario.id}</td>
             <td>${usuario.nombre}</td>
             <td>${usuario.apellido}</td>
             <td>${usuario.correo}</td>
             <td>${usuario.direccion}</td>
             <td>${usuario.provincia}</td>
             <td>${usuario.region}</td>
+            <td>${usuario.dni}</td>
             <td>${usuario.sexo}</td>
             <td>${usuario.nroTelefonico}</td>
 
