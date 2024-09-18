@@ -99,7 +99,9 @@ export function PacientsShow() {
   $pacients.querySelector("#search").addEventListener("input", () => {
     searchUserPatients();
   });
-
+  const provinciaElement = $pacients.querySelector("#provincia");
+  const distritoElement = $pacients.querySelector("#distrito");
+  initializeProvincesAndDistricts(provinciaElement, distritoElement);
   return $pacients;
 }
 

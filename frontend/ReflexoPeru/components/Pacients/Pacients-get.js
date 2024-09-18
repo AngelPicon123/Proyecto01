@@ -85,6 +85,21 @@ function editUserPatients(userId) {
         document.getElementById("region").value = userData.region;
         document.getElementById("sexo").value = userData.sexo;
 
+        const provinciaElement = document.getElementById("provincia");
+  const distritoElement = document.getElementById("distrito");
+
+  // Llama a la función para inicializar provincias y distritos
+  initializeProvincesAndDistricts(provinciaElement, distritoElement);
+
+  // Asegúrate de que la provincia se seleccione y actualice los distritos
+  provinciaElement.value = userData.provincia;
+  // Forzar la actualización de los distritos al seleccionar la provincia
+  provinciaElement.dispatchEvent(new Event('change'));
+
+  // Selecciona el distrito
+  distritoElement.value = userData.region;
+  
+
         puteditUser(userId);
       })
       .catch((error) => {
