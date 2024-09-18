@@ -41,6 +41,25 @@ class PacienteController{
             echo json_encode(["message" => "Entrada invalida"]);
         }
     }
+    //BUSCAR PACIENTE POR DNI
+    public function getPacienteByDni($dni) {
+        header("Access-Control-Allow-Origin: *");
+        header("Content-Type: application/json; charset=UTF-8");
+    
+        if (!empty($dni)) {
+            $paciente = $this->model->getPacienteByDni($dni);
+    
+            if ($paciente) {
+                echo json_encode($paciente);
+            } else {
+                http_response_code(404);
+                echo json_encode(["message" => "paciente no encontrado"]);
+            }
+        } else {
+            http_response_code(400);
+            echo json_encode(["message" => "Entrada invalida"]);
+        }
+    }
 
     //CRAR NUEVO PACIENTE
     public function createPaciente() {

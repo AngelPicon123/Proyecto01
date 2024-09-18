@@ -1,15 +1,18 @@
 <?php
 // Modelo de los usuarios registrados en la base de datos
-class TerapeutaModel {
+class TerapeutaModel
+{
     private $conn;
     private $table_name = "terapeutas";
 
-    public function __construct($database) {
+    public function __construct($database)
+    {
         $this->conn = $database;
     }
 
-//crear Terapeuta
-    public function createTerapeuta($nombre, $apellido, $correo, $direccion, $provincia, $region, $dni, $sexo, $nroTelefonico) {
+    //crear Terapeuta
+    public function createTerapeuta($nombre, $apellido, $correo, $direccion, $provincia, $region, $dni, $sexo, $nroTelefonico)
+    {
         $sql = "INSERT INTO " . $this->table_name . " 
             (nombre, apellido, correo, direccion, provincia, region, dni, sexo, nroTelefonico) 
             VALUES (:nombre, :apellido, :correo, :direccion, :provincia, :region, :dni, :sexo, :nroTelefonico)";
@@ -30,7 +33,8 @@ class TerapeutaModel {
         return $stmt->execute();
     }
     // Buscar todos los terapeutas
-    public function getAllTerapeutas() {
+    public function getAllTerapeutas()
+    {
         $query = "SELECT id, nombre, apellido, correo, direccion, provincia, region ,dni, sexo, nroTelefonico FROM " . $this->table_name;
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
@@ -38,7 +42,8 @@ class TerapeutaModel {
     }
 
     //BUSCAR TERAPEUTAS POR ID
-    public function getTerapeutaById($id) {
+    public function getTerapeutaById($id)
+    {
         $sql = "SELECT * FROM " . $this->table_name . " WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
@@ -47,7 +52,8 @@ class TerapeutaModel {
     }
 
     // Actualizar Terapeuta
-    public function updateTerapeuta($id, $nombre, $apellido, $correo, $direccion, $provincia, $region, $dni, $sexo, $nroTelefonico) {
+    public function updateTerapeuta($id, $nombre, $apellido, $correo, $direccion, $provincia, $region, $dni, $sexo, $nroTelefonico)
+    {
         $sql = "UPDATE " . $this->table_name . " SET nombre = :nombre ,apellido = :apellido, correo = :correo, direccion = :direccion, provincia = :provincia, region = :region, dni = :dni, sexo = :sexo, nroTelefonico = :nroTelefonico
                                                  WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
@@ -65,7 +71,8 @@ class TerapeutaModel {
     }
 
     // Eliminar Terapeuta
-    public function deleteTerapeuta($id) {
+    public function deleteTerapeuta($id)
+    {
         $sql = "DELETE FROM " . $this->table_name . " WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);

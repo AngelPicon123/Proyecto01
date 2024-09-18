@@ -23,28 +23,35 @@ switch (true) {
         if ($requestMethod === 'GET') {
             $controller->getAllPacientes();
         }
-    break;
-   //buscar paciente por id
-   case preg_match('/^pacientes\/searchPacienteById\/(\d+)$/', $uri, $matches):
-    if ($requestMethod === 'GET') {
-        $id = $matches[1];  // El ID del usuario desde la URL
-        $controller->searchPacienteById($id);
-    }
-    break;
-//crear nuevo paciente
+        break;
+    //buscar paciente por id
+    case preg_match('/^pacientes\/searchPacienteById\/(\d+)$/', $uri, $matches):
+        if ($requestMethod === 'GET') {
+            $id = $matches[1];  // El ID del usuario desde la URL
+            $controller->searchPacienteById($id);
+        }
+        break;
+         //buscar paciente por dni
+    case preg_match('/^pacientes\/searchPacienteByDni\/(\d+)$/', $uri, $matches):
+        if ($requestMethod === 'GET') {
+            $dni = $matches[1];  // El ID del usuario desde la URL
+            $controller->getPacienteByDni($dni);
+        }
+        break;
+    //crear nuevo paciente
     case preg_match('/^pacientes\/create$/', $uri):
         if ($requestMethod === 'POST') {
             $controller->createPaciente();
         }
         break;
-//actualizar paciente
+    //actualizar paciente
     case preg_match('/^pacientes\/updatePaciente\/(\d+)$/', $uri, $matches):
         if ($requestMethod === 'PUT') {
             $id = $matches[1];
             $controller->updatePaciente($id);
         }
         break;
-//borrar paciente
+    //borrar paciente
     case preg_match('/^pacientes\/delete\/(\d+)$/', $uri, $matches):
         if ($requestMethod === 'DELETE') {
             $id = $matches[1];
@@ -52,8 +59,9 @@ switch (true) {
         }
         break;
 
-        //TERAPEUTAS
-//crear nuevo terapeuta
+    //TERAPEUTAS
+
+    //crear nuevo terapeuta
     case preg_match('/^terapeutas\/create$/', $uri):
         if ($requestMethod === 'POST') {
             $controllerTerapeuta->createTerapeuta();
@@ -64,17 +72,24 @@ switch (true) {
         if ($requestMethod === 'GET') {
             $controllerTerapeuta->getAllTerapeutas();
         }
-    break;
-    
-//actualizar terapeuta    
-case preg_match('/^Terapeutas\/updateTerapeuta\/(\d+)$/', $uri, $matches):
-    if($requestMethod == 'PUT'){
-        $id = $matches[1];
-        $controllerTerapeuta->updateTerapeuta($id);
-    }
-    break;
+        break;
 
-//borrar terapeuta
+    //buscar terapeuta por ID
+    case preg_match('/^terapeutas\/searchTerapeutaById\/(\d+)$/', $uri, $matches):
+        if ($requestMethod === 'GET') {
+            $id = $matches[1];  // El ID del usuario desde la URL
+            $controllerTerapeuta->getTerapeutaById($id);
+        }
+        break;
+    //actualizar terapeuta    
+    case preg_match('/^terapeutas\/updateTerapeuta\/(\d+)$/', $uri, $matches):
+        if ($requestMethod == 'PUT') {
+            $id = $matches[1];
+            $controllerTerapeuta->updateTerapeuta($id);
+        }
+        break;
+
+    //borrar terapeuta
     case preg_match('/^terapeutas\/delete\/(\d+)$/', $uri, $matches):
         if ($requestMethod === 'DELETE') {
             $id = $matches[1];
@@ -82,19 +97,12 @@ case preg_match('/^Terapeutas\/updateTerapeuta\/(\d+)$/', $uri, $matches):
         }
         break;
 
- //buscar terapeuta por ID
- case preg_match('/^terapeutas\/searchTerapeutaById\/(\d+)$/', $uri, $matches):
-    if ($requestMethod === 'GET') {
-        $id = $matches[1];  // El ID del usuario desde la URL
-        $controllerTerapeuta->getTerapeutaById($id);
-    }
-    break;
 
 
 
 
 
-        //ultima
+    //ultima
     default:
         header("HTTP/1.0 404 NOT FOUND");
         echo "Ruta no encontrada";

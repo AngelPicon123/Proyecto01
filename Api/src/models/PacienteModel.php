@@ -45,7 +45,14 @@ class PacienteModel {
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-
+// Buscar PACIENTE por DNI
+public function getPacienteByDni($dni) {
+    $sql = "SELECT * FROM " . $this->table_name . " WHERE dni = :dni";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bindParam(':dni', $dni, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
     // Actualizar Paciente
     public function updatePaciente($id, $nombre, $apellido, $correo, $direccion, $provincia, $region, $dni, $sexo, $nroTelefonico) {
         $sql = "UPDATE " . $this->table_name . " SET nombre = :nombre ,apellido = :apellido, correo = :correo, direccion = :direccion, provincia = :provincia, region = :region, dni = :dni, sexo = :sexo, nroTelefonico = :nroTelefonico
