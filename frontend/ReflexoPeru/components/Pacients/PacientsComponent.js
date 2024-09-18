@@ -97,7 +97,7 @@ export function PacientsShow() {
     `;
 
   $pacients.querySelector("#search").addEventListener("input", () => {
-    searchUser();
+    searchUserPatients();
   });
 
   return $pacients;

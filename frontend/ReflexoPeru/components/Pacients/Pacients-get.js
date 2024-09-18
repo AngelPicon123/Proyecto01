@@ -1,5 +1,3 @@
-
-
 function getusersPatients() {
   const tableBody = document.getElementById("userTableBody");
 
@@ -23,8 +21,8 @@ function getusersPatients() {
             <td>${user.nroTelefonico}</td>
             <td>
               <div class="Buttons-actions">
-                <button onclick="editUser(${user.id})"><h4>Editar</h4></button> 
-                <button onclick="deleteUser(${user.id})"><h4>Eliminar</h4></button>
+                <button onclick="editUserPatients(${user.id})"><h4>Editar</h4></button> 
+                <button onclick="deleteUserPatients(${user.id})"><h4>Eliminar</h4></button>
               </div>
             </td>
           `;
@@ -47,7 +45,7 @@ window.deleteUserPatients = function (userId) {
     .then((response) => {
       console.log("User deleted successfully:", response.data);
 
-      getusers();
+      getusersPatients();
     })
     .catch((error) => {
       console.error("Error deleting user:", error);
