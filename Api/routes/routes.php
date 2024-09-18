@@ -81,6 +81,13 @@ switch (true) {
             $controllerTerapeuta->getTerapeutaById($id);
         }
         break;
+    //buscar terapeuta por dni
+    case preg_match('/^terapeutas\/searchTerapeutaByDni\/(\d+)$/', $uri, $matches):
+        if ($requestMethod === 'GET') {
+            $dni = $matches[1];  // El ID del usuario desde la URL
+            $controllerTerapeuta->getTerapeutaByDni($dni);
+        }
+        break;    
     //actualizar terapeuta    
     case preg_match('/^terapeutas\/updateTerapeuta\/(\d+)$/', $uri, $matches):
         if ($requestMethod == 'PUT') {

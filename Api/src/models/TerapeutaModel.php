@@ -50,6 +50,14 @@ class TerapeutaModel
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    // Buscar terapeuta por DNI
+public function getTerapeutaByDni($dni) {
+    $sql = "SELECT * FROM " . $this->table_name . " WHERE dni = :dni";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bindParam(':dni', $dni, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
 
     // Actualizar Terapeuta
     public function updateTerapeuta($id, $nombre, $apellido, $correo, $direccion, $provincia, $region, $dni, $sexo, $nroTelefonico)

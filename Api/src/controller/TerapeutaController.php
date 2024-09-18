@@ -32,13 +32,32 @@ class TerapeutaController
         header("Content-Type: application/json; charset=UTF-8");
 
         if (!empty($id)) {
-            $paciente = $this->model->getTerapeutaById($id);
+            $terapeuta = $this->model->getTerapeutaById($id);
 
-            if ($paciente) {
-                echo json_encode($paciente);
+            if ($terapeuta) {
+                echo json_encode($terapeuta);
             } else {
                 http_response_code(404);
                 echo json_encode(["message" => "Terapeuta no encontrado"]);
+            }
+        } else {
+            http_response_code(400);
+            echo json_encode(["message" => "Entrada invalida"]);
+        }
+    }
+    //BUSCAR TERAPEUTA POR DNI
+    public function getTerapeutaByDni($dni) {
+        header("Access-Control-Allow-Origin: *");
+        header("Content-Type: application/json; charset=UTF-8");
+    
+        if (!empty($dni)) {
+            $terapeuta = $this->model->getTerapeutaByDni($dni);
+    
+            if ($terapeuta) {
+                echo json_encode($terapeuta);
+            } else {
+                http_response_code(404);
+                echo json_encode(["message" => "terapeuta no encontrado"]);
             }
         } else {
             http_response_code(400);
