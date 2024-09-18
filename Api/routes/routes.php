@@ -59,6 +59,12 @@ switch (true) {
             $controllerTerapeuta->createTerapeuta();
         }
         break;
+    //leer todos los Terapeutas
+    case preg_match('/^terapeutas$/', $uri):
+        if ($requestMethod === 'GET') {
+            $controllerTerapeuta->getAllTerapeutas();
+        }
+    break;
 
 //borrar terapeuta
     case preg_match('/^terapeutas\/delate\/(\d+)$/', $uri, $matches):

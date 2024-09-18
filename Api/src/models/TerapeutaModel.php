@@ -29,8 +29,8 @@ class TerapeutaModel {
         // Ejecutar la consulta
         return $stmt->execute();
     }
-    // Buscar todos los usuarios
-    public function getAllpacientes() {
+    // Buscar todos los terapeutas
+    public function getAllTerapeutas() {
         $query = "SELECT id, nombre, apellido, correo, direccion, provincia, region ,dni, sexo, nroTelefonico FROM " . $this->table_name;
         $stmt = $this->conn->prepare($query);
         $stmt->execute();

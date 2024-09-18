@@ -13,13 +13,13 @@ class TerapeutaController{
         $this->model = new TerapeutaModel($this->db);
     }
 
-    //BUSCAR TODOS LOS PACIENTES
-    public function getAllPacientes() {
+    //BUSCAR TODOS LOS TERAPEUTAS
+    public function getAllTerapeutas() {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
 
-        $pacientes = $this->model->getAllpacientes();
-        echo json_encode($pacientes);
+        $terapeutas = $this->model->getAllTerapeutas();
+        echo json_encode($terapeutas);
     }
 
     //BUSCAR PACIENTE POR ID
