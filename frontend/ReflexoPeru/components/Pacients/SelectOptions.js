@@ -21,7 +21,7 @@ export function initializeProvincesAndDistricts(
   ];
 
   function selectOptions(array, element) {
-    if (!element) return; // Agrega una verificación para evitar el error
+    if (!element) return;
     let elements = "<option selected disabled> --Seleccionar--</option>";
     array.forEach((option) => {
       elements += `<option value="${option}">${option}</option>`;

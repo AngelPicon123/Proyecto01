@@ -82,25 +82,10 @@ function editUserPatients(userId) {
         document.getElementById("provincia").value = userData.provincia;
         document.getElementById("direccion").value = userData.direccion;
         document.getElementById("nroTelefonico").value = userData.nroTelefonico;
-        document.getElementById("region").value = userData.region;
+        document.getElementById("distrito").value = userData.region;
         document.getElementById("sexo").value = userData.sexo;
 
-        const provinciaElement = document.getElementById("provincia");
-  const distritoElement = document.getElementById("distrito");
-
-  // Llama a la función para inicializar provincias y distritos
-  initializeProvincesAndDistricts(provinciaElement, distritoElement);
-
-  // Asegúrate de que la provincia se seleccione y actualice los distritos
-  provinciaElement.value = userData.provincia;
-  // Forzar la actualización de los distritos al seleccionar la provincia
-  provinciaElement.dispatchEvent(new Event('change'));
-
-  // Selecciona el distrito
-  distritoElement.value = userData.region;
-  
-
-        puteditUser(userId);
+        puteditUserPatients(userId);
       })
       .catch((error) => {
         console.error("Error fetching users:", error);
@@ -127,7 +112,7 @@ function puteditUserPatients(userId) {
       const correo = document.getElementById("correo").value;
       const direccion = document.getElementById("direccion").value;
       const provincia = document.getElementById("provincia").value;
-      const region = document.getElementById("region").value;
+      const region = document.getElementById("distrito").value;
       const dni = document.getElementById("dni").value;
       const sexo = document.getElementById("sexo").value;
       const nroTelefonico = document.getElementById("nroTelefonico").value;
@@ -158,7 +143,7 @@ function puteditUserPatients(userId) {
           console.log(response.data);
           alert("Paciente editado exitosamente");
           form.removeEventListener("submit", handleSubmit);
-          getusers();
+          getusersPatients();
         })
         .catch((error) => {
           console.error("Error al crear el paciente:", error);
