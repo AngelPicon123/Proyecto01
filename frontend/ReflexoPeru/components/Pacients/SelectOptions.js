@@ -1,8 +1,6 @@
-export function initializeProvincesAndDistricts(
-  provinciaElement,
-  distritoElement
-) {
-  const provincias = [
+// Función que devuelve el array de provincias
+export function getProvincias() {
+  return [
     "Lima",
     "Arequipa",
     "Piura",
@@ -19,19 +17,11 @@ export function initializeProvincesAndDistricts(
     "Puno",
     "Madre de Dios",
   ];
+}
 
-  function selectOptions(array, element) {
-    if (!element) return;
-    let elements = "<option selected disabled> --Seleccionar--</option>";
-    array.forEach((option) => {
-      elements += `<option value="${option}">${option}</option>`;
-    });
-    element.innerHTML = elements;
-  }
-
-  selectOptions(provincias, provinciaElement);
-
-  const distritos = {
+// Función que devuelve el objeto de distritos
+export function getDistritos() {
+  return {
     Lima: [
       "Lima Cercado",
       "San Juan de Lurigancho",
@@ -227,6 +217,26 @@ export function initializeProvincesAndDistricts(
       "Laberinto",
     ],
   };
+}
+
+// Función que inicializa los elementos de provincias y distritos
+export function initializeProvincesAndDistricts(
+  provinciaElement,
+  distritoElement
+) {
+  const provincias = getProvincias();
+  const distritos = getDistritos();
+
+  function selectOptions(array, element) {
+    if (!element) return;
+    let elements = "<option selected disabled> --Seleccionar--</option>";
+    array.forEach((option) => {
+      elements += `<option value="${option}">${option}</option>`;
+    });
+    element.innerHTML = elements;
+  }
+
+  selectOptions(provincias, provinciaElement);
 
   provinciaElement.addEventListener("change", (e) => {
     let value = provinciaElement.value;

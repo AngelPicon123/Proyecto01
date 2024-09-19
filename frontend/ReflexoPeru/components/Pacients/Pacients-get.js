@@ -1,3 +1,9 @@
+import {
+  getProvincias,
+  getDistritos,
+  initializeProvincesAndDistricts,
+} from "./SelectOptions";
+
 function getusersPatients() {
   const tableBody = document.getElementById("userTableBody");
 
@@ -21,7 +27,7 @@ function getusersPatients() {
             <td>${user.nroTelefonico}</td>
             <td>
               <div class="Buttons-actions">
-                <button onclick="editUserPatients(${user.id})"><h4>Editar</h4></button> 
+                <button onclick="editUserPatients(${user.id})"><h4>Editar</h4></button>
                 <button onclick="deleteUserPatients(${user.id})"><h4>Eliminar</h4></button>
               </div>
             </td>
@@ -36,7 +42,7 @@ function getusersPatients() {
     console.error("El elemento 'userTableBody' no existe en el DOM.");
   }
 }
-///////////////////////////////////////////////////////////////
+
 window.deleteUserPatients = function (userId) {
   axios
     .delete(
@@ -44,7 +50,6 @@ window.deleteUserPatients = function (userId) {
     )
     .then((response) => {
       console.log("User deleted successfully:", response.data);
-
       getusersPatients();
     })
     .catch((error) => {
@@ -52,7 +57,6 @@ window.deleteUserPatients = function (userId) {
     });
 };
 
-///////////////////////////////////////////////////////////////
 
 function editUserPatients(userId) {
   const modal = document.getElementById("editUserModal");
@@ -79,11 +83,48 @@ function editUserPatients(userId) {
         document.getElementById("nombre").value = userData.nombre;
         document.getElementById("apellido").value = userData.apellido;
         document.getElementById("correo").value = userData.correo;
-        document.getElementById("provincia").value = userData.provincia;
         document.getElementById("direccion").value = userData.direccion;
         document.getElementById("nroTelefonico").value = userData.nroTelefonico;
-        document.getElementById("distrito").value = userData.region;
         document.getElementById("sexo").value = userData.sexo;
+
+
+        const provinciaElement = document.getElementById("provincia");
+        const distritoElement = document.getElementById("distrito");
+
+        const provincias = getProvincias();
+        const distritos = getDistritos();
+
+        function selectOptions(array, element) {
+          if (!element) return;
+          let elements = "<option selected disabled> --Seleccionar--</option>";
+          array.forEach((option) => {
+            elements += `<option value="${option}">${option}</option>`;
+          });
+          element.innerHTML = elements;
+        }
+
+        selectOptions(provincias, provinciaElement);
+        provinciaElement.value = userData.provincia;
+
+        provinciaElement.addEventListener("change", (e) => {
+          let value = provinciaElement.value;
+          if (!distritoElement) return; 
+          distritoElement.innerHTML = `<option selected disabled>--Seleccionar--</option>`;
+          
+          
+          
+          if (distritos[value]) {
+            distritos[value].forEach((distrito) => {
+              distritoElement.innerHTML += `<option value="${distrito}">${distrito}</option>`;
+            });
+          }
+        });
+
+
+        if (distritos[userData.provincia]) {
+          selectOptions(distritos[userData.provincia], distritoElement);
+          distritoElement.value = userData.region;
+        }
 
         puteditUserPatients(userId);
       })
@@ -96,8 +137,6 @@ function editUserPatients(userId) {
     );
   }
 }
-///////////////////////////////////////////////////////////////////
-
 function puteditUserPatients(userId) {
   const form = document.getElementById("editUserForm");
 
@@ -116,6 +155,23 @@ function puteditUserPatients(userId) {
       const dni = document.getElementById("dni").value;
       const sexo = document.getElementById("sexo").value;
       const nroTelefonico = document.getElementById("nroTelefonico").value;
+
+       if (!region || region === "--Seleccionar--") {
+         alert("Por favor, seleccione un distrito.");
+         return;
+       }
+
+       const regex = /^[0-9]{7}$/;
+       if (!regex.test(dni)) {
+         alert("Por favor, ingrese un DNI correcto.");
+         return;
+       }
+
+
+
+
+
+
 
       const pacienteData = {
         nombre: nombres,
@@ -138,11 +194,10 @@ function puteditUserPatients(userId) {
             },
           }
         )
-
         .then((response) => {
           console.log(response.data);
           alert("Paciente editado exitosamente");
-          form.removeEventListener("submit", handleSubmit);
+
           getusersPatients();
         })
         .catch((error) => {
@@ -151,9 +206,7 @@ function puteditUserPatients(userId) {
     }
   }
 }
-///////////////////////////////////////////////////////////////
 
-///////////////////////////////////////////////////////////////
 function searchUserPatients() {
   axios
     .get("http://localhost/Proyecto01/Api/public/index.php/pacientes")
@@ -188,8 +241,8 @@ function searchUserPatients() {
 
             <td>
               <div class="Buttons-actions">
-                <button onclick="editUser(${usuario.id})"><h4>Editar</h4></button>
-                <button onclick="deleteUser(${usuario.id})"><h4>Imprimir</h4></button>
+                <button onclick="editUserPatients(${usuario.id})"><h4>Editar</h4></button>
+                <button onclick="deleteUserPatients(${usuario.id})"><h4>Imprimir</h4></button>
               </div>
             </td>
           `;
@@ -200,7 +253,7 @@ function searchUserPatients() {
       console.error("Error al obtener los usuarios:", error);
     });
 }
-//////////////////////////////////////////////////////////////////
+
 function RegistrarUserPatients() {
   const form = document.getElementById("form-create");
 
@@ -224,6 +277,17 @@ function RegistrarUserPatients() {
         return;
       }
 
+          if (!region || region === "--Seleccionar--") {
+            alert("Por favor, seleccione un distrito.");
+            return;
+          }
+
+            const regex = /^[0-9]{7}$/;
+            if (!regex.test(dni)) {
+              alert("Por favor, ingrese un DNI correcto.");
+              return;
+            }
+
       const pacienteData = {
         nombre: nombres,
         apellido: apellidos,
@@ -245,7 +309,10 @@ function RegistrarUserPatients() {
               "Content-Type": "application/json",
             },
           }
+          
         )
+
+        
         .then((response) => {
           console.log(response.data);
           alert("Paciente creado exitosamente");
@@ -266,3 +333,7 @@ export {
   searchUserPatients,
   RegistrarUserPatients,
 };
+
+
+
+

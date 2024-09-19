@@ -39,34 +39,34 @@ export function PacientsShow() {
                 <div class="form-row-update">
                  <div class="form-group">
                         <label for="dni">DNI</label>
-                        <input type="text" id="dni" name="dni">
+                        <input type="text" id="dni" name="dni"  required>
                     </div> 
                     <div class="form-group">
                         <label for="nombre">Nombres</label>
-                        <input type="text" id="nombre" name="nombre">
+                        <input type="text" id="nombre" name="nombre" required>
                     </div>
                    
                 </div>
                 <div class="form-row-update">
                  <div class="form-group">
                         <label for="apellido">Apellidos</label>
-                        <input type="text" id="apellido" name="apellido">
+                        <input type="text" id="apellido" name="apellido"  required>
                     </div>
                     <div class="form-group">
                         <label for="correo">Correo</label>
-                        <input type="email" id="correo" name="correo">
+                        <input type="email" id="correo" name="correo" required>
                     </div>
                 </div>
                 <div class="form-row-update">
                     <div class="form-group">
                         <label for="provincia">Provincia</label>
-                            <select name="provincia" id="provincia">
+                            <select name="provincia" id="provincia"   required>
                             </select>
                     </div>
 
                     <div class="form-group">
                     <label for="distrito">Distrito</label>
-                    <select name="distrito" id="distrito" required>
+                    <select name="distrito" id="distrito" required  required>
                         
                     </select>
                     </div>
