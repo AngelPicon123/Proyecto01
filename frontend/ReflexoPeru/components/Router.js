@@ -26,11 +26,12 @@ export function Router() {
     RegistrarUserPatients();
   } else if (hash === "#/list-therapists") {
     $content.innerHTML = "";
-    
     $content.appendChild(therapistsShow());
         getusersTherapist();
   } else if (hash === "#/register-therapist") {
     $content.innerHTML = "";
     $content.appendChild(RegisterTherapist());
+    RegisterTherapist();
+
   }
 }
