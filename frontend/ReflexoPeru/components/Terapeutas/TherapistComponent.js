@@ -1,4 +1,4 @@
-import { searchUser } from "./Therapist";
+import { searchUserTherapist } from "./Therapist";
 
 export function therapistsShow() {
   const $therapistsShow = document.createElement("div");
@@ -125,7 +125,7 @@ export function therapistsShow() {
     `;
 
   $therapistsShow.querySelector("#search").addEventListener("input", () => {
-    searchUser();
+    searchUserTherapist();
   });
 
   return $therapistsShow;

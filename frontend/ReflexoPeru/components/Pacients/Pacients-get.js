@@ -2,7 +2,7 @@ import {
   getProvincias,
   getDistritos,
   initializeProvincesAndDistricts,
-} from "./SelectOptions";
+} from "../SelectOptions";
 
 let currentUserId = null;
 

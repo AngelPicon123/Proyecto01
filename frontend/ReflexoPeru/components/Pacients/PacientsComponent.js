@@ -1,5 +1,5 @@
 import { searchUserPatients } from "./Pacients-get";
-import { initializeProvincesAndDistricts } from "./SelectOptions";
+import { initializeProvincesAndDistricts } from "../SelectOptions";
 
 export function PacientsShow() {
   const $pacients = document.createElement("div");
