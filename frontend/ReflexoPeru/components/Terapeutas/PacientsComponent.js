@@ -1,4 +1,4 @@
-import { searchUser } from "./Pacients-get";
+import { searchUser } from "./Therapist";
 
 export function therapistsShow() {
   const $therapistsShow = document.createElement("div");

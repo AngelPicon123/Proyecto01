@@ -1,4 +1,4 @@
-function getusers() {
+function getusersTherapist() {
   const tableBody = document.getElementById("userTableBody");
 
   if (tableBody) {
@@ -179,7 +179,7 @@ function puteditUser(userId) {
 
 
 window.editUser = editUser; 
-export { editUser, getusers, puteditUser, searchUser };
+export { editUser, getusersTherapist, puteditUser, searchUser };
 
 ///////////////////////////////////////////////////////////////
 function searchUser() {

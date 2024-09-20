@@ -127,7 +127,7 @@ function editUserPatients(userId) {
         // Remove any existing event listener
         const form = document.getElementById("editPatientForm");
         if (form) {
-          form.removeEventListener("submit", handleSubmit);
+
           form.addEventListener("submit", handleSubmit);
         }
       })
@@ -270,7 +270,7 @@ function RegistrarUserPatients() {
         return;
       }
 
-      const regex = /^[0-9]{7}$/;
+      const regex = /^[0-9]{8}$/;
       if (!regex.test(dni)) {
         alert("Por favor, ingrese un DNI correcto.");
         return;
