@@ -106,7 +106,7 @@ export function therapistsShow() {
  return $pacients;
 }
 
-export function RegisterTherapist() {
+export function RegisterViewTherapist() {
   const $RegisterTherapists = document.createElement("div");
   $RegisterTherapists.classList.add("sidebar");
   $RegisterTherapists.innerHTML = `
