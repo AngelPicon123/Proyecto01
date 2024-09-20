@@ -8,6 +8,8 @@ import {
 let currentUserId = null;
 
 
+
+
 function getusersTherapist() {
   const tableBody = document.getElementById("userTableBody");
 
@@ -31,8 +33,8 @@ function getusersTherapist() {
             <td>${user.nroTelefonico}</td>
             <td>
               <div class="Buttons-actions">
-                <button onclick="editUserPatients(${user.id})"><img src="../../assets/img/boton-editar.png"></button>
-                <button onclick="deleteUserPatients(${user.id})"><img src="../../assets/img/boton-borrar.png"></button>
+                <button onclick="editUserTherapist(${user.id})"><img src="../../assets/img/boton-editar.png"></button>
+                <button onclick="deleteUserTherapist(${user.id})"><img src="../../assets/img/boton-borrar.png"></button>
               </div>
             </td>
           `;
@@ -54,15 +56,14 @@ window.deleteUserTherapist = function (userId) {
     )
     .then((response) => {
       console.log("User deleted successfully:", response.data);
-      getusersPatients();
+      getusersTherapist();
     })
     .catch((error) => {
       console.error("Error deleting user:", error);
     });
 };
-
-function editUserTherapist(userId) {
-  currentUserId = userId;
+function editUserTherapist(userTherapistId) {
+  currentUserId = userTherapistId;
   const modal = document.getElementById("editUserModal");
   const backdrop = document.getElementById("modalBackdrop");
 
@@ -77,7 +78,7 @@ function editUserTherapist(userId) {
 
     axios
       .get(
-        `http://localhost/Proyecto01/Api/public/index.php/terapeutas/searchTeraputasById/${userId}`
+        `http://localhost/Proyecto01/Api/public/index.php/terapeutas/searchTerapeutaById/${userTherapistId}`
       )
       .then((response) => {
         console.log(response.data);
@@ -177,7 +178,7 @@ function handleSubmit(event) {
   };
   axios
     .put(
-      `http://localhost/Proyecto01/Api/public/index.php/Terapeutas/updateTerapeuta/${currentUserId}`,
+      `http://localhost/Proyecto01/Api/public/index.php/terapeutas/updateTerapeuta/${currentUserId}`,
       pacienteData,
       {
         headers: {
@@ -189,7 +190,7 @@ function handleSubmit(event) {
       console.log(response.data);
       alert("Paciente editado exitosamente");
 
-      getusersPatients();
+      getusersTherapist();
     })
     .catch((error) => {
       console.error("Error al crear el paciente:", error);
@@ -312,7 +313,8 @@ function RegistrarUserTherapist() {
   }
 }
 
-window.editUserPatients = editUserPatients;
+window.editUserTherapist = editUserTherapist;
+
 export {
   editUserTherapist,
   getusersTherapist,
