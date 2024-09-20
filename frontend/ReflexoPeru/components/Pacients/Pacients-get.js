@@ -4,6 +4,8 @@ import {
   initializeProvincesAndDistricts,
 } from "./SelectOptions";
 
+let currentUserId = null;
+
 function getusersPatients() {
   const tableBody = document.getElementById("userTableBody");
 
@@ -57,8 +59,8 @@ window.deleteUserPatients = function (userId) {
     });
 };
 
-
 function editUserPatients(userId) {
+  currentUserId = userId;
   const modal = document.getElementById("editUserModal");
   const backdrop = document.getElementById("modalBackdrop");
 
@@ -87,7 +89,6 @@ function editUserPatients(userId) {
         document.getElementById("nroTelefonico").value = userData.nroTelefonico;
         document.getElementById("sexo").value = userData.sexo;
 
-
         const provinciaElement = document.getElementById("provincia");
         const distritoElement = document.getElementById("distrito");
 
@@ -108,11 +109,9 @@ function editUserPatients(userId) {
 
         provinciaElement.addEventListener("change", (e) => {
           let value = provinciaElement.value;
-          if (!distritoElement) return; 
+          if (!distritoElement) return;
           distritoElement.innerHTML = `<option selected disabled>--Seleccionar--</option>`;
-          
-          
-          
+
           if (distritos[value]) {
             distritos[value].forEach((distrito) => {
               distritoElement.innerHTML += `<option value="${distrito}">${distrito}</option>`;
@@ -120,13 +119,17 @@ function editUserPatients(userId) {
           }
         });
 
-
         if (distritos[userData.provincia]) {
           selectOptions(distritos[userData.provincia], distritoElement);
           distritoElement.value = userData.region;
         }
 
-        puteditUserPatients(userId);
+        // Remove any existing event listener
+        const form = document.getElementById("editPatientForm");
+        if (form) {
+          form.removeEventListener("submit", handleSubmit);
+          form.addEventListener("submit", handleSubmit);
+        }
       })
       .catch((error) => {
         console.error("Error fetching users:", error);
@@ -137,74 +140,59 @@ function editUserPatients(userId) {
     );
   }
 }
-function puteditUserPatients(userId) {
-  const form = document.getElementById("editUserForm");
 
-  if (form) {
-    form.addEventListener("submit", handleSubmit);
+function handleSubmit(event) {
+  event.preventDefault();
 
-    function handleSubmit(event) {
-      event.preventDefault();
+  const nombres = document.getElementById("nombre").value;
+  const apellidos = document.getElementById("apellido").value;
+  const correo = document.getElementById("correo").value;
+  const direccion = document.getElementById("direccion").value;
+  const provincia = document.getElementById("provincia").value;
+  const region = document.getElementById("distrito").value;
+  const dni = document.getElementById("dni").value;
+  const sexo = document.getElementById("sexo").value;
+  const nroTelefonico = document.getElementById("nroTelefonico").value;
 
-      const nombres = document.getElementById("nombre").value;
-      const apellidos = document.getElementById("apellido").value;
-      const correo = document.getElementById("correo").value;
-      const direccion = document.getElementById("direccion").value;
-      const provincia = document.getElementById("provincia").value;
-      const region = document.getElementById("distrito").value;
-      const dni = document.getElementById("dni").value;
-      const sexo = document.getElementById("sexo").value;
-      const nroTelefonico = document.getElementById("nroTelefonico").value;
-
-       if (!region || region === "--Seleccionar--") {
-         alert("Por favor, seleccione un distrito.");
-         return;
-       }
-
-       const regex = /^[0-9]{7}$/;
-       if (!regex.test(dni)) {
-         alert("Por favor, ingrese un DNI correcto.");
-         return;
-       }
-
-
-
-
-
-
-
-      const pacienteData = {
-        nombre: nombres,
-        apellido: apellidos,
-        correo: correo,
-        direccion: direccion,
-        provincia: provincia,
-        region: region,
-        dni: dni,
-        sexo: sexo,
-        nroTelefonico: nroTelefonico,
-      };
-      axios
-        .put(
-          `http://localhost/Proyecto01/Api/public/index.php/pacientes/updatePaciente/${userId}`,
-          pacienteData,
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        )
-        .then((response) => {
-          console.log(response.data);
-          alert("Paciente editado exitosamente");
-
-          getusersPatients();
-        })
-        .catch((error) => {
-          console.error("Error al crear el paciente:", error);
-        });
-    }
+  if (!region || region === "--Seleccionar--") {
+    alert("Por favor, seleccione un distrito.");
+    return;
   }
+  const regex = /^[0-9]{8}$/;
+  if (!regex.test(dni)) {
+    alert("Por favor, ingrese un DNI correcto.");
+    return;
+  }
+  const pacienteData = {
+    nombre: nombres,
+    apellido: apellidos,
+    correo: correo,
+    direccion: direccion,
+    provincia: provincia,
+    region: region,
+    dni: dni,
+    sexo: sexo,
+    nroTelefonico: nroTelefonico,
+  };
+  axios
+    .put(
+      `http://localhost/Proyecto01/Api/public/index.php/pacientes/updatePaciente/${currentUserId}`,
+      pacienteData,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+    .then((response) => {
+      console.log(response.data);
+      alert("Paciente editado exitosamente");
+
+      getusersPatients();
+    })
+    .catch((error) => {
+      console.error("Error al crear el paciente:", error);
+    });
 }
 
 function searchUserPatients() {
@@ -277,16 +265,16 @@ function RegistrarUserPatients() {
         return;
       }
 
-          if (!region || region === "--Seleccionar--") {
-            alert("Por favor, seleccione un distrito.");
-            return;
-          }
+      if (!region || region === "--Seleccionar--") {
+        alert("Por favor, seleccione un distrito.");
+        return;
+      }
 
-            const regex = /^[0-9]{7}$/;
-            if (!regex.test(dni)) {
-              alert("Por favor, ingrese un DNI correcto.");
-              return;
-            }
+      const regex = /^[0-9]{7}$/;
+      if (!regex.test(dni)) {
+        alert("Por favor, ingrese un DNI correcto.");
+        return;
+      }
 
       const pacienteData = {
         nombre: nombres,
@@ -309,10 +297,8 @@ function RegistrarUserPatients() {
               "Content-Type": "application/json",
             },
           }
-          
         )
 
-        
         .then((response) => {
           console.log(response.data);
           alert("Paciente creado exitosamente");
@@ -329,11 +315,6 @@ window.editUserPatients = editUserPatients;
 export {
   editUserPatients,
   getusersPatients,
-  puteditUserPatients,
   searchUserPatients,
   RegistrarUserPatients,
 };
-
-
-
-

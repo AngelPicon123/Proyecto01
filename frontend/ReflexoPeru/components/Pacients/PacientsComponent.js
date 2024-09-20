@@ -35,7 +35,7 @@ export function PacientsShow() {
        <div class="main-content" id="editUserModal" style="display: none;" > 
       
             <h1>EDITAR PACIENTE</h1>
-            <form  method="PUT" id="editUserForm">
+            <form  method="PUT" id="editPatientForm">
                 <div class="form-row-update">
                  <div class="form-group">
                         <label for="dni">DNI</label>
