@@ -1,76 +1,102 @@
 <?php
 
-require_once __DIR__ . '/../models/PacienteModel.php';
+require_once __DIR__ . '/../models/TerapeutaModel.php';
 require_once __DIR__ . '/../config/DataBse.php';
 
-class PacienteController{
+class TerapeutaController
+{
     private $db;
     private $model;
 
-    public function __construct() {
+    public function __construct()
+    {
         $database = new DataBse();
         $this->db = $database->getConnection();
-        $this->model = new PacienteModel($this->db);
+        $this->model = new TerapeutaModel($this->db);
     }
 
-    //BUSCAR TODOS LOS PACIENTES
-    public function getAllPacientes() {
+    //BUSCAR TODOS LOS TERAPEUTAS
+    public function getAllTerapeutas()
+    {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
 
-        $pacientes = $this->model->getAllpacientes();
-        echo json_encode($pacientes);
+        $terapeutas = $this->model->getAllTerapeutas();
+        echo json_encode($terapeutas);
     }
 
-    //BUSCAR PACIENTE POR ID
-    public function searchPacienteById($id) {
+    //BUSCAR TERAPEUTA POR ID
+    public function getTerapeutaById($id)
+    {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
-    
+
         if (!empty($id)) {
-            $paciente = $this->model->getPacienteById($id);
-    
-            if ($paciente) {
-                echo json_encode($paciente);
+            $terapeuta = $this->model->getTerapeutaById($id);
+
+            if ($terapeuta) {
+                echo json_encode($terapeuta);
             } else {
                 http_response_code(404);
-                echo json_encode(["message" => "paciente no encontrado"]);
+                echo json_encode(["message" => "Terapeuta no encontrado"]);
             }
         } else {
             http_response_code(400);
             echo json_encode(["message" => "Entrada invalida"]);
         }
     }
-
-    //CRAR NUEVO PACIENTE
-    public function createPaciente() {
+    //BUSCAR TERAPEUTA POR DNI
+    public function getTerapeutaByDni($dni) {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
     
-        $data = json_decode(file_get_contents("php://input"));
+        if (!empty($dni)) {
+            $terapeuta = $this->model->getTerapeutaByDni($dni);
     
-        if (!empty($data->nombre) && !empty($data->apellido) && !empty($data->correo) && 
-        !empty($data->direccion) && !empty($data->provincia) && !empty($data->region) && 
-        !empty($data->dni) && !empty($data->sexo) && !empty($data->nroTelefonico)) {
+            if ($terapeuta) {
+                echo json_encode($terapeuta);
+            } else {
+                http_response_code(404);
+                echo json_encode(["message" => "terapeuta no encontrado"]);
+            }
+        } else {
+            http_response_code(400);
+            echo json_encode(["message" => "Entrada invalida"]);
+        }
+    }
+    
+    //CRAR NUEVO Terapeuta
+    public function createTerapeuta()
+    {
+        header("Access-Control-Allow-Origin: *");
+        header("Content-Type: application/json; charset=UTF-8");
+
+        $data = json_decode(file_get_contents("php://input"));
+
+        if (
+            !empty($data->nombre) && !empty($data->apellido) && !empty($data->correo) &&
+            !empty($data->direccion) && !empty($data->provincia) && !empty($data->region) &&
+            !empty($data->dni) && !empty($data->sexo) && !empty($data->nroTelefonico)
+        ) {
 
             // Insertar el nuevo usuario en la base de datos
-           $result = $this->model->createPaciente(
-            $data->nombre,
-            $data->apellido,
-            $data->correo,
-            $data->direccion,
-            $data->provincia,
-            $data->region,
-            $data->dni,
-            $data->sexo,
-            $data->nroTelefonico
-        );
-    
+            $result = $this->model->createTerapeuta(
+                $data->nombre,
+                $data->apellido,
+                $data->correo,
+                $data->direccion,
+                $data->provincia,
+                $data->region,
+                $data->dni,
+                $data->sexo,
+                $data->nroTelefonico
+            );
+
             if ($result) {
-                echo json_encode(["message" => "Paciente creado exitosamente"]);
+                echo json_encode(["message" => "Terapeuta creado exitosamente"]);
             } else {
                 http_response_code(500);
-                echo json_encode(["message" => "Fallo al crear paciente"]);
+                echo json_encode(["message" => "Fallo al crear Terapeuta"]);
             }
         } else {
             // Responder con código de error 400 si algún campo está vacío o falta
@@ -79,21 +105,22 @@ class PacienteController{
         }
     }
 
-    //ACTUALIZAR UN PACIENTE
-    public function updatePaciente($id) {
+    //ACTUALIZAR UN TERAPEUTA
+    public function updateTerapeuta($id)
+    {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
 
         $data = json_decode(file_get_contents("php://input"));
 
         if (!empty($data->nombre) && !empty($data->apellido) && !empty($data->correo) && !empty($data->direccion) && !empty($data->provincia) && !empty($data->region) && !empty($data->dni) && !empty($data->sexo) && !empty($data->nroTelefonico)) {
-            $updated = $this->model->updatePaciente($id, $data->nombre, $data->apellido, $data->correo, $data->direccion, $data->provincia, $data->region, $data->dni, $data->sexo, $data->nroTelefonico);
+            $updated = $this->model->updateTerapeuta($id, $data->nombre, $data->apellido, $data->correo, $data->direccion, $data->provincia, $data->region, $data->dni, $data->sexo, $data->nroTelefonico);
 
             if ($updated) {
-                echo json_encode(["message" => "PACIENTE ACTUALIZADO CORRECTAMENTE"]);
+                echo json_encode(["message" => "TERAPEUTA ACTUALIZADO CORRECTAMENTE"]);
             } else {
                 http_response_code(404);
-                echo json_encode(["message" => "PACIENTE NO SE ACTUALIZO"]);
+                echo json_encode(["message" => "TERAPEUTA NO SE ACTUALIZO"]);
             }
         } else {
             http_response_code(400);
@@ -101,17 +128,18 @@ class PacienteController{
         }
     }
 
-    //ELIMINAR UN PACIENTE
-    public function deletePaciente($id) {
+    //ELIMINAR UN TERAPEUTA
+    public function deleteTerapeuta($id)
+    {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
         header("Access-Control-Allow-Methods: DELETE");
 
-        if ($this->model->deletePaciente($id)) {
-            echo json_encode(["message" => "Paciente eliminada con éxito."]);
+        if ($this->model->deleteTerapeuta($id)) {
+            echo json_encode(["message" => "Terapeuta eliminada con éxito."]);
         } else {
             http_response_code(404);
-            echo json_encode(["message" => "El paciente no pudo ser eliminado o no se encontro."]);
+            echo json_encode(["message" => "El Terapeuta no pudo ser eliminado o no se encontro."]);
         }
     }
 }
