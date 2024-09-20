@@ -29,8 +29,8 @@ function getusersPatients() {
             <td>${user.nroTelefonico}</td>
             <td>
               <div class="Buttons-actions">
-                <button onclick="editUserPatients(${user.id})"><h4>Editar</h4></button>
-                <button onclick="deleteUserPatients(${user.id})"><h4>Eliminar</h4></button>
+                <button onclick="editUserPatients(${user.id})"><img src="../../assets/img/boton-editar.png"></button>
+                <button onclick="deleteUserPatients(${user.id})"><img src="../../assets/img/boton-borrar.png" ></button>
               </div>
             </td>
           `;
@@ -127,7 +127,6 @@ function editUserPatients(userId) {
         // Remove any existing event listener
         const form = document.getElementById("editPatientForm");
         if (form) {
-
           form.addEventListener("submit", handleSubmit);
         }
       })
@@ -229,7 +228,7 @@ function searchUserPatients() {
 
             <td>
               <div class="Buttons-actions">
-                <button onclick="editUserPatients(${usuario.id})"><h4>Editar</h4></button>
+                <button onclick="editUserPatients(${usuario.id})"><img></h4></button>
                 <button onclick="deleteUserPatients(${usuario.id})"><h4>Imprimir</h4></button>
               </div>
             </td>

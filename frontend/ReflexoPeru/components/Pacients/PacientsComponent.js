@@ -5,7 +5,7 @@ export function PacientsShow() {
   const $pacients = document.createElement("div");
   $pacients.classList.add("containerAll");
   $pacients.innerHTML = `
-      <h1>Gestión de Pacientes</h1>
+      <h1 class="title">Gestión de Pacientes</h1>
       <div class="Search">
         <input type="text" id="search" class="search-input" placeholder="Buscar por Nombre o Apellido / DNI" />
       </div>

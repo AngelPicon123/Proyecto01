@@ -19,13 +19,19 @@ body {
   background-color: #d3d3d3;
 }
 
+.title {
+  text-align: center;
+  font-size: 40px;
+}
+
 .search-input {
   width: 100%;
-  padding: 10px;
+  padding: 14px;
   border-radius: 6px;
   border: 1px solid #ccc;
   outline: none;
   margin: 15px 0px 15px 0px;
+  font-size: 16px;
 }
 
 .Buttons-general {
@@ -41,8 +47,10 @@ body {
   border: 1px solid #ccc;
   outline: none;
   color: white;
-  margin: 0px 0px 10px 0px;
+  margin: 0px 0px 0px 0px;
   background-color: #28a745;
+  text-decoration: none;
+  font-size: 18px;
 
   text-decoration: none;
 
@@ -69,7 +77,7 @@ body {
 
 table {
   font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-  font-size: 12px;
+  font-size: 14px;
   width: 100%;
   text-align: left;
   border-collapse: collapse;
@@ -89,7 +97,7 @@ th {
 }
 
 td {
-  padding: 10px 0px 10px 0px;
+  padding: 5px;
   background: #b8e4c2;
   border-bottom: 1px solid #fff;
   border: 1px solid #fff;
@@ -101,19 +109,20 @@ td {
 
 .Buttons-actions {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 
 .Buttons-actions button {
   border: 1px solid #ccc;
   border-radius: 6px;
-  padding: 5px 5px 0px 5px;
+  padding: 6px;
   outline: none;
   color: white;
 }
 
 .Buttons-actions button img {
-  width: 20px;
+  width: 30px;
+  height: 30px;
 }
 
 .Buttons-actions button:nth-child(1) {
@@ -156,11 +165,6 @@ td {
   }
 }
 
-.root {
-  display: flex;
-  width: 16%;
-}
-
 div#editUserModal {
   position: fixed;
   top: 50%;
@@ -201,7 +205,7 @@ div#editUserModal {
 
 .tableContainer th:nth-child(8),
 .tableContainer td:nth-child(8) {
-  width: 70px;
+  width: 100px;
 }
 .tableContainer th:nth-child(7),
 .tableContainer td:nth-child(7) {
@@ -215,6 +219,14 @@ div#editUserModal {
 .tableContainer td:nth-child(9) {
   width: 100px;
 }
+.tableContainer th:nth-child(2),
+.tableContainer td:nth-child(2) {
+  width: 150px;
+}
+.tableContainer th:nth-child(3),
+.tableContainer td:nth-child(3) {
+  width: 150px;
+}
 
 thead th {
   position: sticky;
@@ -224,6 +236,7 @@ thead th {
 }
 tbody tr {
   word-wrap: break-word;
+  height: 60px;
 }
 .form-row-update {
   display: flex;

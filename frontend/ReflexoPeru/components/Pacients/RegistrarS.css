@@ -25,12 +25,11 @@ body {
   width: 60%;
   padding: 20px;
   border-radius: 10px;
-}
 
-h1 {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 24px;
+  & h1 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
 }
 
 form {

@@ -31,8 +31,8 @@ function getusersTherapist() {
             <td>${user.nroTelefonico}</td>
             <td>
               <div class="Buttons-actions">
-                <button onclick="editUserPatients(${user.id})"><h4>Editar</h4></button>
-                <button onclick="deleteUserPatients(${user.id})"><h4>Eliminar</h4></button>
+                <button onclick="editUserPatients(${user.id})"><img src="../../assets/img/boton-editar.png"></button>
+                <button onclick="deleteUserPatients(${user.id})"><img src="../../assets/img/boton-borrar.png"></button>
               </div>
             </td>
           `;

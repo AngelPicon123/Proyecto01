@@ -4,7 +4,7 @@ export function therapistsShow() {
   const $therapistsShow = document.createElement("div");
   $therapistsShow.classList.add("containerAll");
   $therapistsShow.innerHTML = `
-      <h1>Gestión de Terapeutas</h1>
+      <h1 class="title">Gestión de Terapeutas</h1>
       <div class="Search">
         <input type="text" id="search" class="search-input" placeholder="Buscar por Nombre o Apellido / DNI" />
       </div>
@@ -15,7 +15,6 @@ export function therapistsShow() {
         <table>
           <thead>
             <tr>
-              <th>id</th>
               <th>Nombres</th>
               <th>Apellidos</th>
               <th>Correo</th>
