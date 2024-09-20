@@ -1,15 +1,18 @@
 <?php
 // Modelo de los usuarios registrados en la base de datos
-class PacienteModel {
+class TerapeutaModel
+{
     private $conn;
-    private $table_name = "pacientes";
+    private $table_name = "terapeutas";
 
-    public function __construct($database) {
+    public function __construct($database)
+    {
         $this->conn = $database;
     }
 
-//crear usuario
-    public function createPaciente($nombre, $apellido, $correo, $direccion, $provincia, $region, $dni, $sexo, $nroTelefonico) {
+    //crear Terapeuta
+    public function createTerapeuta($nombre, $apellido, $correo, $direccion, $provincia, $region, $dni, $sexo, $nroTelefonico)
+    {
         $sql = "INSERT INTO " . $this->table_name . " 
             (nombre, apellido, correo, direccion, provincia, region, dni, sexo, nroTelefonico) 
             VALUES (:nombre, :apellido, :correo, :direccion, :provincia, :region, :dni, :sexo, :nroTelefonico)";
@@ -29,25 +32,36 @@ class PacienteModel {
         // Ejecutar la consulta
         return $stmt->execute();
     }
-    // Buscar todos los usuarios
-    public function getAllpacientes() {
+    // Buscar todos los terapeutas
+    public function getAllTerapeutas()
+    {
         $query = "SELECT id, nombre, apellido, correo, direccion, provincia, region ,dni, sexo, nroTelefonico FROM " . $this->table_name;
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Buscar PACIENTE por ID
-    public function getPacienteById($id) {
+    //BUSCAR TERAPEUTAS POR ID
+    public function getTerapeutaById($id)
+    {
         $sql = "SELECT * FROM " . $this->table_name . " WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    // Buscar terapeuta por DNI
+public function getTerapeutaByDni($dni) {
+    $sql = "SELECT * FROM " . $this->table_name . " WHERE dni = :dni";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bindParam(':dni', $dni, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
 
-    // Actualizar Paciente
-    public function updatePaciente($id, $nombre, $apellido, $correo, $direccion, $provincia, $region, $dni, $sexo, $nroTelefonico) {
+    // Actualizar Terapeuta
+    public function updateTerapeuta($id, $nombre, $apellido, $correo, $direccion, $provincia, $region, $dni, $sexo, $nroTelefonico)
+    {
         $sql = "UPDATE " . $this->table_name . " SET nombre = :nombre ,apellido = :apellido, correo = :correo, direccion = :direccion, provincia = :provincia, region = :region, dni = :dni, sexo = :sexo, nroTelefonico = :nroTelefonico
                                                  WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
@@ -64,8 +78,9 @@ class PacienteModel {
         return $stmt->execute();
     }
 
-    // Eliminar paciente
-    public function deletePaciente($id) {
+    // Eliminar Terapeuta
+    public function deleteTerapeuta($id)
+    {
         $sql = "DELETE FROM " . $this->table_name . " WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
