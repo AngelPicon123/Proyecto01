@@ -292,7 +292,7 @@ function RegistrarUserTherapist() {
 
       axios
         .post(
-          "http://localhost/Proyecto01/Api/public/index.php/terapeuta/create",
+          "http://localhost/Proyecto01/Api/public/index.php/terapeutas/create",
           pacienteData,
           {
             headers: {
