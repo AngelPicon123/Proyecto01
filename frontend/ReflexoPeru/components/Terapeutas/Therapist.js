@@ -1,12 +1,4 @@
-import {
-  getProvincias,
-  getDistritos,
-  initializeProvincesAndDistricts,
-} from "./SelectOptions";
-
-let currentUserId = null;
-
-function getusersPatients() {
+function getusersTherapist() {
   const tableBody = document.getElementById("userTableBody");
 
   if (tableBody) {
@@ -18,19 +10,20 @@ function getusersPatients() {
         users.forEach((user) => {
           const row = document.createElement("tr");
           row.innerHTML = `
-            <td>${user.dni}</td>
+            <td>${user.id}</td>
             <td>${user.nombre}</td>
             <td>${user.apellido}</td>
             <td>${user.correo}</td>
             <td>${user.direccion}</td>
             <td>${user.provincia}</td>
             <td>${user.region}</td>
+            <td>${user.dni}</td>
             <td>${user.sexo}</td>
             <td>${user.nroTelefonico}</td>
             <td>
               <div class="Buttons-actions">
-                <button onclick="editUserPatients(${user.id})"><h4>Editar</h4></button>
-                <button onclick="deleteUserPatients(${user.id})"><h4>Eliminar</h4></button>
+                <button onclick="editUser(${user.id})"><h4>Editar</h4></button> 
+                <button onclick="deleteUser(${user.id})"><h4>Eliminar</h4></button>
               </div>
             </td>
           `;
@@ -44,23 +37,27 @@ function getusersPatients() {
     console.error("El elemento 'userTableBody' no existe en el DOM.");
   }
 }
+///////////////////////////////////////////////////////////////
 
-window.deleteUserPatients = function (userId) {
+///////////////////////////////////////////////////////////////
+window.deleteUser = function (userId) {
   axios
     .delete(
       `http://localhost/Proyecto01/Api/public/index.php/pacientes/delete/${userId}`
     )
     .then((response) => {
       console.log("User deleted successfully:", response.data);
-      getusersPatients();
+
+      getusers();
     })
     .catch((error) => {
       console.error("Error deleting user:", error);
     });
 };
 
-function editUserPatients(userId) {
-  currentUserId = userId;
+///////////////////////////////////////////////////////////////
+
+function editUser(userId) {
   const modal = document.getElementById("editUserModal");
   const backdrop = document.getElementById("modalBackdrop");
 
@@ -81,121 +78,111 @@ function editUserPatients(userId) {
         console.log(response.data);
         const userData = response.data;
 
-        document.getElementById("dni").value = userData.dni;
         document.getElementById("nombre").value = userData.nombre;
         document.getElementById("apellido").value = userData.apellido;
         document.getElementById("correo").value = userData.correo;
         document.getElementById("direccion").value = userData.direccion;
-        document.getElementById("nroTelefonico").value = userData.nroTelefonico;
+        document.getElementById("provincia").value = userData.provincia;
+        document.getElementById("region").value = userData.region;
+        document.getElementById("dni").value = userData.dni;
         document.getElementById("sexo").value = userData.sexo;
+        document.getElementById("nroTelefonico").value = userData.nroTelefonico;
+        
 
-        const provinciaElement = document.getElementById("provincia");
-        const distritoElement = document.getElementById("distrito");
-
-        const provincias = getProvincias();
-        const distritos = getDistritos();
-
-        function selectOptions(array, element) {
-          if (!element) return;
-          let elements = "<option selected disabled> --Seleccionar--</option>";
-          array.forEach((option) => {
-            elements += `<option value="${option}">${option}</option>`;
-          });
-          element.innerHTML = elements;
-        }
-
-        selectOptions(provincias, provinciaElement);
-        provinciaElement.value = userData.provincia;
-
-        provinciaElement.addEventListener("change", (e) => {
-          let value = provinciaElement.value;
-          if (!distritoElement) return;
-          distritoElement.innerHTML = `<option selected disabled>--Seleccionar--</option>`;
-
-          if (distritos[value]) {
-            distritos[value].forEach((distrito) => {
-              distritoElement.innerHTML += `<option value="${distrito}">${distrito}</option>`;
-            });
-          }
-        });
-
-        if (distritos[userData.provincia]) {
-          selectOptions(distritos[userData.provincia], distritoElement);
-          distritoElement.value = userData.region;
-        }
-
-        // Remove any existing event listener
-        const form = document.getElementById("editPatientForm");
-        if (form) {
-
-          form.addEventListener("submit", handleSubmit);
-        }
+        puteditUser(userId);
       })
       .catch((error) => {
         console.error("Error fetching users:", error);
       });
+
+
+
+
+
+
+    // Cerrar el modal al hacer clic en el botón de cerrar
   } else {
     console.error(
       "El modal, el backdrop o el botón de cerrar no se encontraron en el DOM."
     );
   }
+};
+///////////////////////////////////////////////////////////////////
+
+
+
+function puteditUser(userId) {
+  const form = document.getElementById("editUserForm");
+  
+  if (form) {
+    form.addEventListener("submit", handleSubmit);
+
+   
+
+
+    function handleSubmit(event) {
+      event.preventDefault();
+
+      const nombres = document.getElementById("nombre").value;
+      const apellidos = document.getElementById("apellido").value;
+      const correo = document.getElementById("correo").value;
+      const direccion = document.getElementById("direccion").value;
+      const provincia = document.getElementById("provincia").value;
+      const region = document.getElementById("region").value;
+      const dni = document.getElementById("dni").value;
+      const sexo = document.getElementById("sexo").value;
+      const nroTelefonico = document.getElementById("nroTelefonico").value;
+
+      const pacienteData = {
+        nombre: nombres,
+        apellido: apellidos,
+        correo: correo,
+        direccion: direccion,
+        provincia: provincia,
+        region: region,
+        dni: dni,
+        sexo: sexo,
+        nroTelefonico: nroTelefonico,
+      };
+      axios
+        .put(
+          `http://localhost/Proyecto01/Api/public/index.php/pacientes/updatePaciente/${userId}`,
+          pacienteData,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+
+          
+        )
+        
+        .then((response) => {
+          console.log(response.data);
+          alert("Paciente editado exitosamente");
+           form.removeEventListener("submit", handleSubmit);
+          getusers();
+          
+        })
+        .catch((error) => {
+          console.error("Error al crear el paciente:", error);
+        });
+    }
+
+  }
 }
 
-function handleSubmit(event) {
-  event.preventDefault();
 
-  const nombres = document.getElementById("nombre").value;
-  const apellidos = document.getElementById("apellido").value;
-  const correo = document.getElementById("correo").value;
-  const direccion = document.getElementById("direccion").value;
-  const provincia = document.getElementById("provincia").value;
-  const region = document.getElementById("distrito").value;
-  const dni = document.getElementById("dni").value;
-  const sexo = document.getElementById("sexo").value;
-  const nroTelefonico = document.getElementById("nroTelefonico").value;
+/////////////////////////////////////////////////////////////// 
 
-  if (!region || region === "--Seleccionar--") {
-    alert("Por favor, seleccione un distrito.");
-    return;
-  }
-  const regex = /^[0-9]{8}$/;
-  if (!regex.test(dni)) {
-    alert("Por favor, ingrese un DNI correcto.");
-    return;
-  }
-  const pacienteData = {
-    nombre: nombres,
-    apellido: apellidos,
-    correo: correo,
-    direccion: direccion,
-    provincia: provincia,
-    region: region,
-    dni: dni,
-    sexo: sexo,
-    nroTelefonico: nroTelefonico,
-  };
-  axios
-    .put(
-      `http://localhost/Proyecto01/Api/public/index.php/pacientes/updatePaciente/${currentUserId}`,
-      pacienteData,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
-    .then((response) => {
-      console.log(response.data);
-      alert("Paciente editado exitosamente");
 
-      getusersPatients();
-    })
-    .catch((error) => {
-      console.error("Error al crear el paciente:", error);
-    });
-}
 
-function searchUserPatients() {
+
+window.editUser = editUser; 
+export { editUser, getusersTherapist, puteditUser, searchUser };
+
+///////////////////////////////////////////////////////////////
+function searchUser() {
   axios
     .get("http://localhost/Proyecto01/Api/public/index.php/pacientes")
     .then((response) => {
@@ -217,20 +204,21 @@ function searchUserPatients() {
       usuariosFiltrados.forEach((usuario) => {
         const row = document.createElement("tr");
         row.innerHTML = `
-            <td>${usuario.dni}</td>
+            <td>${usuario.id}</td>
             <td>${usuario.nombre}</td>
             <td>${usuario.apellido}</td>
             <td>${usuario.correo}</td>
             <td>${usuario.direccion}</td>
             <td>${usuario.provincia}</td>
             <td>${usuario.region}</td>
+            <td>${usuario.dni}</td>
             <td>${usuario.sexo}</td>
             <td>${usuario.nroTelefonico}</td>
 
             <td>
               <div class="Buttons-actions">
-                <button onclick="editUserPatients(${usuario.id})"><h4>Editar</h4></button>
-                <button onclick="deleteUserPatients(${usuario.id})"><h4>Imprimir</h4></button>
+                <button onclick="editUser(${usuario.id})"><h4>Editar</h4></button>
+                <button onclick="deleteUser(${usuario.id})"><h4>Imprimir</h4></button>
               </div>
             </td>
           `;
@@ -241,8 +229,8 @@ function searchUserPatients() {
       console.error("Error al obtener los usuarios:", error);
     });
 }
-
-function RegistrarUserPatients() {
+//////////////////////////////////////////////////////////////////
+function RegistrarUser() {
   const form = document.getElementById("form-create");
 
   if (form) {
@@ -262,17 +250,6 @@ function RegistrarUserPatients() {
       const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailPattern.test(correo)) {
         alert("El correo electrónico no es válido.");
-        return;
-      }
-
-      if (!region || region === "--Seleccionar--") {
-        alert("Por favor, seleccione un distrito.");
-        return;
-      }
-
-      const regex = /^[0-9]{8}$/;
-      if (!regex.test(dni)) {
-        alert("Por favor, ingrese un DNI correcto.");
         return;
       }
 
@@ -298,7 +275,6 @@ function RegistrarUserPatients() {
             },
           }
         )
-
         .then((response) => {
           console.log(response.data);
           alert("Paciente creado exitosamente");
@@ -311,10 +287,4 @@ function RegistrarUserPatients() {
   }
 }
 
-window.editUserPatients = editUserPatients;
-export {
-  editUserPatients,
-  getusersPatients,
-  searchUserPatients,
-  RegistrarUserPatients,
-};
+export { RegistrarUser };

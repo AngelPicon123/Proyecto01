@@ -22,7 +22,7 @@ export function Menu() {
               </div>
               <ul class="list__show">
                 <li class="list__inside">
-                  <a href="#/register" class="nav__link nav__link--inside"
+                  <a href="#/register-pacient" class="nav__link nav__link--inside"
                     >Crear Cliente</a
                   >
                 </li>
@@ -53,7 +53,7 @@ export function Menu() {
                   >
                 </li>
                 <li class="list__inside">
-                  <a href="#" class="nav__link nav__link--inside"
+                  <a href="#/list-therapists" class="nav__link nav__link--inside"
                     >Gestion de Terapeutas</a
                   >
                 </li>

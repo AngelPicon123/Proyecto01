@@ -35,23 +35,16 @@ body {
   margin-bottom: 20px;
 }
 
-.Buttons-general a {
+.Buttons-general button {
   padding: 10px;
   border-radius: 6px;
   border: 1px solid #ccc;
   outline: none;
   color: white;
   margin: 0px 0px 10px 0px;
-  background-color: #28a745;
-
-  text-decoration: none;
-
-  &:hover {
-    cursor: pointer;
-  }
 }
 
-.Buttons-general a img {
+.Buttons-general button img {
   width: 30px;
 }
 
@@ -96,7 +89,7 @@ td {
   color: #669;
   border-top: 1px solid transparent;
   max-width: 100px;
-  min-width: 100px;
+  max-height: 50px;
 }
 
 .Buttons-actions {
@@ -190,30 +183,7 @@ div#editUserModal {
 .tableContainer {
   height: 600px; /* Ajusta la altura según tus necesidades */
   overflow-y: auto; /* Agrega la barra de desplazamiento vertical cuando sea necesario */
-  border: 1px solid #ccc;
-  /* Opcional: agrega un borde alrededor del contenedor */
-}
-
-.tableContainer th:nth-child(1),
-.tableContainer td:nth-child(1) {
-  width: 100px;
-}
-
-.tableContainer th:nth-child(8),
-.tableContainer td:nth-child(8) {
-  width: 70px;
-}
-.tableContainer th:nth-child(7),
-.tableContainer td:nth-child(7) {
-  width: 100px;
-}
-.tableContainer th:nth-child(6),
-.tableContainer td:nth-child(6) {
-  width: 100px;
-}
-.tableContainer th:nth-child(9),
-.tableContainer td:nth-child(9) {
-  width: 100px;
+  border: 1px solid #ccc; /* Opcional: agrega un borde alrededor del contenedor */
 }
 
 thead th {
@@ -221,10 +191,4 @@ thead th {
   top: 0;
   z-index: 2;
   box-shadow: 0 2px 5px -2px rgba(0, 0, 0, 0.1);
-}
-tbody tr {
-  word-wrap: break-word;
-}
-.form-row-update {
-  display: flex;
 }
