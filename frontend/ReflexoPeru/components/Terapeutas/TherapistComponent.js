@@ -1,14 +1,11 @@
 import { searchUserTherapist } from "./Therapist";
 import { initializeProvincesAndDistricts } from "../SelectOptions";
 
-
-
-
 export function therapistsShow() {
- const $pacients = document.createElement("div");
- $pacients.classList.add("containerAll");
- $pacients.innerHTML = `
-      <h1>Gestión de Terapeutas </h1>
+  const $pacients = document.createElement("div");
+  $pacients.classList.add("containerAll");
+  $pacients.innerHTML = `
+      <h1 class="title">Gestión de Terapeutas </h1>
       <div class="Search">
         <input type="text" id="search" class="search-input" placeholder="Buscar por Nombre o Apellido / DNI" />
       </div>
@@ -40,10 +37,12 @@ export function therapistsShow() {
         <form class="deleteUserModal-content">
           <h2>Eliminar Paciente</h2>
           <p>¿Esta seguro de eliminar este Paciente?</p>
-            <button onclick="" id="confirmDeleteUserBtn" class="btn-submit">Eliminar</button>
-            <button onclick="" id="cancelDeleteUserBtn"  class="btn-submit">Cancelar</button>
-          
+           <div class="form-btns">
+            <button id="confirmDeleteUserBtn" class="btn-submit">Eliminar</button>
+            <button id="cancelDeleteUserBtn"  class="btn-submit">Cancelar</button>
+          </div>
         </form>
+        </div>
 
       
 
@@ -116,13 +115,13 @@ export function therapistsShow() {
               </div>
     `;
 
- $pacients.querySelector("#search").addEventListener("input", () => {
-   searchUserTherapist();
- });
- const provinciaElement = $pacients.querySelector("#provincia");
- const distritoElement = $pacients.querySelector("#distrito");
- initializeProvincesAndDistricts(provinciaElement, distritoElement);
- return $pacients;
+  $pacients.querySelector("#search").addEventListener("input", () => {
+    searchUserTherapist();
+  });
+  const provinciaElement = $pacients.querySelector("#provincia");
+  const distritoElement = $pacients.querySelector("#distrito");
+  initializeProvincesAndDistricts(provinciaElement, distritoElement);
+  return $pacients;
 }
 
 export function RegisterViewTherapist() {
@@ -198,5 +197,3 @@ export function RegisterViewTherapist() {
 
   return $RegisterTherapists;
 }
-
-

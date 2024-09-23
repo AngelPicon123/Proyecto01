@@ -34,13 +34,14 @@ export function PacientsShow() {
       
         </div>
 
-      <div class="main-content" id="deleteUserModal">
+      <div class="main-content animate__animated animate__fadeIn" id="deleteUserModal">
         <form class="deleteUserModal-content">
           <h2>Eliminar Paciente</h2>
           <p>¿Esta seguro de eliminar este Paciente?</p>
+          <div class="form-btns">
             <button id="confirmDeleteUserBtn" class="btn-submit">Eliminar</button>
             <button id="cancelDeleteUserBtn"  class="btn-submit">Cancelar</button>
-          
+          </div>
         </form>
 
       
@@ -53,7 +54,7 @@ export function PacientsShow() {
 
 
 
-       <div class="main-content" id="editUserModal" style="display: none;" > 
+       <div class="main-content" style="display: none;" > 
       
             <h1>EDITAR PACIENTE</h1>
             <form  method="PUT" id="editPatientForm">
