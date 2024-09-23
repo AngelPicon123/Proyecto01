@@ -55,11 +55,17 @@ window.deleteUserPatients = function (userId) {
     .then((response) => {
       console.log("User deleted successfully:", response.data);
       getusersPatients();
+
       Toastify({
-        text: "This is a toast",
+        text: "Paciente Eliminado",
         className: "info",
+        close: true,
         style: {
-          background: "linear-gradient(to right, #00b09b, #96c93d)",
+          background: "linear-gradient(to right, #da2408  ,#870909)",
+          color: "white",
+          fontSize: "20px",
+          padding: "15px",
+          borderRadius: "5px",
         },
       }).showToast();
     })
@@ -138,6 +144,10 @@ function editUserPatients(userId) {
         if (form) {
           form.addEventListener("submit", handleSubmit);
         }
+        
+
+
+
       })
       .catch((error) => {
         console.error("Error fetching users:", error);
@@ -196,7 +206,18 @@ function handleSubmit(event) {
     )
     .then((response) => {
       console.log(response.data);
-      alert("Paciente editado exitosamente");
+        Toastify({
+          text: "Paciente Editado",
+          className: "info",
+          close: true,
+          style: {
+            background: "linear-gradient(to right, #d1c656 ,#FFC300  )",
+            color: "white",
+            fontSize: "20px",
+            padding: "15px",
+            borderRadius: "5px",
+          },
+        }).showToast();
       getusersPatients();
       modal.style.display = "none";
       backdrop.style.display = "none";
@@ -311,9 +332,21 @@ function RegistrarUserPatients() {
         )
 
         .then((response) => {
-          console.log(response.data);
-          alert("Paciente creado exitosamente");
+
           form.reset();
+          
+      Toastify({
+        text: "Paciente Registrado",
+        className: "info",
+        close: true,
+        style: {
+          background: "linear-gradient(to right, #3bc152  ,#448709   )",
+          color: "white",
+          fontSize: "20px",
+          padding: "15px",
+          borderRadius: "5px",
+        },
+      }).showToast();
         })
         .catch((error) => {
           console.error("Error al crear el paciente:", error);

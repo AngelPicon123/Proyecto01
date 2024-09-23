@@ -5,6 +5,10 @@ import {
 
 } from "../SelectOptions";
 
+import "toastify-js/src/toastify.css";
+import Toastify from "toastify-js";
+
+
 let currentUserId = null;
 
 
@@ -57,6 +61,21 @@ window.deleteUserTherapist = function (userId) {
     .then((response) => {
       console.log("User deleted successfully:", response.data);
       getusersTherapist();
+
+      Toastify({
+        text: "Terapeuta Eliminado",
+        className: "info",
+        close: true,
+        style: {
+          background: "linear-gradient(to right, #da2408  ,#870909)",
+          color: "white",
+          fontSize: "20px",
+          padding: "15px",
+          borderRadius: "5px",
+        },
+      }).showToast();
+
+
     })
     .catch((error) => {
       console.error("Error deleting user:", error);
@@ -187,10 +206,21 @@ function handleSubmit(event) {
       }
     )
     .then((response) => {
-      console.log(response.data);
-      alert("Paciente editado exitosamente");
 
       getusersTherapist();
+
+       Toastify({
+         text: "Terapeuta Editado",
+         className: "info",
+         close: true,
+         style: {
+           background: "linear-gradient(to right, #d1c656 ,#FFC300  )",
+           color: "white",
+           fontSize: "20px",
+           padding: "15px",
+           borderRadius: "5px",
+         },
+       }).showToast();
     })
     .catch((error) => {
       console.error("Error al crear el paciente:", error);
@@ -302,9 +332,19 @@ function RegistrarUserTherapist() {
         )
 
         .then((response) => {
-          console.log(response.data);
-          alert("Paciente creado exitosamente");
-          form.reset();
+  
+      Toastify({
+        text: "Paciente Registrado",
+        className: "info",
+        close: true,
+        style: {
+          background: "linear-gradient(to right, #3bc152  ,#73b267  )",
+          color: "white",
+          fontSize: "20px",
+          padding: "15px",
+          borderRadius: "5px",
+        },
+      }).showToast();
         })
         .catch((error) => {
           console.error("Error al crear el paciente:", error);
