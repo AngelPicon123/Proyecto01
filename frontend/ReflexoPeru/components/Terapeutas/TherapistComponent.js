@@ -2,11 +2,13 @@ import { searchUserTherapist } from "./Therapist";
 import { initializeProvincesAndDistricts } from "../SelectOptions";
 
 
+
+
 export function therapistsShow() {
  const $pacients = document.createElement("div");
  $pacients.classList.add("containerAll");
  $pacients.innerHTML = `
-      <h1 class="title">Gestión de Terapeutas </h1>
+      <h1>Gestión de Terapeutas </h1>
       <div class="Search">
         <input type="text" id="search" class="search-input" placeholder="Buscar por Nombre o Apellido / DNI" />
       </div>
@@ -33,10 +35,27 @@ export function therapistsShow() {
           </tbody>
         </table>
       </div>
+
+         <div class="main-content" id="deleteUserModal">
+        <form class="deleteUserModal-content">
+          <h2>Eliminar Paciente</h2>
+          <p>¿Esta seguro de eliminar este Paciente?</p>
+            <button onclick="" id="confirmDeleteUserBtn" class="btn-submit">Eliminar</button>
+            <button onclick="" id="cancelDeleteUserBtn"  class="btn-submit">Cancelar</button>
+          
+        </form>
+
+      
+
+
+
+
+
+      
        <div class="main-content" id="editUserModal" style="display: none;" > 
       
             <h1>EDITAR PACIENTE</h1>
-            <form  method="PUT" id="editPatientForm">
+            <form  method="PUT" class="form-create" id="editPatientForm">
                 <div class="form-row-update">
                  <div class="form-group">
                         <label for="dni">DNI</label>
@@ -179,3 +198,5 @@ export function RegisterViewTherapist() {
 
   return $RegisterTherapists;
 }
+
+

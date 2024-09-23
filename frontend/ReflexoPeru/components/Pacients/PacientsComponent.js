@@ -31,7 +31,28 @@ export function PacientsShow() {
           <tbody id="userTableBody">
           </tbody>
         </table>
+      
+        </div>
+
+      <div class="main-content" id="deleteUserModal">
+        <form class="deleteUserModal-content">
+          <h2>Eliminar Paciente</h2>
+          <p>¿Esta seguro de eliminar este Paciente?</p>
+            <button id="confirmDeleteUserBtn" class="btn-submit">Eliminar</button>
+            <button id="cancelDeleteUserBtn"  class="btn-submit">Cancelar</button>
+          
+        </form>
+
+      
+      
       </div>
+
+
+
+
+
+
+
        <div class="main-content" id="editUserModal" style="display: none;" > 
       
             <h1>EDITAR PACIENTE</h1>

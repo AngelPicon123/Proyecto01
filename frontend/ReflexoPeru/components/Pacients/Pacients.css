@@ -180,6 +180,23 @@ div#editUserModal {
   max-width: 600px;
 }
 
+div#deleteUserModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1001; /* Por encima del backdrop */
+  display: none; /* Ocultar por defecto */
+  width: 80%;
+  max-width: 600px;
+}
+
+
+
 .modal-backdrop {
   position: fixed;
   top: 0;
