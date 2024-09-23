@@ -4,6 +4,8 @@ import {
   initializeProvincesAndDistricts,
 } from "../SelectOptions";
 
+import Toastify from "toastify-js";
+
 let currentUserId = null;
 
 function getusersPatients() {
@@ -53,6 +55,13 @@ window.deleteUserPatients = function (userId) {
     .then((response) => {
       console.log("User deleted successfully:", response.data);
       getusersPatients();
+      Toastify({
+        text: "This is a toast",
+        className: "info",
+        style: {
+          background: "linear-gradient(to right, #00b09b, #96c93d)",
+        },
+      }).showToast();
     })
     .catch((error) => {
       console.error("Error deleting user:", error);
@@ -142,6 +151,8 @@ function editUserPatients(userId) {
 
 function handleSubmit(event) {
   event.preventDefault();
+  const modal = document.getElementById("editUserModal");
+  const backdrop = document.getElementById("modalBackdrop");
 
   const nombres = document.getElementById("nombre").value;
   const apellidos = document.getElementById("apellido").value;
@@ -186,8 +197,9 @@ function handleSubmit(event) {
     .then((response) => {
       console.log(response.data);
       alert("Paciente editado exitosamente");
-
       getusersPatients();
+      modal.style.display = "none";
+      backdrop.style.display = "none";
     })
     .catch((error) => {
       console.error("Error al crear el paciente:", error);
