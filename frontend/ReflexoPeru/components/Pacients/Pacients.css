@@ -126,11 +126,11 @@ td {
 }
 
 .Buttons-actions button:nth-child(1) {
-  background-color: #28a745;
+  background-color: #46a0eb;
 }
 
 .Buttons-actions button:nth-child(2) {
-  background-color: #b12020;
+  background-color: #ec5858;
 }
 
 .Buttons-actions button:hover {
