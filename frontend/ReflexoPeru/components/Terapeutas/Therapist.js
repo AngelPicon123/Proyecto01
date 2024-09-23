@@ -2,17 +2,11 @@ import {
   getProvincias,
   getDistritos,
   initializeProvincesAndDistricts,
-
 } from "../SelectOptions";
 
-import "toastify-js/src/toastify.css";
 import Toastify from "toastify-js";
 
-
 let currentUserId = null;
-
-
-
 
 function getusersTherapist() {
   const tableBody = document.getElementById("userTableBody");
@@ -74,8 +68,6 @@ window.deleteUserTherapist = function (userId) {
           borderRadius: "5px",
         },
       }).showToast();
-
-
     })
     .catch((error) => {
       console.error("Error deleting user:", error);
@@ -164,6 +156,8 @@ function editUserTherapist(userTherapistId) {
 
 function handleSubmit(event) {
   event.preventDefault();
+  const modal = document.getElementById("editUserModal");
+  const backdrop = document.getElementById("modalBackdrop");
 
   const nombres = document.getElementById("nombre").value;
   const apellidos = document.getElementById("apellido").value;
@@ -206,21 +200,22 @@ function handleSubmit(event) {
       }
     )
     .then((response) => {
-
       getusersTherapist();
 
-       Toastify({
-         text: "Terapeuta Editado",
-         className: "info",
-         close: true,
-         style: {
-           background: "linear-gradient(to right, #d1c656 ,#FFC300  )",
-           color: "white",
-           fontSize: "20px",
-           padding: "15px",
-           borderRadius: "5px",
-         },
-       }).showToast();
+      Toastify({
+        text: "Terapeuta Editado",
+        className: "info",
+        close: true,
+        style: {
+          background: "linear-gradient(to right, #d1c656 ,#FFC300  )",
+          color: "white",
+          fontSize: "20px",
+          padding: "15px",
+          borderRadius: "5px",
+        },
+      }).showToast();
+      modal.style.display = "none";
+      backdrop.style.display = "none";
     })
     .catch((error) => {
       console.error("Error al crear el paciente:", error);
@@ -332,19 +327,18 @@ function RegistrarUserTherapist() {
         )
 
         .then((response) => {
-  
-      Toastify({
-        text: "Paciente Registrado",
-        className: "info",
-        close: true,
-        style: {
-          background: "linear-gradient(to right, #3bc152  ,#73b267  )",
-          color: "white",
-          fontSize: "20px",
-          padding: "15px",
-          borderRadius: "5px",
-        },
-      }).showToast();
+          Toastify({
+            text: "Paciente Registrado",
+            className: "info",
+            close: true,
+            style: {
+              background: "linear-gradient(to right, #3bc152  ,#73b267  )",
+              color: "white",
+              fontSize: "20px",
+              padding: "15px",
+              borderRadius: "5px",
+            },
+          }).showToast();
         })
         .catch((error) => {
           console.error("Error al crear el paciente:", error);
