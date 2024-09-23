@@ -47,32 +47,59 @@ function getusersPatients() {
   }
 }
 
-window.deleteUserPatients = function (userId) {
-  axios
-    .delete(
-      `http://localhost/Proyecto01/Api/public/index.php/pacientes/delete/${userId}`
-    )
-    .then((response) => {
-      console.log("User deleted successfully:", response.data);
-      getusersPatients();
+function deleteUserPatients(currentUserId) {
+  const modal = document.getElementById("deleteUserModal");
+  const backdrop = document.getElementById("modalBackdrop");
+  const confirmDeleteUserBtn = document.getElementById("confirmDeleteUserBtn");
+  const cancelDeleteUserBtn = document.getElementById("cancelDeleteUserBtn");
 
-      Toastify({
-        text: "Paciente Eliminado",
-        className: "info",
-        close: true,
-        style: {
-          background: "linear-gradient(to right, #da2408  ,#870909)",
-          color: "white",
-          fontSize: "20px",
-          padding: "15px",
-          borderRadius: "5px",
-        },
-      }).showToast();
-    })
-    .catch((error) => {
-      console.error("Error deleting user:", error);
-    });
-};
+  if (modal && backdrop && confirmDeleteUserBtn && cancelDeleteUserBtn) {
+    modal.style.display = "block";
+    backdrop.style.display = "block";
+
+    backdrop.onclick = () => {
+      modal.style.display = "none";
+      backdrop.style.display = "none";
+    };
+
+    cancelDeleteUserBtn.onclick = () => {
+      modal.style.display = "none";
+      backdrop.style.display = "none";
+    };
+
+    confirmDeleteUserBtn.onclick = () => {
+      axios
+        .delete(
+          `http://localhost/Proyecto01/Api/public/index.php/pacientes/delete/${currentUserId}`
+        )
+        .then((response) => {
+          console.log("User deleted successfully:", response.data);
+          getusersPatients();
+
+          Toastify({
+            text: "Terapeuta Eliminado",
+            className: "info",
+            close: true,
+            style: {
+              background: "linear-gradient(to right, #da2408  ,#870909)",
+              color: "white",
+              fontSize: "20px",
+              padding: "15px",
+              borderRadius: "5px",
+            },
+          }).showToast();
+
+          modal.style.display = "none";
+          backdrop.style.display = "none";
+        })
+        .catch((error) => {
+          console.error("Error deleting user:", error);
+        });
+    };
+  }
+}
+
+
 
 function editUserPatients(userId) {
   currentUserId = userId;
@@ -356,6 +383,9 @@ function RegistrarUserPatients() {
 }
 
 window.editUserPatients = editUserPatients;
+window.deleteUserPatients = deleteUserPatients;
+
+
 export {
   editUserPatients,
   getusersPatients,
