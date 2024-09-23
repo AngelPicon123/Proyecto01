@@ -4,6 +4,9 @@ import {
   initializeProvincesAndDistricts,
 } from "../SelectOptions";
 
+import "toastify-js/src/toastify.css";
+import Toastify from "toastify-js";
+
 let currentUserId = null;
 
 function getusersPatients() {
@@ -53,6 +56,19 @@ window.deleteUserPatients = function (userId) {
     .then((response) => {
       console.log("User deleted successfully:", response.data);
       getusersPatients();
+
+      Toastify({
+        text: "Paciente Eliminado",
+        className: "info",
+        close: true,
+        style: {
+          background: "linear-gradient(to right, #da2408  ,#870909)",
+          color: "white",
+          fontSize: "20px",
+          padding: "15px",
+          borderRadius: "5px",
+        },
+      }).showToast();
     })
     .catch((error) => {
       console.error("Error deleting user:", error);
@@ -129,6 +145,10 @@ function editUserPatients(userId) {
         if (form) {
           form.addEventListener("submit", handleSubmit);
         }
+        
+
+
+
       })
       .catch((error) => {
         console.error("Error fetching users:", error);
@@ -185,9 +205,26 @@ function handleSubmit(event) {
     )
     .then((response) => {
       console.log(response.data);
-      alert("Paciente editado exitosamente");
-
+        Toastify({
+          text: "Paciente Editado",
+          className: "info",
+          close: true,
+          style: {
+            background: "linear-gradient(to right, #d1c656 ,#FFC300  )",
+            color: "white",
+            fontSize: "20px",
+            padding: "15px",
+            borderRadius: "5px",
+          },
+        }).showToast();
       getusersPatients();
+
+        const modal = document.getElementById("editUserModal");
+        const backdrop = document.getElementById("modalBackdrop");
+              modal.style.display = "none";
+              backdrop.style.display = "none";
+
+
     })
     .catch((error) => {
       console.error("Error al crear el paciente:", error);
@@ -299,9 +336,21 @@ function RegistrarUserPatients() {
         )
 
         .then((response) => {
-          console.log(response.data);
-          alert("Paciente creado exitosamente");
+
           form.reset();
+          
+      Toastify({
+        text: "Paciente Registrado",
+        className: "info",
+        close: true,
+        style: {
+          background: "linear-gradient(to right, #3bc152  ,#448709   )",
+          color: "white",
+          fontSize: "20px",
+          padding: "15px",
+          borderRadius: "5px",
+        },
+      }).showToast();
         })
         .catch((error) => {
           console.error("Error al crear el paciente:", error);
