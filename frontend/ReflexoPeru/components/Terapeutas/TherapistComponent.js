@@ -33,7 +33,7 @@ export function therapistsShow() {
         </table>
       </div>
 
-         <div class="main-content" id="deleteUserModal">
+         <div class="main-content animate__animated animate__fadeIn" id="deleteUserModal">
         <form class="deleteUserModal-content">
           <h2>Eliminar Paciente</h2>
           <p>¿Esta seguro de eliminar este Paciente?</p>

@@ -12,6 +12,7 @@
     "vite": "^5.4.1"
   },
   "dependencies": {
+    "animate.css": "^4.1.1",
     "axios": "^1.7.7",
     "reflexoperu": "file:",
     "toastify-js": "^1.12.0"
